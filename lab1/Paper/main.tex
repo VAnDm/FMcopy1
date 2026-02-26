@@ -126,9 +126,9 @@ t_{2} = \frac{3}{2}\pi
 \]
 Функция квадратной волны принимает вид
 \[
-f(t) = \begin{cases}{
+f(t) = \begin{cases}
     2,  \quad t \in [t_0, t_1)\\
-    8,  \quad t \in [t_1, t_2)}
+    8,  \quad t \in [t_1, t_2)
     \end{cases} 
 \]
 Период данной функции составляет 
@@ -137,9 +137,9 @@ T = \frac{3}{2}\pi -1 \approx 3,712
 \]
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{images/t1_init.png}
+    \includegraphics[width=1.0\linewidth]{images/t1_0.png}
     \caption{График квадратной волны}
-    \label{fig:placeholder}
+    \label{figure1}
 \end{figure}
 
 Вычислим коэффициенты ряда Фурье
@@ -147,16 +147,16 @@ T = \frac{3}{2}\pi -1 \approx 3,712
 a_0 = \frac{1}{T}\int_{t_0}^{t_2}f(x)dx = \frac{1}{T}(\int_{t_0}^{t_1}adx + \int_{t_1}^{t_2}bdx) = \frac{1}{T}(a(t_1 - t_0) + b(t_2 - t_1))
 \]
 \[
-a_n = \frac{1}{T}\int_{t_0}^{t_2}f(x)cos(\omega_nx)dx = \frac{1}{T}(\int_{t_0}^{t_1}a\cdot cos(\omega_nx)dx + \int_{t_1}^{t_2}b\cdot cos(\omega_nx)dx) =
+a_n = \frac{2}{T}\int_{t_0}^{t_2}f(x)cos(\omega_nx)dx = \frac{1}{T}(\int_{t_0}^{t_1}a\cdot cos(\omega_nx)dx + \int_{t_1}^{t_2}b\cdot cos(\omega_nx)dx) =
 \]
 \[
-= \frac{1}{T\cdot\omega_n}(a(sin(\omega_nt_1) - sin(\omega_nt_0)) +b(sin(\omega_nt_2) - sin(\omega_nt_1)))
+= \frac{2}{T\cdot\omega_n}(a(sin(\omega_nt_1) - sin(\omega_nt_0)) +b(sin(\omega_nt_2) - sin(\omega_nt_1)))
 \]
 \[
-b_n = \frac{1}{T}\int_{t_0}^{t_2}f(x)sin(\omega_nx)dx = \frac{1}{T}(\int_{t_0}^{t_1}a\cdot sin(\omega_nx)dx + \int_{t_1}^{t_2}b\cdot sin(\omega_nx)dx) =
+b_n = \frac{2}{T}\int_{t_0}^{t_2}f(x)sin(\omega_nx)dx = \frac{1}{T}(\int_{t_0}^{t_1}a\cdot sin(\omega_nx)dx + \int_{t_1}^{t_2}b\cdot sin(\omega_nx)dx) =
 \]
 \[
-= \frac{1}{T\cdot\omega_n}(a(cos(\omega_nt_0) - cos(\omega_nt_1)) +b(cos(\omega_nt_1) - cos(\omega_nt_2)))
+= \frac{2}{T\cdot\omega_n}(a(cos(\omega_nt_0) - cos(\omega_nt_1)) +b(cos(\omega_nt_1) - cos(\omega_nt_2)))
 \]
 
 Для комплексного ряда Фурье
@@ -194,10 +194,10 @@ b_2 = 1.807
 c_0 = 6.426
 \]
 \[
-c_{\pm 1} = 1.137 \pm i0.820
+c_{\pm 1} = 1.137 \pm 0.820i
 \]
 \[
-c_{\pm 2} = -0.300 \pm i0.903
+c_{\pm 2} = -0.300 \pm 0.903i
 \]
 
 \begin{figure}[H]
@@ -240,8 +240,24 @@ c_{\pm 2} = -0.300 \pm i0.903
     \label{fig:fourier_grid}
 \end{figure}
 
-
-
+Для проверки равенства Парсеваля, выразим его форму в наших обозначениях. Для тригонометрической суммы ряда
+\[
+||f(x)||^2 = T(a_0^2 + \frac{1}{2}\sum_{n=0}^{N}(a_n^2+b_n^2))
+\]
+\[
+||f(x)||^2 = \int_{t_0}^{t_0+T}f(x)^2dx
+\]
+Для комплексного ряда
+\[
+||f(x)||^2 = T\sum_{-N}^{N}c_n^2
+\]
+В дальнейшем проверка равенства производится по тем же формулам при помощи кода(см. Приложение)
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/t1_p.png}
+    \caption{Проверка равенства Парсеваля для квадратной волны}
+    \label{fig:placeholder}
+\end{figure}
 
 
 \subsection{Чётная переодическая функция}
@@ -249,6 +265,9 @@ c_{\pm 2} = -0.300 \pm i0.903
 \[
 f(x) = |sin(x)|\cdot e^{cos(x)^3}
 \]
+
+Она, очевидно, не представима в виде конечного числа членов ряда Фурье, хотя бы из-за модуля.
+
 Её график
 \begin{figure}[H]
     \centering
@@ -259,7 +278,7 @@ f(x) = |sin(x)|\cdot e^{cos(x)^3}
 
 Аналитическое вычисление интегралов от этой функции(а тем более от произвдедения её на sin и cos) если и возможно, то очень затруднительно. Поэтому все коэффициенты вычисляются численно, при помощи кода.
 
-Коэффициенты b, очевидно нулевые, так как это нечтная функция. Остальные коэффициенты неочевидны
+Коэффициенты \(b_n=0\) так как это чётная функция, остальные коэффициенты неочевидны
 \[
 a_0 = 0.684
 \]
@@ -268,10 +287,6 @@ a_1 = 0.275
 \]
 \[
 a_2 = -0.371
-\]
-
-\[
-b_1 = b_2 = 0
 \]
 
 \[
@@ -324,10 +339,201 @@ c_{\pm 2} = -0.185 \pm 0 \cdot i
     \label{fig:fourier_grid}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/t2_p.png}
+    \caption{Проверка равенства Парсеваля для чётной функции}
+    \label{fig:placeholder}
+\end{figure}
+
+
+\subsection{Нечётная функция}
+
+Возьмём функцию 
+\[
+f(x) = \frac{sin(sin(x))\cdot e^{cos(x)^3}}{2 + |cos(x)|} 
+\]
+
+Она нечётна и не представима в виде конечной суммы ряда Фурье, по аналогии с предыдущей.
+
+Её график
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/t3_0.png}
+    \caption{График нечётной переодической функции}
+    \label{fig:placeholder}
+\end{figure}
+
+Коэффициенты \(a_n = 0\), кроме \(a_0\), так как это нечётная функция, остальные коэффициенты неочевидны
+\[
+a_0 = 0.057
+\]
+
+\[
+b_1 = -0.137
+\]
+\[
+b_2 = -0.096
+\]
+
+\[
+c_0 = 0.057
+\]
+\[
+c_{\pm 1} = -0.196 \pm 0.069i
+\]
+\[
+c_{\pm 2} = -0.010 \pm 0.048i
+\]
+
+
+\begin{figure}[H]
+    \centering
+    
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/t3_3.png}
+        \caption{N = 3 гармоники}
+        \label{fig:n3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/t3_5.png}
+        \caption{N = 5 гармоник}
+        \label{fig:n5}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/t3_10.png}
+        \caption{N = 10 гармоник}
+        \label{fig:n10}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/t3_20.png}
+        \caption{N = 20 гармоник}
+        \label{fig:n20}
+    \end{subfigure}
+    \vspace{0.5cm}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/t3_50.png}
+        \caption{N = 50 гармоник}
+        \label{fig:n50}
+    \end{subfigure}
+        
+    \caption{Приближение нечётной переодической функции рядом Фурье для разного количества гармоник}
+    \label{fig:fourier_grid}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/t3_p.png}
+    \caption{Проверка равенства Парсеваля для нечётной функции}
+    \label{fig:placeholder}
+\end{figure}
+
+\newpage
+\subsection{Ни чётная ни нечётная функция}
+
+
+Возьмём функцию 
+\[
+f(x) = \frac{sin(cos(x))\cdot |sin(x)|\cdot e^{sin(x)}}{2 + cos(x)^3}
+\]
+
+Она ни чётна ни нечётна и не представима в виде конечной суммы ряда Фурье, по аналогии с предыдущей.
+
+Её график
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/t4_0.png}
+    \caption{График чётной переодической функции}
+    \label{fig:placeholder}
+\end{figure}
+
+Никакие коэффициенты разложения в ряд Фурье этой функции не очевидны. 
+
+\[
+a_0 = -0.151
+\]
+\[
+a_1 = 0.067
+\]
+\[
+a_2 = -0.091
+\]
+
+\[
+b_1 = 0.258
+\]
+\[
+b_2 = -0.220
+\]
+
+\[
+c_0 = -0.151
+\]
+\[
+c_{\pm 1} = 0.034 \pm 0.129i
+\]
+\[
+c_{\pm 2} = -0.046 \pm 0.110i
+\]
+
+\begin{figure}[H]
+    \centering
+    
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/t4_3.png}
+        \caption{N = 3 гармоники}
+        \label{fig:n3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/t4_5.png}
+        \caption{N = 5 гармоник}
+        \label{fig:n5}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/t4_10.png}
+        \caption{N = 10 гармоник}
+        \label{fig:n10}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/t4_20.png}
+        \caption{N = 20 гармоник}
+        \label{fig:n20}
+    \end{subfigure}
+    \vspace{0.5cm}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/t4_50.png}
+        \caption{N = 50 гармоник}
+        \label{fig:n50}
+    \end{subfigure}
+        
+    \caption{Приближение ни чётной ни нечётной переодической функции рядом Фурье для разного количества гармоник}
+    \label{fig:fourier_grid}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/t4_p.png}
+    \caption{Проверка равенства Парсеваля для ни чётной, ни нечётной функции}
+    \label{fig:placeholder}
+\end{figure}
 
 \newpage
 \section{Приложение}
-\begin{lstlisting}
+\begin{lstlisting}[caption = {Код для построение графика функции(конкретно квадратной волны)}]
     from matplotlib import pyplot as plt
 import numpy as np
 from numpy import pi, sin, cos, exp
@@ -423,12 +629,81 @@ for num in N_values:
     
     plt.show()
     plt.close(fig)
-#for i in range(3):
- #   print(f"Коэффициент a_{i}: {a_n(i)}")
-  #  print(f"Коэффициент b_{i}: {b_n(i)}")
-   # print(f"Коэффициент c_{i}: {c_n(-i)}")
+for i in range(3):
+    print(f"Коэффициент a_{i}: {a_n(i)}")
+    print(f"Коэффициент b_{i}: {b_n(i)}")
+    print(f"Коэффициент c_{i}: {c_n(-i)}")
+
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Функции вычисления коэффициентов и частичных сумм для произвольной функции}]
+    
+
+def a_n(n):
+    if n == 0:
+        result, _ = integrate.quad_vec(f, t0, t0 + T)
+        return result / T
+    
+    wn = omega_n(n)
+    integrand = lambda x: f(x) * np.cos(wn * x)
+    result, _ = integrate.quad_vec(integrand, t0, t0 + T)
+    return (2 / T) * result
+
+def b_n(n):
+    wn = omega_n(n)
+    integrand = lambda x: f(x) * np.sin(wn * x)
+    result, _ = integrate.quad_vec(integrand, t0, t0 + T)
+    return (2 / T) * result
+
+def c_n(n):
+    if n == 0:
+        result, _ = integrate.quad_vec(f, t0, t0 + T)
+        return result / T
+    
+    wn = omega_n(n)
+    integrand = lambda x: f(x) * np.exp(-1j * wn * x)
+    result, _ = integrate.quad_vec(integrand, t0, t0 + T)
+    return result/T
 
 
+def F_n(n, x):
+    res = 0
+    n += 1
+
+    for i in range(n):
+        if i == 0:
+            res += a_n(0)
+        else:
+            wn = omega_n(i)
+            res += a_n(i)*cos(wn*x) + b_n(i)*sin(wn*x)
+    return res
+
+def G_n(n, x):
+    res = 0
+    for i in range((-n), n+1):
+        wn = omega_n(i)
+        res += c_n(i)*exp(1j*wn*x)
+    return res.real
+
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Код для проверки равенства Парсеваля}]
+    
+N = 50
+
+scal = lambda x: f(x)*f(x)
+
+q, _ = integrate.quad_vec(scal, t0, t0+T)
+q = q/T
+s_tr = a_n(0)**2
+s_c = abs(c_n(0))**2
+
+for i in range(1, N):
+    s_tr += (a_n(i)**2+b_n(i)**2)/2
+    s_c += abs(c_n(i))**2+abs(c_n(-i))**2    
+
+print(f"Проверка равенства Парсеваля при N = {N}(тригонометрический ряд): {q - s_tr}")
+print(f"Проверка равенства Парсеваля при N = {N}(тригонометрический ряд): {q - s_c.real}")
 \end{lstlisting}
 
 \end{document}

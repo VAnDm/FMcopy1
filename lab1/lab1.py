@@ -3,6 +3,7 @@ import numpy as np
 from numpy import pi, sin, cos, exp, log
 from scipy import integrate
 
+# t0 = 1
 t0 = 0
 t1 = pi**2/5
 t2 = pi*1.5
@@ -10,21 +11,24 @@ t2 = pi*1.5
 a = 2
 b = 8
 
+# T = t2-t0
 T = 2*pi
 
-#def f(n):
- #   t = (n - t0) % T
-  #  t = t0 + t
+# def f(n):
+#     t = (n - t0) % T
+#     t = t0 + t
     
-   # if t0 <= t < t1:
-    #    return a
-    #elif t1 <= t < t2:
-     #   return b
-    #return 0
+#     if t0 <= t < t1:
+#         return a
+#     elif t1 <= t < t2:
+#         return b
+#     return 0
 
 def f(x):
-    return abs(sin(x))*exp(cos(x)**3)
-    #return sin(2*pi*log(abs(x)*6))
+    # return abs(sin(x))*exp(cos(x)**3)
+    # return sin(sin(x))*exp(abs(cos(x))**3)/(2+abs(cos(x)))
+    return sin(cos(x))*abs(sin(x))*exp(sin(x))/(2+cos(x)**3)
+
 def omega_n(n):
     return 2 * np.pi * n / T
 
@@ -76,39 +80,56 @@ def G_n(n, x):
 
 
 
-N_values = [1, 3, 5, 10, 20, 50] 
-#t = np.linspace(t0, t0 + 3*T, 1000)
+N_values = [3, ]#5, 10, 20, 50] 
+# t = np.linspace(t0, t0 + 3*T, 2000)
 t = np.linspace(-3*pi, 3*pi, 2000)
 x_original = np.array([f(val) for val in t])
 
-for num in N_values:
-    x_fur = F_n(num, t)
-    x_fur2 = G_n(num, t)
+
+N = 50
+
+scal = lambda x: f(x)*f(x)
+
+q, _ = integrate.quad_vec(scal, t0, t0+T)
+q = q/T
+s_tr = a_n(0)**2
+s_c = abs(c_n(0))**2
+
+for i in range(1, N):
+    s_tr += (a_n(i)**2+b_n(i)**2)/2
+    s_c += abs(c_n(i))**2+abs(c_n(-i))**2    
+
+print(f"Проверка равенства Парсеваля при N = {N}(тригонометрический ряд): {q - s_tr}")
+print(f"Проверка равенства Парсеваля при N = {N}(тригонометрический ряд): {q - s_c.real}")
+
+# for num in N_values:
+#     x_fur = F_n(num, t)
+#     x_fur2 = G_n(num, t)
     
-    fig, ax = plt.subplots(figsize=(10, 6))
+#     fig, ax = plt.subplots(figsize=(10, 6))
     
-    ax.plot(t, x_fur, color="red", linewidth=2, label=f'Тригонометрический ряд (N={num})')
-    ax.plot(t, x_fur2, color="yellow", linestyle='--', linewidth=2, label=f'Комплексный ряд (N={num})')
-    ax.plot(t, x_original, color="blue", linewidth=1.5, label='Исходная функция')
+#     # ax.plot(t, x_fur, color="red", linewidth=2, label=f'Тригонометрический ряд (N={num})')
+#     # ax.plot(t, x_fur2, color="yellow", linestyle='--', linewidth=2, label=f'Комплексный ряд (N={num})')
+#     ax.plot(t, x_original, color="blue", linewidth=1.5, label='Исходная функция')
     
-    ax.set_xlabel('t', fontsize=12)
-    ax.set_ylabel('f(t)', fontsize=12)
-    ax.set_title(f'Ряд Фурье для чётной переодической функции (N = {num} гармоник)', fontsize=14)
-    #ax.set_title(f'Чётная переодическая функция', fontsize=14)
-    #ax.set_xlim(t0- 2, t0 + 3*T+1)
-    ax.set_xlim(-5*pi, 5*pi)
-    ax.set_ylim(-0.5, 2)
-    ax.legend(loc='upper left', fontsize=10)
-    ax.grid(True, alpha=0.3)
+#     ax.set_xlabel('t', fontsize=12)
+#     ax.set_ylabel('f(t)', fontsize=12)
+#     #ax.set_title(f'Ряд Фурье для ни чётной, ни нечётной переодической функции (N = {num} гармоник)', fontsize=14)
+#     ax.set_title(f'Функция квадратной волны', fontsize=14)
+#     # ax.set_xlim(-3*pi-2, 3*pi+2)
+#     ax.set_xlim(t0-2, t0+3*T+1)
+#     ax.set_ylim(0, 9)
+#     ax.legend(loc='upper left', fontsize=10)
+#     ax.grid(True, alpha=0.3)
     
-    filename = f"t2_{num}.png"
-    #filename = f"t2_0.png"
-    #plt.savefig(filename, dpi=300, bbox_inches='tight')
+#     # filename = f"t4_{num}.png"
+#     filename = f"t1_0.png"
+#     # plt.savefig(filename, dpi=300, bbox_inches='tight')
     
-    plt.show()
-    plt.close(fig)
-for i in range(3):
-    print(f"Коэффициент a_{i}: {a_n(i)}")
-    print(f"Коэффициент b_{i}: {b_n(i)}")
-    print(f"Коэффициент c_{i}: {c_n(-i)}")
+#     plt.show()
+#     plt.close(fig)
+#for i in range(3):
+ #   print(f"Коэффициент a_{i}: {a_n(i)}")
+  #  print(f"Коэффициент b_{i}: {b_n(i)}")
+   # print(f"Коэффициент c_{i}: {c_n(-i)}")
 
