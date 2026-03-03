@@ -6,5 +6,5 @@
 \contentsline {subsection}{\numberline {1.4}Ни чётная ни нечётная функция}{9}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}Вывод}{11}{subsection.1.5}%
 \contentsline {section}{\numberline {2}Задание 2}{12}{section.2}%
-\contentsline {section}{\numberline {3}Приложение}{13}{section.3}%
+\contentsline {section}{\numberline {3}Приложение}{17}{section.3}%
 \contentsfinish 

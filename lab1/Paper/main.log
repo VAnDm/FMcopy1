@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.2)  2 MAR 2026 18:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.2)  3 MAR 2026 15:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -823,6 +823,105 @@ LaTeX Warning: Label `fig:placeholder' multiply defined.
 
 LaTeX Warning: Label `fig:placeholder' multiply defined.
 
+
+LaTeX Warning: Label `fig:n3' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n3' multiply defined.
+
+
+LaTeX Warning: Label `fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `fig:fourier_grid' multiply defined.
+
+
+LaTeX Warning: Label `fig:n3' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n3' multiply defined.
+
+
+LaTeX Warning: Label `fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `fig:fourier_grid' multiply defined.
+
+
+LaTeX Warning: Label `fig:n3' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n3' multiply defined.
+
+
+LaTeX Warning: Label `fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n5' multiply defined.
+
+
+LaTeX Warning: Label `fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:n10' multiply defined.
+
+
+LaTeX Warning: Label `fig:fourier_grid' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
@@ -1100,11 +1199,89 @@ File: images/comlex_cycle.png Graphic file (type png)
 Package pdftex.def Info: images/comlex_cycle.png  used on input line 571.
 (pdftex.def)             Requested size: 483.69687pt x 362.79062pt.
  [12 <./images/comlex_cycle.png>]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 582.
-LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 582.
+<images/complex_cycleN1.png, id=196, 462.528pt x 346.896pt>
+File: images/complex_cycleN1.png Graphic file (type png)
+<use images/complex_cycleN1.png>
+Package pdftex.def Info: images/complex_cycleN1.png  used on input line 638.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_cycleN2.png, id=197, 462.528pt x 346.896pt>
+File: images/complex_cycleN2.png Graphic file (type png)
+<use images/complex_cycleN2.png>
+Package pdftex.def Info: images/complex_cycleN2.png  used on input line 644.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_cycleN3.png, id=198, 462.528pt x 346.896pt>
+File: images/complex_cycleN3.png Graphic file (type png)
+<use images/complex_cycleN3.png>
+Package pdftex.def Info: images/complex_cycleN3.png  used on input line 652.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_cycleN5.png, id=199, 462.528pt x 346.896pt>
+File: images/complex_cycleN5.png Graphic file (type png)
+<use images/complex_cycleN5.png>
+Package pdftex.def Info: images/complex_cycleN5.png  used on input line 657.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_cycleN10.png, id=200, 462.528pt x 346.896pt>
+File: images/complex_cycleN10.png Graphic file (type png)
+<use images/complex_cycleN10.png>
+Package pdftex.def Info: images/complex_cycleN10.png  used on input line 665.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+ [13] [14 <./images/complex_cycleN1.png> <./images/complex_cycleN2.png> <./images/complex_cycleN3.png> <./images/complex_cycleN5.png> <./images/complex_cycleN10.png>]
+<images/complex_realN1.png, id=215, 462.528pt x 346.896pt>
+File: images/complex_realN1.png Graphic file (type png)
+<use images/complex_realN1.png>
+Package pdftex.def Info: images/complex_realN1.png  used on input line 678.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_realN2.png, id=216, 462.528pt x 346.896pt>
+File: images/complex_realN2.png Graphic file (type png)
+<use images/complex_realN2.png>
+Package pdftex.def Info: images/complex_realN2.png  used on input line 684.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_realN3.png, id=217, 462.528pt x 346.896pt>
+File: images/complex_realN3.png Graphic file (type png)
+<use images/complex_realN3.png>
+Package pdftex.def Info: images/complex_realN3.png  used on input line 692.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_realN5.png, id=218, 462.528pt x 346.896pt>
+File: images/complex_realN5.png Graphic file (type png)
+<use images/complex_realN5.png>
+Package pdftex.def Info: images/complex_realN5.png  used on input line 697.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_realN10.png, id=219, 462.528pt x 346.896pt>
+File: images/complex_realN10.png Graphic file (type png)
+<use images/complex_realN10.png>
+Package pdftex.def Info: images/complex_realN10.png  used on input line 705.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+ [15 <./images/complex_realN1.png> <./images/complex_realN2.png> <./images/complex_realN3.png> <./images/complex_realN5.png> <./images/complex_realN10.png>]
+<images/complex_imgN1.png, id=230, 462.528pt x 346.896pt>
+File: images/complex_imgN1.png Graphic file (type png)
+<use images/complex_imgN1.png>
+Package pdftex.def Info: images/complex_imgN1.png  used on input line 718.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_imgN2.png, id=231, 462.528pt x 346.896pt>
+File: images/complex_imgN2.png Graphic file (type png)
+<use images/complex_imgN2.png>
+Package pdftex.def Info: images/complex_imgN2.png  used on input line 724.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_imgN3.png, id=232, 462.528pt x 346.896pt>
+File: images/complex_imgN3.png Graphic file (type png)
+<use images/complex_imgN3.png>
+Package pdftex.def Info: images/complex_imgN3.png  used on input line 732.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_imgN5.png, id=233, 462.528pt x 346.896pt>
+File: images/complex_imgN5.png Graphic file (type png)
+<use images/complex_imgN5.png>
+Package pdftex.def Info: images/complex_imgN5.png  used on input line 737.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+<images/complex_imgN10.png, id=234, 462.528pt x 346.896pt>
+File: images/complex_imgN10.png Graphic file (type png)
+<use images/complex_imgN10.png>
+Package pdftex.def Info: images/complex_imgN10.png  used on input line 745.
+(pdftex.def)             Requested size: 232.17242pt x 174.13039pt.
+ [16 <./images/complex_imgN1.png> <./images/complex_imgN2.png> <./images/complex_imgN3.png> <./images/complex_imgN5.png> <./images/complex_imgN10.png>]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 754.
+LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 754.
  (C:\Users\vandm\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-) [13] [14] [15] (main.aux)
+) [17] [18] [19] [20] [21] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -1117,17 +1294,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 712C5227547C632BDDD8D4816EFA42AF;1384.
  ) 
 Here is how much of TeX's memory you used:
- 17699 strings out of 467867
- 280535 string characters out of 5418335
- 1090619 words of memory out of 5000000
- 46134 multiletter control sequences out of 15000+600000
+ 17903 strings out of 467867
+ 285243 string characters out of 5418335
+ 1090496 words of memory out of 5000000
+ 46239 multiletter control sequences out of 15000+600000
  646000 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,84p,596b,1234s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\vandm\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1000.pk> <C:\Users\vandm\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm0600.pk> <C:\Users\vandm\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1095.pk> <C:\Users\vandm\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\vandm\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati1095.pk> <C:\Users\vandm\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm0800.pk> <C:\Users\vandm\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\vandm\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\vandm\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk><C:/Users/vandm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/vandm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/vandm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/vandm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/vandm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/vandm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/vandm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/vandm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/vandm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/vandm/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (16 pages, 4724942 bytes).
+Output written on main.pdf (22 pages, 5071699 bytes).
 PDF statistics:
- 789 PDF objects out of 1000 (max. 8388607)
- 203 named destinations out of 1000 (max. 500000)
- 215 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 963 PDF objects out of 1000 (max. 8388607)
+ 302 named destinations out of 1000 (max. 500000)
+ 290 words of extra memory for PDF output out of 10000 (max. 10000000)
 

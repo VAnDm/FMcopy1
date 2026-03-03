@@ -1,9 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from math import e
-from math import sin
-from math import cos
-from math import sqrt
+
+i = 1j
 
 def Ref(t):
     ans = 0
@@ -32,22 +30,60 @@ def Imf(t):
     return ans
 
 
+def cn(n):
+    if n == 0:
+        return 0 + 0 * i
+    else:
+        k1 = 1/((np.pi ** 2) * (n ** 2))
+        e1 = np.exp(-(7/4) * i * np.pi * n)
+        e2 = np.exp((1/2) * i * np.pi * n)
+        e3 = np.exp(i * np.pi * n)
+        e4 = np.exp((3/2) * i * np.pi * n)
+        e5 = np.exp(2 * i * np.pi * n)
+        c = k1 * (1 + i) * e1 * (2 - 2 * i - 4 * e2 + 4 * i * e3 + 4 * e4 + n * np.pi - e5 * (2 + n * np.pi + 2 * i))
+        return c
+
+N = 10
+k = -1 * N
+ns = []
+cns = []
+for p in range(2 * N + 1):
+    ns.append(k)
+    cns.append(cn(k))
+    k = k + 1
+print(*cns)
+
 t = 0
+ts = []
 res = []
 ims = []
-while t < 8:
+resg = []
+imsg = []
+while t < 16:
+    ts.append(t)
     res.append(Ref(t))
     ims.append(Imf(t))
+    ch = 0 + 0 * i
+    for j in range(2 * N + 1):
+        n = ns[j]
+        c = cns[j]
+        ch = ch + c * np.exp(i * (2 * np.pi * n / 8) * t)
+    re = ch.real
+    resg.append(re)
+    im = ch.imag
+    imsg.append(im)
     t += 0.0001
 
 plt.ion()
-plt.plot(res, ims, c = 'blue')
+plt.plot(ts, res, c = 'blue', label = 'Исходная функция')
+plt.axis('equal')
+plt.plot(ts, resg, c = 'red', linestyle = '--', label = 'Тригонометрический ряд')
 plt.axis('equal')
 plt.draw()
 plt.ioff()
 
-plt.xlabel("Re(f(t))")
-plt.ylabel("Im(f(t))")
+plt.xlabel("t")
+plt.ylabel("Re(f(t))")
 plt.legend()
 plt.grid()
 plt.show()

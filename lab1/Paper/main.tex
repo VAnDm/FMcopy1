@@ -164,14 +164,14 @@ b_n = \frac{2}{T}\int_{t_0}^{t_2}f(x)sin(\omega_nx)dx = \frac{1}{T}(\int_{t_0}^{
 Для комплексного ряда Фурье
 
 \[
-c_n = \frac{1}{T}\int_{t_0}^{t_1}f(x)e^{-i\omega_nx}dx = \frac{1}{T}(\int_{t_0}^{t_1}ae^{-i\omega_nx}dx + \int_{t_1}^{t_2}be^{-i\omega_nx}dx) =
+c_n = \frac{1}{T}\int_{t_0}^{t_2}f(x)e^{-i\omega_nx}dx = \frac{1}{T}(\int_{t_0}^{t_1}ae^{-i\omega_nx}dx + \int_{t_1}^{t_2}be^{-i\omega_nx}dx) =
 \]
 \[
 =\frac{1}{-iT\omega_n}(a(e^{-i\omega_nt_1} - e^{-i\omega_nt_0}) + b(e^{-i\omega_nt_2} - e^{-i\omega_nt_1}))
 \]
 Но для \(n=0\) общая формула не подходит(в знаменателе - ноль), рассмотрим этот случай отдельно
 \[
-c_0 = \frac{1}{T}\int_{t_0}^{t_1}f(x)e^{-ix\cdot0}dx = \frac{1}{T}\int_{t_0}^{t_1}f(x)dx = \frac{1}{T}(a(t_1 - t_0) + b(t_2 - t_1))
+c_0 = \frac{1}{T}\int_{t_0}^{t_2}f(x)e^{-ix\cdot0}dx = \frac{1}{T}\int_{t_0}^{t_1}f(x)dx = \frac{1}{T}(a(t_1 - t_0) + b(t_2 - t_1))
 \]
 
 Все эти коэффициенты неочевидны. Программно(см. Приложение) вычислим коэффициенты для \(N=2\)(коэффициенты приведены с точностью до тысячных):
@@ -572,11 +572,183 @@ Im(f(t)) = \begin{cases}
     \caption{График $f(t)$ на комплексной плоскости}
     \label{fig:placeholder}
 \end{figure}
+Далее будем рассматривать частичные суммы ряда Фурье для функции $f(t)$ вида:
+\[
+G_N(t) = \sum_{-N}^{N}c_ne^{i\omega_nt}
+\]
+\newpage
 Вычислим $n$-ый коэффициент $c_n$ как функцию от $n$:
 \[
-c_n = \frac{1}{T}\int_{t_0}^{t_1}f(x)e^{-i\omega_nx}dx = \frac{1}{T}(\int_{t_0}^{t_1}ae^{-i\omega_nx}dx + \int_{t_1}^{t_2}be^{-i\omega_nx}dx) =
+c_n = \frac{1}{T}\int_{t_0}^{t_0 + T}f(t)e^{-i\omega_nt}dt = 
+\frac{1}{8}(\int_{-1}^{1}(2 + 2it)e^{-i\omega_nt}dt + 
+\int_{1}^{3}(4 - 2t + 2i)e^{-i\omega_nt}dt +
+\]
+\[
++ \int_{3}^{5}(-2 + 8i - 2it)e^{-i\omega_nt}dt +
+\int_{5}^{7}(-12 + 2t - 2i)e^{-i\omega_nt}dt)
 \]
 
+Приняв, что $\omega_n = \frac{2\pi n}{T}$, получим что:
+\[
+c_n =\frac{1}{\pi^2 n^2}(1+i)e^{-\frac{7}{4}i n \pi}(
+2-2i-4e^{\frac{i n \pi}{2}}+4 i e^{i n \pi} +4e^{\frac{3 i n \pi}{2}}+n\pi-e^{2 i n \pi}(2+n\pi+2 i))
+\]
+Для $n = 0$ найдем коэффициент отдельно, так как общая формула при $n = 0$ не определена:
+\[
+c_0 = \frac{1}{T}\int_{t_0}^{t_0 + T}f(t)dt = 
+\frac{1}{8}(\int_{-1}^{1}(2 + 2it)dt + \int_{1}^{3}(4 - 2t + 2i)dt +
+\]
+\[
++ \int_{3}^{5}(-2 + 8i - 2it)dt +
+\int_{5}^{7}(-12 + 2t - 2i)dt) = \frac{1}{8}(4 + 4i - 4 - 4i) = 0
+\]
+Используя полученные формулы напишем программу, 
+которая будет расчитывать коэффициенты с произвольным номером.
+Приведем здесь значения коэффициентов для разложения
+при $N = -3$:
+\[
+c_{-3} = 0.255
+\]
+\[
+c_{-2} = 0
+\] 
+\[
+c_{-1} = 0
+\]
+\[
+c_{0} = 0
+\]
+\[
+c_{1} \approx 2.293
+\]
+\[
+c_{2} = 0
+\]
+\[
+c_{3} = 0
+\]
+Заметим, что хотя функция комплекснозначная, полученные значения коэффициентов оказались вещественными.
+\newline
+Построим параметрические графики частичных сумм ряда $G_N(t)$ и графики $Re(G_N)(t)$, $Im(G_N)(t)$, для $N = 1, 2, 3, 5, 10$:
+\begin{figure}[H]
+    \centering
+    
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_cycleN1.png}
+        \caption{N = 1}
+        \label{fig:n3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_cycleN2.png}
+        \caption{N = 2}
+        \label{fig:n5}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_cycleN3.png}
+        \caption{N = 3}
+        \label{fig:n10}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_cycleN5.png}
+        \caption{N = 5}
+        \label{fig:n5}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_cycleN10.png}
+        \caption{N = 10}
+        \label{fig:n10}
+    \end{subfigure}
+    \caption{Приближение комплекснозначной функции частичной суммой ряда Фурье. Параметрический график}
+    \label{fig:fourier_grid}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_realN1.png}
+        \caption{N = 1}
+        \label{fig:n3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_realN2.png}
+        \caption{N = 2}
+        \label{fig:n5}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_realN3.png}
+        \caption{N = 3}
+        \label{fig:n10}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_realN5.png}
+        \caption{N = 5}
+        \label{fig:n5}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_realN10.png}
+        \caption{N = 10}
+        \label{fig:n10}
+    \end{subfigure}
+    \caption{Приближение комплекснозначной функции частичной суммой ряда Фурье. График действительной части}
+    \label{fig:fourier_grid}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_imgN1.png}
+        \caption{N = 1}
+        \label{fig:n3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_imgN2.png}
+        \caption{N = 2}
+        \label{fig:n5}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_imgN3.png}
+        \caption{N = 3}
+        \label{fig:n10}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_imgN5.png}
+        \caption{N = 5}
+        \label{fig:n5}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/complex_imgN10.png}
+        \caption{N = 10}
+        \label{fig:n10}
+    \end{subfigure}
+    \caption{Приближение комплекснозначной функции частичной суммой ряда Фурье. Параметрический график}
+    \label{fig:fourier_grid}
+\end{figure}
 \newpage
 \section{Приложение}
 \begin{lstlisting}[caption = {Код для построение графика функции(конкретно квадратной волны)}]
@@ -751,5 +923,95 @@ for i in range(1, N):
 print(f"Проверка равенства Парсеваля при N = {N}(тригонометрический ряд): {q - s_tr}")
 print(f"Проверка равенства Парсеваля при N = {N}(тригонометрический ряд): {q - s_c.real}")
 \end{lstlisting}
+\begin{lstlisting}[caption={Код для построения графиков комплекснозначной функции}]
+import matplotlib.pyplot as plt
+import numpy as np
 
+i = 1j
+
+def Ref(t):
+    ans = 0
+    a = (t + 1) % 8 - 1
+    if a < 1:
+        ans = 2
+    elif a < 3:
+        ans = 4 - 2 * a
+    elif a < 5:
+        ans = -2
+    else:
+        ans = -12 + 2 * a
+    return ans
+
+def Imf(t):
+    ans = 0
+    a = (t + 1) % 8 - 1
+    if a < 1:
+        ans = 2 * a
+    elif a < 3:
+        ans = 2
+    elif a < 5:
+        ans = 8 - 2 * a
+    else:
+        ans = -2
+    return ans
+
+
+def cn(n):
+    if n == 0:
+        return 0 + 0 * i
+    else:
+        k1 = 1/((np.pi ** 2) * (n ** 2))
+        e1 = np.exp(-(7/4) * i * np.pi * n)
+        e2 = np.exp((1/2) * i * np.pi * n)
+        e3 = np.exp(i * np.pi * n)
+        e4 = np.exp((3/2) * i * np.pi * n)
+        e5 = np.exp(2 * i * np.pi * n)
+        c = k1 * (1 + i) * e1 * (2 - 2 * i - 4 * e2 + 4 * i * e3 + 4 * e4 + n * np.pi - e5 * (2 + n * np.pi + 2 * i))
+        return c
+
+N = 10
+k = -1 * N
+ns = []
+cns = []
+for p in range(2 * N + 1):
+    ns.append(k)
+    cns.append(cn(k))
+    k = k + 1
+print(*cns)
+
+t = 0
+ts = []
+res = []
+ims = []
+resg = []
+imsg = []
+while t < 16:
+    ts.append(t)
+    res.append(Ref(t))
+    ims.append(Imf(t))
+    ch = 0 + 0 * i
+    for j in range(2 * N + 1):
+        n = ns[j]
+        c = cns[j]
+        ch = ch + c * np.exp(i * (2 * np.pi * n / 8) * t)
+    re = ch.real
+    resg.append(re)
+    im = ch.imag
+    imsg.append(im)
+    t += 0.0001
+
+plt.ion()
+plt.plot(ts, res, c = 'blue', label = 'Исходная функция')
+plt.axis('equal')
+plt.plot(ts, resg, c = 'red', linestyle = '--', label = 'Тригонометрический ряд')
+plt.axis('equal')
+plt.draw()
+plt.ioff()
+
+plt.xlabel("t")
+plt.ylabel("Re(f(t))")
+plt.legend()
+plt.grid()
+plt.show()
+\end{lstlisting}
 \end{document}
