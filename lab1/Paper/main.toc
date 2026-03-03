@@ -6,5 +6,11 @@
 \contentsline {subsection}{\numberline {1.4}Ни чётная ни нечётная функция}{9}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}Вывод}{11}{subsection.1.5}%
 \contentsline {section}{\numberline {2}Задание 2}{12}{section.2}%
-\contentsline {section}{\numberline {3}Приложение}{17}{section.3}%
+\contentsline {subsection}{\numberline {2.1}Аналитическое выражение комплекснознаяной функции и ее параметрический график}{12}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Вычисление коэффициентов разложения в ряд Фурье}{13}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Графики частичных сумм ряда Фурье}{13}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Проверка равенства Парсеваля}{17}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Выводы}{17}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Вывод}{18}{section.3}%
+\contentsline {section}{\numberline {4}Приложение}{19}{section.4}%
 \contentsfinish 

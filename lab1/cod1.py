@@ -51,7 +51,7 @@ for p in range(2 * N + 1):
     ns.append(k)
     cns.append(cn(k))
     k = k + 1
-print(*cns)
+#print(*cns)
 
 t = 0
 ts = []
@@ -87,3 +87,17 @@ plt.ylabel("Re(f(t))")
 plt.legend()
 plt.grid()
 plt.show()
+for N in [1, 2, 3, 5, 10]:
+    k = -1 * N
+    ns = []
+    cns = []
+    for p in range(2 * N + 1):
+        ns.append(k)
+        cns.append(cn(k))
+        k = k + 1
+    s = 0
+    for c in cns:
+        csopr = c.real - c.imag * i
+        s = s + c * csopr
+    pars = 8 * s
+    print(pars)
