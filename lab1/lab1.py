@@ -80,9 +80,9 @@ def G_n(n, x):
 
 
 
-N_values = [3, ]#5, 10, 20, 50] 
-# t = np.linspace(t0, t0 + 3*T, 2000)
-t = np.linspace(-3*pi, 3*pi, 2000)
+N_values = [3, 5, 10, 20, 50] 
+t = np.linspace(t0, t0 + 3*T, 2000)
+# t = np.linspace(-3*pi, 3*pi, 2000)
 x_original = np.array([f(val) for val in t])
 
 
@@ -100,36 +100,39 @@ for i in range(1, N):
     s_c += abs(c_n(i))**2+abs(c_n(-i))**2    
 
 print(f"Проверка равенства Парсеваля при N = {N}(тригонометрический ряд): {q - s_tr}")
-print(f"Проверка равенства Парсеваля при N = {N}(тригонометрический ряд): {q - s_c.real}")
+print(f"Проверка равенства Парсеваля при N = {N}(комплексный ряд): {q - s_c.real}")
 
-# for num in N_values:
-#     x_fur = F_n(num, t)
-#     x_fur2 = G_n(num, t)
+for num in N_values:
+    x_fur = F_n(num, t)
+    x_fur2 = G_n(num, t)
     
-#     fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(10, 6))
     
-#     # ax.plot(t, x_fur, color="red", linewidth=2, label=f'Тригонометрический ряд (N={num})')
-#     # ax.plot(t, x_fur2, color="yellow", linestyle='--', linewidth=2, label=f'Комплексный ряд (N={num})')
-#     ax.plot(t, x_original, color="blue", linewidth=1.5, label='Исходная функция')
+    ax.plot(t, x_fur, color="red", linewidth=2, label=f'Частичная сумма триг. ряда (N={num})')
+    ax.plot(t, x_fur2, color="yellow", linestyle='--', linewidth=2, label=f'Частичная сумма комп. ряда (N={num})')
+    ax.plot(t, x_original, color="blue", linewidth=1.5, label='Исходная функция')
     
-#     ax.set_xlabel('t', fontsize=12)
-#     ax.set_ylabel('f(t)', fontsize=12)
-#     #ax.set_title(f'Ряд Фурье для ни чётной, ни нечётной переодической функции (N = {num} гармоник)', fontsize=14)
-#     ax.set_title(f'Функция квадратной волны', fontsize=14)
-#     # ax.set_xlim(-3*pi-2, 3*pi+2)
-#     ax.set_xlim(t0-2, t0+3*T+1)
-#     ax.set_ylim(0, 9)
-#     ax.legend(loc='upper left', fontsize=10)
-#     ax.grid(True, alpha=0.3)
+    ax.set_xlabel('t', fontsize=12)
+    ax.set_ylabel('f(t)', fontsize=12)
+    # ax.set_title(f'Ряд Фурье для квадратной волны (N = {num} гармоник)', fontsize=14)
+    # ax.set_title(f'Ряд Фурье для чётной переодической функции (N = {num} гармоник)', fontsize=14)
+    # ax.set_title(f'Ряд Фурье для нечётной переодической функции (N = {num} гармоник)', fontsize=14)
+    ax.set_title(f'Ряд Фурье для ни чётной, ни нечётной переодической функции (N = {num} гармоник)', fontsize=14)
+    #ax.set_title(f'Функция квадратной волны', fontsize=14)
+    # ax.set_xlim(-3*pi-2, 3*pi+2)
+    ax.set_xlim(t0-2, t0+3*T+1)
+    ax.set_ylim(-0.75, 1)
+    ax.legend(loc='upper left', fontsize=10)
+    ax.grid(True, alpha=0.3)
     
-#     # filename = f"t4_{num}.png"
-#     filename = f"t1_0.png"
-#     # plt.savefig(filename, dpi=300, bbox_inches='tight')
+    filename = f"t4_{num}.png"
+    #filename = f"t1_0.png"
+    plt.savefig(filename, dpi=300, bbox_inches='tight')
     
-#     plt.show()
-#     plt.close(fig)
-#for i in range(3):
- #   print(f"Коэффициент a_{i}: {a_n(i)}")
-  #  print(f"Коэффициент b_{i}: {b_n(i)}")
-   # print(f"Коэффициент c_{i}: {c_n(-i)}")
+    plt.show()
+    plt.close(fig)
+for i in range(3):
+   print(f"Коэффициент a_{i}: {a_n(i)}")
+   print(f"Коэффициент b_{i}: {b_n(i)}")
+   print(f"Коэффициент c_{i}: {c_n(-i)}")
 
