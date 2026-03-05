@@ -43,7 +43,7 @@ def cn(n):
         c = k1 * (1 + i) * e1 * (2 - 2 * i - 4 * e2 + 4 * i * e3 + 4 * e4 + n * np.pi - e5 * (2 + n * np.pi + 2 * i))
         return c
 
-N = 10
+N = 3
 k = -1 * N
 ns = []
 cns = []
@@ -75,9 +75,9 @@ while t < 16:
     t += 0.0001
 
 plt.ion()
-plt.plot(ts, res, c = 'blue', label = 'Исходная функция')
+plt.plot(ts, ims, c = 'blue', label = 'Исходная функция')
 plt.axis('equal')
-plt.plot(ts, resg, c = 'red', linestyle = '--', label = 'Тригонометрический ряд')
+plt.plot(ts, imsg, c = 'red', linestyle = '--', label = 'Част. сумма ряда Фурье')
 plt.axis('equal')
 plt.draw()
 plt.ioff()
