@@ -117,8 +117,114 @@
 
 \section{Задание 2}
 
+Для этого задания выберем функцию \[f(t) = ae^{-bt^2}\]
+Примем \(a = 2 \quad b = \frac{1}{2}\), тогда
+Фурье-образ \[\hat{f}(t) = 2\cdot e^{-\omega^2/2}\]
+Сдвинутая функция \(g(t)\)
+\[g(t) = f(t+c) = 2\cdot e^{-\frac{1}{2}(t+c)^2}\]
+Из свойств Фурье образа 
+\[\hat{g}(t) = \hat{f}(t+c) = e^{i\omega c}\cdot \hat{f}(t)\]
+Тогда
+\[\hat{g}(t) = 2e^{i\omega c}\cdot e^{-\omega^2/2}\]
+Зададимся следующими значениями параметра \(c = -1, -\frac{1}{\pi}, \pi, 4\)
+Построим графики функции, её Фурье-образа, его мнимой и действительной частей
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/t2_orig.png}
+    \caption{Функция g(t)}
+    \label{fig:n50}
+        
+\end{figure}
 
 
+
+% Группа 1: c = -1
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth, height=0.48\textheight, keepaspectratio]{images/t2_fur_-1.png}
+        \caption{Фурье-образ, $c = -1$}
+        \label{fig:fur_c-1}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth, height=0.48\textheight, keepaspectratio]{images/t2_reim_-1.png}
+        \caption{Действительная и мнимая части, $c = -1$}
+        \label{fig:reim_c-1}
+    \end{subfigure}
+    \caption{Фурье-образ функции при сдвиге $c = -1$}
+    \label{fig:group_c-1}
+\end{figure}
+
+% Группа 2: c = -1/pi ≈ -0.318
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth, height=0.48\textheight, keepaspectratio]{images/t2_fur_-0.318.png}
+        \caption{Фурье-образ, $c = -1/\pi$}
+        \label{fig:fur_c-0.318}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth, height=0.48\textheight, keepaspectratio]{images/t2_reim_-0.318.png}
+        \caption{Действительная и мнимая части, $c = -1/\pi$}
+        \label{fig:reim_c-0.318}
+    \end{subfigure}
+    \caption{Фурье-образ функции при сдвиге $c = -1/\pi$}
+    \label{fig:group_c-0.318}
+\end{figure}
+
+% Группа 3: c = pi ≈ 3.142
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth, height=0.48\textheight, keepaspectratio]{images/t2_fur_3.142.png}
+        \caption{Фурье-образ, $c = \pi$}
+        \label{fig:fur_c-pi}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth, height=0.48\textheight, keepaspectratio]{images/t2_reim_3.142.png}
+        \caption{Действительная и мнимая части, $c = \pi$}
+        \label{fig:reim_c-pi}
+    \end{subfigure}
+    \caption{Фурье-образ функции при сдвиге $c = \pi$}
+    \label{fig:group_c-pi}
+\end{figure}
+
+% Группа 4: c = 4
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth, height=0.48\textheight, keepaspectratio]{images/t2_fur_4.png}
+        \caption{Фурье-образ, $c = 4$}
+        \label{fig:fur_c4}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth, height=0.48\textheight, keepaspectratio]{images/t2_reim_4.png}
+        \caption{Действительная и мнимая части, $c = 4$}
+        \label{fig:reim_c4}
+    \end{subfigure}
+    \caption{Фурье-образ функции при сдвиге $c = 4$}
+    \label{fig:group_c4}
+\end{figure}
+
+\textbf{Вывод} сдвиг исходной функции сдвигает вдоль оси t экстремум функции.
+Фурье-образ не зависит от сдвига функции, что видно, если рассмотреть то как он меняется при сдвиге
+\[\hat{f}(w+c) = 2e^{i\omega c}\cdot e^{-\omega^2/2} = 2e^{-\omega^2/2 + i\omega c} = 2e^{-\omega^2/2}\cdot (cos(\omega c) + i\cdot sin(\omega c))\]
+
+\[|\hat{f}(\omega + c)| = 2e^{-\omega^2/2}\sqrt{cos^2(\omega c) + sin^2(\omega c)} = 2e^{-\omega^2/2} = |\hat{f}(\omega)|\]
+
+График мнимой части - нечётная функция, действительной - чётная. Чем дальше происходит сдвиг, тем больше частота колебаний мнимой и действительной частей, что также видно из выражения Фурье-образа через синус и косинус, параметр \(c\) влияет на частоту тригонометрической функции при соответствующей части образа.
 
 
 
@@ -126,5 +232,32 @@
 
 \section{Задание 3}
 
+Для задания был выбран аккорд номер 17.
+График его амплитуд
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.48\textheight]{images/sound.png}
+    \caption{Амплитуды в файле}
+    \label{fig:fur_c4}
+\end{figure}
+
+Модуль Фурье-обрза данного аккорда
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.48\textheight]{images/note_graph.png}
+    \caption{Фурье-образ звука}
+    \label{fig:fur_c4}
+\end{figure}
+На графике модуля Фурье-образа выидно три выделяющиеся частоты, это 329.4, 392.0, 523.4 Гц
+В соответствии с таблицей
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.6\textheight]{images/chastoty-not.png}
+    \caption{Соответствие нот частотам}
+    \label{fig:fur_c4}
+\end{figure}
+Получаем ноты составляющие аккорд: E4, G4, C5(До мажор)
 \end{document}
