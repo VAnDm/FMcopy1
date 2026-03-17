@@ -110,11 +110,268 @@
 
 
 \section{Задание 1}
+Выберем пары чисел $a$, $b$:
+\[
+a, b = (2, 1)
+\]
+\[
+a, b = (2, \frac{1}{2})
+\]
+\[
+a, b = (3, 1)
+\]
+В дальнейшей работе будем использовать:
+\newline
+Формулу унитарного преобразования Фурье к угловой скорости для функции $f(t)$:
+\begin{align}
+    \hat{f}(\omega) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} f(t)e^{-i\omega t}dt
+    \label{eq:1}
+\end{align}
+Формулу равенства Парсеваля для преобразования Фурье для функции $f(t)$:
+\begin{align}
+    \int_{-\infty}^{+\infty} |f(t)|^2 dt = \int_{-\infty}^{+\infty} |\hat{f}(\omega)|^2 dt 
+    \label{eq:2}
+\end{align}
+Для практической проверки равенства Парсиваля будем численно интегрировать квадраты модулей исходной функции и Фурье-образа на отрезке $[-10000, 10000]$ и находить разность полученных значений.
 
-
-
+\subsection{Прямоугольная функция}
+\[
+f(t) = \begin{cases}
+    a, \ \ |t| \leq b, \\
+    0, \ \ |t| > b
+    \end{cases}
+\]
+Подставив $f(t)$ в формулу \ref{eq:1} получим выражение для Фурье-образа функции $f(t)$:
+\[
+\hat{f}(\omega) = \frac{1}{\sqrt{2\pi}}\int_{-b}^{b} ae^{-i\omega t}dt =
+ \frac{a}{\sqrt{2\pi}}(\frac{e^{-i\omega b} - e^{i\omega b}}{-i\omega}) =
+\]
+\[
+= \frac{a}{\sqrt{2\pi}}\frac{-2i\sin{\omega b}}{-i\omega} = \frac{2a\sin{\omega b}}{\sqrt{2\pi}\omega}, \textit{при} \ \ \omega \neq 0 
+\]
+\[
+\textit{при} \ \ \omega = 0:
+\]
+\[
+\hat{f}(0) = \frac{2ab}{\sqrt{2\pi}}
+\]
+Итого:
+\[
+\hat{f}(\omega) = \begin{cases}
+    \frac{2ab}{\sqrt{2\pi}}, \ \ \omega = 0, \\
+    \frac{2a\sin{\omega b}}{\sqrt{2\pi}\omega}, \ \ \omega \neq 0
+    \end{cases}
+\]
+Откуда:
+\[
+\hat{f}(\omega) = \frac{2ab}{\sqrt{2\pi}} sinc(\omega b)
+\]
+Построим графики зависимостей $f(t)$ и $\hat{f}(\omega)$ для каждого набора $(a, b)$:
 \newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/func1.png}
+    \caption{Исходная функция}
+    \label{fig:n50}
+        
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/fur1.png}
+    \caption{Фурье-образ}
+    \label{fig:n50}
+        
+\end{figure}
+\newpage
+Видим, что с увеличением $b$ увеличивается ширина прямоугольника под графиком исходной функции, увеличивается высота Фурье-образа и уменьшается частота Фурье-образа.
+С увеличением же $a$ увеличивается высота прямоугольника под графиком исходной функции, увеличивается высота Фурье-образа.
+При проверке равенства Парсиваля получаем следующие значения разностей:
+\[
+\Delta_1 \approx 0.00025, a = 2, b = 1
+\]
+\[
+\Delta_2 \approx 0.00025, a = 2, b = \frac{1}{2}
+\]
+\[
+\Delta_3 \approx 0.00057, a = 3, b = 1
+\]
+Видим, что полученные разности достаточно малы.
+\subsection{Треугольная функция}
+\[
+f(t) = \begin{cases}
+    a - |\frac{at}{b}|, \ \ |t| \leq b, \\
+    0, \ \ |t| > b
+    \end{cases}
+\]
+Подставив $f(t)$ в формулу \ref{eq:1} получим выражение для Фурье-образа функции $f(t)$:
+\[
+\hat{f}(\omega) = \frac{1}{\sqrt{2\pi}}\int_{-b}^{b} (a - |\frac{at}{b}|)e^{-i\omega t}dt =
+ \frac{1}{\sqrt{2\pi}}(\int_{-b}^{0} (a + \frac{at}{b})e^{-i\omega t}dt + \int_{0}^{b} (a - \frac{at}{b})e^{-i\omega t}dt) =
+\]
+\[
+= \frac{a}{\sqrt{2\pi}}\frac{2 - e^{-i\omega b} - e^{i\omega b}}{\omega ^2 b} = \frac{2a(1 - \cos(\omega b))}{\sqrt{2\pi}\omega^2b}, \textit{при} \ \  \omega \neq 0
+\]
+При $\omega = 0$:
+\[
+\hat{f}(0) = \frac{ab}{\sqrt{2\pi}}
+\]
+Построим графики зависимостей $f(t)$ и $\hat{f}(\omega)$ для каждого набора $(a, b)$:
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/func2.png}
+    \caption{Исходная функция}
+    \label{fig:n50}
+        
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/fur2.png}
+    \caption{Фурье-образ}
+    \label{fig:n50}
+        
+\end{figure}
+\newpage
+Видим, что с увеличением $b$ увеличивается ширина треугольника под графиком исходной функции, увеличивается высота Фурье-образа и уменьшается частота Фурье-образа.
+С увеличением же $a$ увеличивается высота треугольника под графиком исходной функции, увеличивается высота Фурье-образа.
+При проверке равенства Парсиваля получаем следующие значения разностей:
+\[
+\Delta_1 \approx 0.022, a = 2, b = 1
+\]
+\[
+\Delta_2 \approx 0.043, a = 2, b = \frac{1}{2}
+\]
+\[
+\Delta_3 \approx 0.050, a = 3, b = 1
+\]
+Видим, что полученные разности достаточно малы.
+\subsection{Кардинальный синус}
+\[
+f(t) = a\cdot sinc(bt)
+\]
+Заметим, что в первом пункте мы получили в качестве образа Фурье функцию $sinc$ с коэффициентом $\frac{2ab}{\sqrt{2\pi}}$. Следовательно, можно показать, что Фурье-образом $sinc$ будет являться прямоугольная функция.
+\[
+\hat{f}(\omega) = \begin{cases}
+    \frac{a\sqrt{\pi}}{b\sqrt{2}}, \ \ |\omega| \leq b, \\
+    0, \ \ |\omega| > b
+    \end{cases}
+\]
+Построим графики зависимостей $f(t)$ и $\hat{f}(\omega)$ для каждого набора $(a, b)$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/func3.png}
+    \caption{Исходная функция}
+    \label{fig:n50}
+        
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/fur3.png}
+    \caption{Исходная функция}
+    \label{fig:n50}
+        
+\end{figure}
+Видим, что с увеличением $b$ увеличивается частота исходной функции, увеличивается высота Фурье-образа и уменьшается ширина Фурье-образа.
+С увеличением же $a$ увеличивается высота исходной функции, увеличивается высота Фурье-образа.
+При проверке равенства Парсиваля получаем следующие значения разностей:
+\[
+\Delta_1 \approx 0.0004, a = 2, b = 1
+\]
+\[
+\Delta_2 \approx 0.0015, a = 2, b = \frac{1}{2}
+\]
+\[
+\Delta_3 \approx 0.0009, a = 3, b = 1
+\]
+Видим, что значения разностей достаточно малы.
+\subsection{Функция Гаусса}
+\[
+f(t) = a e^{-bt^2}
+\]
+Ее Фурье-образ:
+\[
+\hat{f}(\omega) = \frac{ae^{\frac{-\omega^2}{4b}}}{\sqrt{2b}}
+\]
+Построим графики зависимостей $f(t)$ и $\hat{f}(\omega)$ для каждого набора $(a, b)$:
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/func4.png}
+    \caption{Исходная функция}
+    \label{fig:n50}
+        
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/fur4.png}
+    \caption{Исходная функция}
+    \label{fig:n50}
+        
+\end{figure}
+Видим, что с увеличением $b$ увеличивается ширина фигуры под графиком исходной функции, увеличивается высота Фурье-образа и уменьшается ширина Фурье-образа.
+С увеличением же $a$ увеличивается высота исходной функции, увеличивается высота Фурье-образа.
+При проверке равенства Парсиваля получаем следующие значения разностей:
+\[
+\Delta_1 \approx 0.0, a = 2, b = 1
+\]
+\[
+\Delta_2 \approx 0.0, a = 2, b = \frac{1}{2}
+\]
+\[
+\Delta_3 \approx 1.77 \cdot 10^{-15}, a = 3, b = 1
+\]
+Видим, что разности очень близки к 0.
+\subsection{Двустороннее затухание}
+\[
+f(t) = ae^{-b|t|}
+\]
+Ее Фурье-образ:
+\[
+\hat{f}(\omega) = \frac{a}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{-b|t|}e^{-i\omega t}dt =
+\]
+\[
+= \frac{a}{\sqrt{2\pi}}(\int_{-\infty}^{0} e^{(b - i\omega)t}dt + \int_{0}^{\infty} e^{-(b + i\omega)t}dt) =
+\]
+\[
+\frac{a}{\sqrt{2\pi}}(\frac{1}{b - i\omega} + \frac{1}{b + i\omega}) = \frac{\sqrt{2}ab}{\sqrt{\pi}(b^2 + \omega^2)}
+\]
+Построим графики зависимостей $f(t)$ и $\hat{f}(\omega)$ для каждого набора $(a, b)$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/func5.png}
+    \caption{Исходная функция}
+    \label{fig:n50}
+        
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/fur5.png}
+    \caption{Исходная функция}
+    \label{fig:n50}
+        
+\end{figure}
+Видим, что с увеличением $b$ увеличивается ширина фигуры под графиком исходной функции, увеличивается высота Фурье-образа и уменьшается ширина Фурье-образа.
+С увеличением же $a$ увеличивается высота исходной функции, увеличивается высота Фурье-образа.
+При проверке равенства Парсиваля получаем следующие значения разностей:
+\[
+\Delta_1 \approx 0.013, a = 2, b = 1
+\]
+\[
+\Delta_2 \approx 0.007, a = 2, b = \frac{1}{2}
+\]
+\[
+\Delta_3 \approx 0.029, a = 3, b = 1
+\]
+Видим, что полученные разности достаточно малы.
+\subsection{Выводы}
+Для данных пяти функций были рассмотрены их Фурье-образы и построены графики функций и Фурье-образов. По графикам проведено наблюдение, что с увеличением $a$ (множитель перед функцией) в соответствующее число раз возрастает как исходная функция, так и ее Фурье-образ. При увеличении $b$ (множитель перед аргументом функций, границы прямоугольника по горизонтальной оси $x$ для прямоугольной функции), Фурье-образ функции возрастает в некоторой окрестности $0$, но быстрее убывает при увеличении модуля аргумента.
+\newline
+Для всех функций было проверено равенство Парсиваля на достаточно большом промежутке интегрирования, чтобы разность между интегралом квадрата модуля исходной функции и интегралом квадрата модуля Фурье-образа была достаточно мала.
+\newpage
 \section{Задание 2}
 
 Для этого задания выберем функцию \[f(t) = ae^{-bt^2}\]
@@ -260,4 +517,285 @@
     \label{fig:fur_c4}
 \end{figure}
 Получаем ноты составляющие аккорд: E4, G4, C5(До мажор)
+\section{Вывод}
+В данной работе было рассмотрено преобразование Фурье, поведение Фурье-образа некоторых функций при изменении всей исходной функции в $k$ раз, и при изменении аргументов функции; то как ведут себя его действительная и мнимая части, то как оно изменяется при сдвигах исходной функции.
+Равенство Парсеваля не выполняется, но приближает скалярный квадрат Фурье-образа функции с некоторой точностью.
+Также было рассмотрено применение преобразования Фурье, при его применении на данных амплитуд звука, мы получаем график выраженности частот в звуке, по которому можем определить, например, ноты аккорда. 
+\section{Приложения}
+\begin{lstlisting}[caption={Пример кода из 1 задания для 5 функции}]
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+
+def f(t):
+    return a * np.e ** (-b * abs(t))
+def furie(omega):
+    x = np.sqrt(2) * a * b / (np.sqrt(np.pi) * (b ** 2 + omega ** 2))
+    return x
+
+a = 2
+b = 1
+print(furie(0))
+fs1 = []
+furs1 = []
+t = -3
+ts1 = [-3]
+omega = -10
+omegas1 = [-10]
+fs1.append(f(t))
+furs1.append(furie(omega))
+while t < 3:
+    t += 0.0001
+    fs1.append(f(t))
+    ts1.append(t)
+while omega < 10:
+    omega += 0.0003
+    omegas1.append(omega)
+    furs1.append(furie(omega))
+
+leftpart = 0
+rightpart = 0
+t = -10000
+omega = -10000
+while t < 10000:
+    t += 0.1
+    leftpart = leftpart + abs((f(t))) ** 2 * 0.1
+    omega = omega + 0.1
+    rightpart = rightpart + abs(furie(omega)) ** 2 * 0.1
+print(leftpart - rightpart)
+
+a = 2
+b = 1/2
+
+fs2 = []
+furs2 = []
+t = -3
+ts2 = [-3]
+omega = -10
+omegas2 = [-10]
+fs2.append(f(t))
+furs2.append(furie(omega))
+while t < 3:
+    t += 0.0001
+    fs2.append(f(t))
+    ts2.append(t)
+while omega < 10:
+    omega += 0.0003
+    omegas2.append(omega)
+    furs2.append(furie(omega))
+
+leftpart = 0
+rightpart = 0
+t = -10000
+omega = -10000
+while t < 10000:
+    t += 0.1
+    leftpart = leftpart + abs(f(t)) ** 2 * 0.1
+    omega = omega + 0.1
+    rightpart = rightpart + abs(furie(omega)) ** 2 * 0.1
+print(leftpart - rightpart)
+
+a = 3
+b = 1
+
+fs3 = []
+furs3 = []
+t = -3
+ts3 = [-3]
+omega = -10
+omegas3 = [-10]
+fs3.append(f(t))
+furs3.append(furie(omega))
+while t < 3:
+    t += 0.0001
+    fs3.append(f(t))
+    ts3.append(t)
+while omega < 10:
+    omega += 0.0003
+    omegas3.append(omega)
+    furs3.append(furie(omega))
+plt.ion()
+plt.plot(ts1, fs1, c = 'red', label = 'a = 2, b = 1')
+plt.axis('equal')
+plt.plot(ts2, fs2, c = 'blue', label = 'a = 2, b = 1/2')
+plt.axis('equal')
+plt.plot(ts3, fs3, c = 'green', label = 'a = 3, b = 1')
+plt.axis('equal')
+plt.draw()
+plt.ioff()
+
+plt.xlabel('t')
+plt.ylabel('f(t)')
+plt.legend()
+plt.grid()
+plt.show()
+
+plt.ion()
+plt.plot(omegas1, furs1, c = 'red', label = 'a = 2, b = 1')
+#plt.axis('equal')
+plt.plot(omegas2, furs2, c = 'blue', label = 'a = 2, b = 1/2')
+#plt.axis('equal')
+plt.plot(omegas3, furs3, c = 'green', label = 'a = 3, b = 1')
+#plt.axis('equal')
+plt.draw()
+plt.ioff()
+
+plt.xlabel('t')
+plt.ylabel('^f(t)')
+plt.legend()
+plt.grid()
+plt.show()
+
+leftpart = 0
+rightpart = 0
+t = -10000
+omega = -10000
+while t < 10000:
+    t += 0.1
+    leftpart = leftpart + abs(f(t)) ** 2 * 0.1
+    omega = omega + 0.1
+    rightpart = rightpart + abs(furie(omega)) ** 2 * 0.1
+print(leftpart - rightpart)
+\end{lstlisting}
+\begin{lstlisting}[caption={Остальные функции из 1 задания}]
+def f1(t):
+    if abs(t) <= b:
+        return a
+    else:
+        return 0
+    
+def furie1(omega):
+    if omega == 0:
+        x = (2 * a * b) / np.sqrt(2 * np.pi)
+    else:
+        x = (2 * a * np.sin(omega * b)) / (np.sqrt(2 * np.pi) * omega)
+    return x
+
+def f2(t):
+    if abs(t) <= b:
+        return a - abs(a * t / b)
+    else:
+        return 0
+    
+def furie2(omega):
+    if omega == 0:
+        x = (a * b) / np.sqrt(2 * np.pi)
+    else:
+        x = (2 * a * (1 - np.cos(omega * b)))/(np.sqrt(2 * np.pi) * omega ** 2 * b)
+    return x
+
+def f3(t):
+    if t == 0:
+        return a
+    else:
+        return a * np.sin(b * t)/(b * t)
+def furie3(omega):
+    if abs(omega) <= b:
+        x = a * np.sqrt(np.pi) / (b * np.sqrt(2))
+    else:
+        x = 0
+    return x
+
+def f4(t):
+    return a * np.e ** (-b * abs(t))
+def furie4(omega):
+    x = np.e ** ((-1 * omega ** 2) / (4 * b))
+    x = x * a / np.sqrt(2 * b)
+    return x
+\end{lstlisting}
+\begin{lstlisting}[caption={Код для обработки звукового сигнала}]
+    
+[y, fs] = audioread("Аккорд (17).mp3");
+t = (0:length(y)-1) / fs;  
+t = t(:);
+%figure;
+%plot(t, y(:, 1));        
+
+%xlabel('t')
+%ylabel('f(t)')
+%title('График амплитуды из файла')
+V = 2200;
+dv = 0.1;
+y = y(:, 1);
+y = y(:);
+v = 0 : dv : V;
+Y = zeros(size(v));
+
+for k = 1 : length(v)
+    Y(k)=trapz(t,y.*exp(-1i*2*pi*v(k)*t));
+end
+
+figure;
+
+plot(v, abs(Y), 'LineWidth',1.5); 
+xlabel('w')
+ylabel('f(w)')
+title('Фурье образ для амплитуд аккорда')
+\end{lstlisting}
+\begin{lstlisting}[caption={Код для построения Фурье-образа сдвинутой функции}]
+import numpy as np
+import matplotlib.pyplot as plt
+
+def g(t, c):
+    return 2*np.exp(-(t+c)**2/2)
+
+def g_fur_im(t, c):
+    g = 2*np.exp(1.j*t*c)*np.exp(-t**2/2)
+    return np.abs(g), g.real, g.imag
+
+
+cs = [-1, -1/np.pi, np.pi, 4]
+t = np.linspace(-8, 8, 2000)
+
+
+for c in cs:
+    g_orig, re, im = g_fur_im(t, c)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.set_xlabel('w', fontsize=12)
+    ax.set_ylabel('g(w)', fontsize=12)
+    
+    ax.set_title(f'Фурье-образ', fontsize=14)
+    ax.set_xlim(-8.5, 8.5)
+    ax.set_ylim(-7, 7)
+    ax.axis("on")
+    ax.axhline(y=0, color='k', alpha=0.1)
+    ax.axvline(x=0, color='k', alpha=0.1) 
+    ax.grid(True, alpha=0.3)
+    
+    ax.plot(t, g_orig, linewidth=1.5, label=f'Фурье-образ функции со сдвигом c = {round(c,3)}')
+    ax.legend(loc='upper left', fontsize=10)
+
+    filename = f"t2_fur_{round(c, 3)}.png"
+
+    plt.savefig(filename, dpi=300, bbox_inches='tight')
+    
+    plt.show()
+    plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.set_xlabel('w', fontsize=12)
+    ax.set_ylabel('Re(g(w)), Im(g(w))', fontsize=12)
+    
+    ax.set_title(f'Мнимая и действительная части Фурье-образа', fontsize=14)
+    ax.set_xlim(-8.5, 8.5)
+    ax.set_ylim(-7, 7)
+    ax.axis("on")
+    ax.axhline(y=0, color='k', alpha=0.1)
+    ax.axvline(x=0, color='k', alpha=0.1) 
+    ax.grid(True, alpha=0.3)
+    
+    
+    ax.plot(t, re, linewidth=1.5, label=f'Действительная часть Фурье-образа')
+    ax.plot(t, im, linewidth=1.5, label=f'Мнимая часть Фурье-образа')
+    ax.legend(loc='upper left', fontsize=10)
+    
+    filename = f"t2_reim_{round(c, 3)}.png"
+
+    plt.savefig(filename, dpi=300, bbox_inches='tight')
+    
+    plt.show()
+    plt.close(fig)
+\end{lstlisting}
 \end{document}
