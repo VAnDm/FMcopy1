@@ -98,12 +98,13 @@ while omega < 10:
     omegas3.append(omega)
     furs3.append(furie(omega))
 plt.ion()
+plt.plot(ts3, fs3, c = 'green', linewidth = 4, label = 'a = 3, b = 1')
+plt.axis('equal')
 plt.plot(ts1, fs1, c = 'red', label = 'a = 2, b = 1')
 plt.axis('equal')
-plt.plot(ts2, fs2, c = 'blue', label = 'a = 2, b = 1/2')
+plt.plot(ts2, fs2, c = 'blue', linestyle = '--', label = 'a = 2, b = 1/2')
 plt.axis('equal')
-plt.plot(ts3, fs3, c = 'green', label = 'a = 3, b = 1')
-plt.axis('equal')
+
 plt.draw()
 plt.ioff()
 
