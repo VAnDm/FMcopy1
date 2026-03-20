@@ -533,6 +533,9 @@ f(t) = ae^{-b|t|}
 Равенство Парсеваля не выполняется, но приближает скалярный квадрат Фурье-образа функции с некоторой точностью.
 Также было рассмотрено применение преобразования Фурье, при его применении на данных амплитуд звука, мы получаем график выраженности частот в звуке, по которому можем определить, например, ноты аккорда. 
 
+
+\newpage
+
 \section{Приложения}
 \begin{lstlisting}[caption={Пример кода из 1 задания для 5 функции}]
 import matplotlib.pyplot as plt
@@ -718,33 +721,46 @@ def furie4(omega):
 \end{lstlisting}
 
 \begin{lstlisting}[caption={Код для обработки звукового сигнала}]
-    
-[y, fs] = audioread("Аккорд (17).mp3");
-t = (0:length(y)-1) / fs;  
-t = t(:);
-%figure;
-%plot(t, y(:, 1));        
 
-%xlabel('t')
-%ylabel('f(t)')
-%title('График амплитуды из файла')
-V = 2200;
-dv = 0.1;
+
+%figure;
+%plot(t, y(:, 1), 'LineWidth', 0.5); 
+
+%grid on;
+%xlabel('Время (с)');
+%ylabel('Амплитуда'); 
+%title(['Сигнал: ' filename]);
+%xlim([0 min(5, t(end))]); 
+
+%set(gcf, 'Color', 'w');
+
+[y, fs] = audioread(filename);
 y = y(:, 1);
 y = y(:);
+num_samples = length(y);
+t = (0:num_samples-1)' / fs;
+
+
+V = 2200;
+dv = 0.1;
 v = 0 : dv : V;
 Y = zeros(size(v));
+
+
 
 for k = 1 : length(v)
     Y(k)=trapz(t,y.*exp(-1i*2*pi*v(k)*t));
 end
 
-figure;
 
-plot(v, abs(Y), 'LineWidth',1.5); 
-xlabel('w')
-ylabel('f(w)')
-title('Фурье образ для амплитуд аккорда')
+figure;
+plot(v, abs(Y), 'LineWidth', 1.5);
+grid on;
+xlabel('w');
+ylabel('f(w)');
+title(['Фурье-образ: ' filename]);
+xlim([0 V]);
+set(gcf, 'Color', 'w');
 \end{lstlisting}
 \begin{lstlisting}[caption={Код для построения Фурье-образа сдвинутой функции}]
 import numpy as np
