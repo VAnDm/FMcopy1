@@ -32,8 +32,10 @@ u = g + b*xi + c*sin(d*t);
 %xlabel("t", FontSize=24);
 %ylabel("u(t)", FontSize=24);
 %title("Зашумлённая g(t)", FontSize=24);
-%set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
-%exportgraphics(gcf, 'noise_g.png', 'Resolution', 300);
+
+
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, 'noise_g.png', 'Resolution', 300);
 
 
 %figure;
@@ -62,7 +64,7 @@ U = fftshift(fft(u));
 %exportgraphics(gcf, 'im_noise.png', 'Resolution', 300);
 
 high_filter = zeros(size(v));
-high_filter(v <= -0.05 | v >= 0.05) = 1;
+high_filter(v <= -8 | v >= 8) = 1;
 
 %figure;
 %plot(v, high_filter, 'LineWidth', 1.5);
@@ -90,15 +92,6 @@ hi_fil_u = U .* high_filter;
 
 filtered_g = ifft(ifftshift(hi_fil_u));
 
-figure;
-plot(v, filtered_g, 'LineWidth', 1.5);
-grid on;
-ylim([-2.5 4]);
-xlim([-V/2-1 V/2+1]);
-xlabel("t", FontSize=24);
-ylabel("g'(t)",FontSize=24);
-title("Отфильтрованный сигнал g'(t)", FontSize=24);
-set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
-exportgraphics(gcf, 'high_filtered.png', 'Resolution', 300);
+
 
 
