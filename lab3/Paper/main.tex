@@ -157,4 +157,30 @@ u(t) = g(t) + \xi(t) +  0.8\cdot sin(20t)
 Зададимся следующим фильтром
 
 
+\newpage
+\section{Фильтрация звука}
+
+Прослушав аудиофайл с гугл-диска, было очевидно, что шумы, которые присутствуют на записи - низкие частоты, поэтому изначально был применён фильтр высоких частот(ФВЧ). Но на отфильтрованной записи проявились небольшие высокие шумы, поэтому в финальном варианте применён режекторный полосовой фильтр(РПФ).
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/fur_muha.png}
+    \caption{Фурье-образ звука}
+    \label{fig:noise}
+\end{figure}
+На этой картинке значения фильтра домножены на 1000, для наглядности. Диапозон фильтра \([-1000; -400] \cup [400; 1000]\). Фильтр отсёк все(или по крайней мере заметную часть) частоты, нехарактерные человеческому голосу, таким образом на записи остался лишь голос.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/filtered_fur_muha.png}
+    \caption{Отфильтрованный Фурье-образ звука}
+    \label{fig:noise}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/filtered_muha.png}
+    \caption{Исходный и отфильтрованный сигналы}
+    \label{fig:noise}
+\end{figure}
+
 \end{document}
