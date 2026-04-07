@@ -111,8 +111,15 @@
 
 \section{Жёсткие фильтры}
 \subsection{Постановка задачи}
-
-Зададимся следующей функцией
+Зададим числа $a, t_1, t_2$:
+\[
+\begin{cases}
+    a = 3 \\
+    t_1 = \pi \\
+    t_2 = \pi \\
+\end{cases}
+\]
+Тогда функция $g(t)$ из условия примет вид:
 \[
 g(t) = \begin{cases}
     3, \quad t \in [-\pi, \pi] \\
@@ -129,34 +136,277 @@ g(t) = \begin{cases}
 
 Зашумим данную функцию следующим образом
 \[
-u(t) = g(t) + \xi(t) +  0.8\cdot sin(20t)
+u(t) = g(t) + b \cdot \xi(t) +  c \cdot sin(dt)
 \]
 Где
 \[
-\xi(t) = 2*rand() - 1
+\xi(t) = 2\cdot rand() - 1
 \]
 
+\subsection{Фильтр низких частот}
+
+В этом пункте примем $c = 0$. Зашумленная функция примет вид:
+\[
+u(t) = g(t) + b \cdot \xi(t)
+\]
+Будем занулять Фурье-образ функции $u(t)$ на всей числовой прямой кроме отрезка $[-\nu_0, \nu_0]$ и применять обратное преобразование Фурье, получая функцию после фильтрации шумов. Исследуем фильтрацию при различных значениях $b$ и $\nu_0$.
+\newline
+Построим графики функций $g(t), u(t), u_{fil}(t)$ и модулей их Фурье-образов, при различных $b, \nu_0$.
+Вначале зафиксируем $b = 0.5$ и рассмотрим для него различные $\nu_0$:
+\newpage
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{images/noise_g.png}
-    \caption{Зашумлённая функция}
-    \label{fig:noise}
+    \includegraphics[width=0.85\linewidth]{images/grlow1.png}
+    \caption{Функции, $b = 0.5$, $\nu_0 = 1$} 
+    \label{fig:func_init}
 \end{figure}
-
-Получим Фурье-образ зашумлённой функции
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furlow1.png}
+    \caption{Модули Фурье-образов, $b = 0.5$, $\nu_0 = 1$} 
+    \label{fig:func_init}
+\end{figure}
+Видим, что выбрано недостаточно большое $\nu_0$, так как Фурье-образы исходной функции и зашумленной функции отличаются мало на большем промежутке частот.
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grlow2.png}
+    \caption{Функции, $b = 0.5$, $\nu_0 = 2.5$} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furlow2.png}
+    \caption{Модули Фурье-образов, $b = 0.5$, $\nu_0 = 2.5$} 
+    \label{fig:func_init}
+\end{figure}
+При данном $\nu_0$ для $b = 0.5$ получилась наиболее точная фильтрация.
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grlow3.png}
+    \caption{Функции, $b = 0.5$, $\nu_0 = 8$} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furlow3.png}
+    \caption{Модули Фурье-образов, $b = 0.5$, $\nu_0 = 8$} 
+    \label{fig:func_init}
+\end{figure}
+Видим, что $\nu_0$ слишком велико, так как функция после фильтрации оказывается все еще сильно зашумленной.
+\newline
+Теперь рассмотрим различные значения $b$ при $\nu_0 = 2.5$:
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grlow4.png}
+    \caption{Функции, $b = 0.1$, $\nu_0 = 2.5$} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furlow4.png}
+    \caption{Модули Фурье-образов, $b = 0.1$, $\nu_0 = 2.5$} 
+    \label{fig:func_init}
+\end{figure}
+\newpage
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{images/im_noise.png}
-    \caption{Зашумлённая функция}
-    \label{fig:noise}
+    \includegraphics[width=0.85\linewidth]{images/grlow5.png}
+    \caption{Функции, $b = 0.6$, $\nu_0 = 2.5$} 
+    \label{fig:func_init}
 \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furlow5.png}
+    \caption{Модули Фурье-образов, $b = 0.6$, $\nu_0 = 2.5$} 
+    \label{fig:func_init}
+\end{figure}
+\newpage
 
-\subsection{Фильтр высоких частот}
-
-Зададимся следующим фильтром
-
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grlow6.png}
+    \caption{Функции, $b = 1.1$, $\nu_0 = 2.5$} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furlow6.png}
+    \caption{Модули Фурье-образов, $b = 1.1$, $\nu_0 = 2.5$} 
+    \label{fig:func_init}
+\end{figure}
+Видим, что с ростом $b$ увеличивается зашумленность отфильтрованной функции.
+\newpage
+\subsection{Выводы про фильтр низких частот}
+При $b \neq 0$, $c = 0$ используется фильтр низких частот, так как добавление случайного шума сильнее всего сказывается на высоких частотах, потому имеет смысл отбросить их при фильтрации. При этом исходная прямоугольная функция также содержит в своем Фурье-образе высокие частоты, поэтому результат фильтрации заметно отличается от исходной функции.
+\subsection{Фильтр специфических частот}:
+В этом пункте примем $c = 0$. Зашумленная функция примет вид:
+\[
+u(t) = g(t) + c \cdot sin(dt)
+\] 
+При фильтрации будем занулять Фурье-образ $u(t)$ на отрезках $[\nu_1, nu_2], [\nu_3, \nu_4]$. Продемонстрируем, что добавление лишнего сигнала вида $c \cdot sin(dt)$ изменяет Фурье образ вблизи частот $\nu = \pm \frac{d}{2\pi}$.
+Возьмем $c = 1$, $d = 50$ ($\frac{d}{2\pi} \approx 8$) и рассмотрим различные отрезки фильтрации:
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grmed1.png}
+    \caption{Функции, $[\nu_1, nu_2] = [-10, -9]$, $[\nu_3, \nu_4] = [9, 10]$} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furmed1.png}
+    \caption{Модули Фурье-образов, $[\nu_1, nu_2] = [-10, -9]$, $[\nu_3, \nu_4] = [9, 10]$} 
+    \label{fig:func_init}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grmed2.png}
+    \caption{Функции, $[\nu_1, nu_2] = [-9, -7]$, $[\nu_3, \nu_4] = [7, 9]$} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furmed2.png}
+    \caption{Модули Фурье-образов, $[\nu_1, nu_2] = [-9, -7]$, $[\nu_3, \nu_4] = [7, 9]$} 
+    \label{fig:func_init}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grmed3.png}
+    \caption{Функции, $[\nu_1, nu_2] = [-10, -9]$, $[\nu_3, \nu_4] = [7, 9]$} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furmed3.png}
+    \caption{Модули Фурье-образов, $[\nu_1, nu_2] = [-10, -9]$, $[\nu_3, \nu_4] = [7, 9]$} 
+    \label{fig:func_init}
+\end{figure}
+\newpage
+Видим, что добавление синуса с угловой частотой $d$ действительно меняет Фурье-образ вблизи частот $\pm\frac{d}{2\pi}$. При этом фильтрация вне указанных частот меняет функцию мало, фильтрация затрагиващая ровно одну из частот уменьшает амплитуду шума вдвое, фильтрация затрагивающая обе частоты убирает шум полностью. При этом при полной фильтрации наблюдается небольшое отклонение функции после фильтрации от исходной, так как частоты исходной функции вблизи искаженных частот не равны $0$, соотвтетственно, выбор слишком больших отрезков будет ухудшать точность фильтрации.
+\newline
+Рассмотрим также изменение параметра $c$. Возьмем $\nu_4 = -\nu_1 = 10$, $\nu_3 = -\nu_2 = 9$ и уменьшим $c$ вдвое: 
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grmed4.png}
+    \caption{Функции, $[\nu_1, nu_2] = [-10, -9]$, $[\nu_3, \nu_4] = [9, 10]$} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furmed4.png}
+    \caption{Модули Фурье-образов, $[\nu_1, nu_2] = [-10, -9]$, $[\nu_3, \nu_4] = [9, 10]$} 
+    \label{fig:func_init}
+\end{figure}
+Как и ожидалось, от $c$ линейно зависит амплитуда шумов.
+\newpage
+\subsection{Выводы по фильтрации специфических частот}
+Добавление $c \cdot sin(dt)$ изменяет частоты вблизи $\nu = \pm \frac{d}{2\pi}$. Соответственно, для фильтрации такого сигнала необходимо исключить отрезки содержащие эти частоты. При этом возникает небольшое отклонение от исходной функции, в случае если ее Фурье-образ в этих диапазонах не равен $0$.
+\subsection{Фильтрация двух шумов различной природы}
+Рассмотрим линейную комбинацию шумов из предыдущих пунктов и произведем фильтрацию, зануляя как высокие частоты, так и частоты вблизи $\pm \frac{1}{2\pi}$.
+\newline
+Возьмем $c = 0.5, d = 20, b = 0.5$ и будем рассматривать различные отрезки фильтрации:
+\newpage
+Занулим частоты на отрезках $[-2.5, 2], [2, 2.5]$ и все частоты превосходящие по модулю $5$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grful2.png}
+    \caption{Функции} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furful2.png}
+    \caption{Модули Фурье-образов} 
+    \label{fig:func_init}
+\end{figure}
+Видим что амплитуда шумов снизилась и стала более постоянной за счет удаления высокочастотных случайных шумов, но шумы постоянной частоты устранены не были.
+\newpage
+Занулим частоты на отрезках $[-3.5, -2.5], [2.5, 3.5]$ и все частоты превосходящие по модулю $8$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.83\linewidth]{images/grful4.png}
+    \caption{Функции} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.83\linewidth]{images/furful4.png}
+    \caption{Модули Фурье-образов} 
+    \label{fig:func_init}
+\end{figure}
+Видим, что были удалены шумы постоянной частоты и очень высоких частот, но сохранилось некоторое отклонение от исходной функции, за счет случайных шумов более низких частот.
+\newpage
+Занулим частоты на отрезках $[-3.5, -2.5], [2.5, 3.5]$ и все частоты превосходящие по модулю $5$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grful3.png}
+    \caption{Функции} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furful3.png}
+    \caption{Модули Фурье-образов} 
+    \label{fig:func_init}
+\end{figure}
+Видим, что достигнуто меньшее отклонение отфильтрованной от исходной функции, за счет удаления как фиксированных, так и большей части случайных шумов.
+\newpage
+Занулим все частоты превосходящие по модулю $1$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grful1.png}
+    \caption{Функции} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furful1.png}
+    \caption{Модули Фурье-образов} 
+    \label{fig:func_init}
+\end{figure}
+Видим что получена функция, состоящая только из самых низких частот, при этом также удалены шумы фиксированной частоты, так как их частоты выше.
+\newpage
+\subsection{Выводы по фильтрации шумов различной природы}
+Мы удостоверились, что зашумленная функция вела себя как сумма случайных шумов и шумов постоянной частоты, каждый из которых фильтровался согласно закономерностям, выявленным ранее.
+\subsection{Фильтрация высоких частот}
+Возьмем $b = 0.5$, $c = 0.5$, $d = 20$. При фильтрации обнулим функцию на отрезке $[-\nu_0, \nu_0]$:
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grhigh1.png}
+    \caption{Функции, $\nu_0 = 1$} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furhigh1.png}
+    \caption{Модули Фурье-образов, $\nu_0 = 1$} 
+    \label{fig:func_init}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/grhigh2.png}
+    \caption{Функции, $\nu_0 = 4$} 
+    \label{fig:func_init}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/furhigh2.png}
+    \caption{Модули Фурье-образов, $\nu_0 = 4$} 
+    \label{fig:func_init}
+\end{figure}
+\newpage
+\subsection{Выводы по фильтрации высоких частот}
+Видим, что при такой фильтрации полученная функция не похожа на исходную, так как в исходной функции наиболее большими были низкие частоты. После фильтрации же остаются только шумы, при этом если взять достаточно большой отрезок фильтрации низких частот, что в него попадут шумы фиксированной частоты, то амплитуда отфильтрованной функции окажется ниже.
 \newpage
 \section{Фильтрация звука}
 
@@ -182,5 +432,158 @@ u(t) = g(t) + \xi(t) +  0.8\cdot sin(20t)
     \caption{Исходный и отфильтрованный сигналы}
     \label{fig:noise}
 \end{figure}
+\section{Вывод}
+В работе была рассмотрена фильтрация прямоугольной функции со случайными шумами, шумами с фиксированной частотой и их линейной комбинацией. При этом были рассмотрена фильтрация низких частот, фильтрация выборочных частот, их линейная комбинация и фильтрация высоких частот. Фильтрация производилась с помощью обнуления Фурье-образа функции на выбранном диапазоне и применения обратного преобразования Фурье.
+\newline
+Также была произведена фильтрация звукового сигнала и было установлено, что в нем преобладают шумы очень низкой и очень высокой частоты, вследствие чего оптимальным вариантом фильтрации оказался режекторный полосной фильтр.
+\newpage
+\section{Приложения}
+\begin{lstlisting}[caption={Код для фильтрации функции в первом пункте}]
+T = 30; % Большой интервал времени
+dt = 0.01; % Маленький шаг дискретизации
+t = -T/2 : dt : T/2; % Набор временный шагов
+V = 1/dt; % Ширина диапазона частот
+dv = 1/T; % Шаг частоты
+v = -V/2 : dv : V/2; % Набор частот для FFT
 
+t_1 = -pi;
+t_2 = pi;
+a = 3;
+
+g = zeros(size(t));
+g(t >= t_1 & t <= t_2) = a; % Значения функции g(t)
+xi = 2*rand(size(t)) - 1; % Дискретные значения шума
+
+b = 0.5;
+c = 0.5;
+d = 20;
+
+width = 800;
+height = 600;
+resolution = 300;
+
+u = g + b*xi + c*sin(d*t);
+
+
+
+
+U = fftshift(fft(u));
+G = fftshift(fft(g));
+
+
+%low_filter = zeros(size(v));
+%low_filter((v >= -8 & v <= -3.5) | (v >= -2.5 & v <= 2.5) | (v >= 3.5 & v <= 8)) = 1;
+%low_filter(v >= -1 & v <= 1) = 1;
+low_filter = ones(size(v));
+low_filter(v >= -1 & v <= 1) = 0;
+
+
+hi_fil_u = U .* low_filter;
+
+figure;
+plot(v, abs(U), 'LineWidth', 1.5, 'Color', 'cyan');
+hold on;
+plot(v, abs(hi_fil_u), 'LineWidth', 1.5, 'Color', 'red');
+hold on;
+plot(v, abs(G), '--g', 'LineWidth', 1.5, 'Color', 'black')
+grid on;
+ylim([-5 300]);
+xlim([-10 10]);
+xlabel("v", FontSize=24);
+ylabel("F_i(v)",FontSize=24);
+legend('F[u](v)', "F[u]_fil(v)", "F[g](v)");
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, 'furhigh1.png', 'Resolution', 300);
+
+filtered_g = ifft(ifftshift(hi_fil_u));
+
+figure;
+plot(t, u, 'LineWidth', 1.5, 'Color', 'cyan');
+hold on;
+plot(t, filtered_g, 'LineWidth', 1.5, 'Color', 'red');
+hold on;
+plot(t, g, 'LineWidth', 1.5, 'Color', 'black');
+hold on;
+grid on;
+ylim([-1.5 4]);
+xlim([-T/2-1 T/2+1]);
+xlabel("t", FontSize=24);
+ylabel("g_i(t)",FontSize=24);
+legend('u(t)', "u_fil(t)", "g(t)");
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, 'grhigh1.png', 'Resolution', 300);
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Код для фильтрации звукового сигнала}]
+width = 800;
+height = 600;
+resolution = 300;
+
+[y,f] = audioread('MUHA.wav');
+
+
+%sound(y, f);
+
+dt = 1/f; % Шаг времени
+T = length(y)*dt; 
+t = 0 : dt : T-dt; 
+V = 1/dt;
+dv = 1/T;
+v = -V/2 : dv : V/2-dv;
+
+y_image = fftshift(fft(y));
+high_filter = zeros(size(v));
+high_filter((v>=-1200 & v <= -400) | (v >= 400 & v <= 1200)) = 1;
+
+figure;
+plot(v, abs(y_image), 'LineWidth', 1.5);
+hold on;
+plot(v, high_filter*1000, 'LineWidth', 2.5, color="red");
+hold off;
+grid on;
+%ylim([-2.5 4]);
+%xlim([-V/2-1 V/2+1]);
+xlabel("v", FontSize=24);
+ylabel("Y(v)",FontSize=24);
+title("Фурье-образ звука", FontSize=24);
+legend('Фурье-образ звука', 'Режекторный полосовой фильтр', 'Location', 'northeast', fontsize=18);
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, 'fur_muha.png', 'Resolution', 300);
+
+high_filter = high_filter(:);
+y_image = y_image(:);
+
+hi_fil_u = y_image .* high_filter;
+
+figure;
+plot(v, abs(hi_fil_u), 'LineWidth', 1.5);
+grid on;
+%ylim([-2.5 4]);
+%xlim([-V/2-1 V/2+1]);
+xlabel("t", FontSize=24);
+ylabel("g'(t)",FontSize=24);
+title("Отфильтрованный Фурье-образ звука", FontSize=24);
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, 'filtered_fur_muha.png', 'Resolution', 300);
+
+filtered_y = ifft(ifftshift(hi_fil_u));
+
+sound(filtered_y, f)
+
+
+figure;
+plot(t, y, 'LineWidth', 1.5, color='red');
+hold on;
+plot(t, filtered_y, 'LineWidth', 1.5, color="blue");
+hold off;
+grid on;
+ylim([-2.5 4]);
+%xlim([-V/2-1 V/2+1]);
+xlabel("t", FontSize=24);
+ylabel("y(t)",FontSize=24);
+title("Сравнение отфильтрованного и исходного сигналов", FontSize=24);
+legend('Исходный сигнал', 'Отфильтрованный сигнал', 'Location', 'northeast', fontsize=18);
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, 'filtered_muha.png', 'Resolution', 300);
+\end{lstlisting}
 \end{document}
