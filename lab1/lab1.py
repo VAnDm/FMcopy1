@@ -26,8 +26,8 @@ T = 2*pi
 
 def f(x):
     # return abs(sin(x))*exp(cos(x)**3)
-    # return sin(sin(x))*exp(abs(cos(x))**3)/(2+abs(cos(x)))
-    return sin(cos(x))*abs(sin(x))*exp(sin(x))/(2+cos(x)**3)
+    return sin(sin(x))*exp(abs(cos(x))**3)/(2+abs(cos(x)))
+    # return sin(cos(x))*abs(sin(x))*exp(sin(x))/(2+cos(x)**3)
 
 def omega_n(n):
     return 2 * np.pi * n / T
@@ -127,7 +127,7 @@ for num in N_values:
     
     filename = f"t4_{num}.png"
     #filename = f"t1_0.png"
-    plt.savefig(filename, dpi=300, bbox_inches='tight')
+    #plt.savefig(filename, dpi=300, bbox_inches='tight')
     
     plt.show()
     plt.close(fig)

@@ -1,0 +1,411 @@
+\documentclass[a4paper, 12pt]{article}
+
+% Добавляем новые пакеты
+\usepackage[english, russian]{babel}    % Пакет для поддержки русского языка
+\usepackage[T1, T2A]{fontenc}           % Загружаем пакет с поддержкой кирилицы
+\usepackage[utf8]{inputenc}             % Загружаем пакет с поддержкой кодировки файла и символов
+\usepackage{ragged2e}                   % Загружаем пакет для выравнивания текста
+\usepackage{graphicx}                   % Загружаем пакет для добавления различной графики (pdf, jpg, png)
+\usepackage{import}                     % Загружаем пакет для продвинутого импорта, в частности изображений pdf_tex из графического редактора inkscape (\import{<path to file>}{<filename>.pdf_tex})
+\usepackage{subcaption}                 % Пакет для поддержки сетки из фигур, например в две колонки или матрицей
+\usepackage{float}                      % Пакет для улучшенного размещения изображенией (ниже используется опция H в команде \begin{figure}[H])
+\usepackage{geometry}                   % Пакет для управления отступами на странице (см. далее вызываем \geometry)
+\usepackage{amsmath}                    % Добавляем крутую поддержку математики, в частности /align
+\usepackage{amsfonts}                   % Пкет с мтематическими шрифтами вроде \mathbb и др.
+\usepackage{tabu}                       % Пакет с прокаченными таблицами
+\usepackage{booktabs}                   % Крутые вертикальные разделители
+\usepackage[dvipsnames]{xcolor}         % Рассширенная поддержка цветов
+\usepackage[colorlinks]{hyperref}
+\usepackage{indentfirst}                % Пакет, чтобы починить красную строку
+\usepackage{listings}                   % Поддержка листингов, оформления кода программы
+\usepackage{src/vpdtitle}               % Титульный лист (смотри файл vpdtitle.sty)
+
+\usepackage{titletoc}
+\dottedcontents{section}[2.3em]{}{2.3em}{6pt}
+\dottedcontents{subsection}[2.3em]{}{2.3em}{6pt}
+\dottedcontents{subsubsection}[2.3em]{}{2.3em}{6pt}
+
+% Устанавливает отступы на странице
+\geometry{left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+% Настараиваем красивые цвета для ссылок на формулы, фигуры (изображения) и другие элементы.
+\hypersetup{
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan
+}
+
+% Настраиваем супер красивые листинги с попомщью пакетов listings и xcolor
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{codestyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=codestyle}
+\lstset{extendedchars=\true}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Заполнение титульного листа
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{
+Жёсткая фильтрация
+}
+
+% Тут укажите автора
+\author{Иван М. Бакланов}
+\affil{465112, ibaklanov@niuitmo.ru}
+
+\author{Владимир В. Ананичев}
+\affil{464994, vandmitrievic@mail.ru}
+% Впишите данные о том, кто будет проверять работу
+\supervisor{Артем В. Пашенко}
+
+% Краткое описание того, что сделали в работе
+\abstract{
+Работа посвящена фильтрации сигналов при помощи рядов Фурье.
+}
+
+% Подберите 3-5 ключевых слова, отличающих эту работу от всех остальных
+\keywords{
+    Python, Fourier series, Filtration
+}
+
+\date{\today}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Начала всего-всего текста. Здесь идет сам документ, все пишется именно сюда
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+
+\section{Динамические фильтры}
+Зададимся функцией из предыдущей лабораторной
+\[
+g(t) = \begin{cases}
+    а, \quad t \in [0, 2\pi] \\
+    0, \quad t \notin [0, 2\pi] \\
+\end{cases}
+\]
+Зашумим данную функцию следующим образом
+\[
+u(t) = g(t) + 0.5\xi(t)
+\]
+Где
+\[
+\xi(t) = 2*rand() - 1
+\]
+
+Применим для фильтрации предаточную функцию вида
+\[
+W_1(p) = \frac{1}{Tp + 1}
+\]
+% ==========================================
+% БЛОК 1: АЧХ фильтра при разных T
+% ==========================================
+\subsection{АЧХ динамического фильтра (параметр $T$)}
+
+При увеличении $T$ в АЧХ фильтра всё более выраженна выпуклость графика вниз. Из вида АЧХ можно сделать вывод, что это фильтр низких частот. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_ach_T_0.1.png}
+    \caption{АЧХ при $T = 0.1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_ach_T_0.5.png}
+    \caption{АЧХ при $T = 0.5$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_ach_T_1.25.png}
+    \caption{АЧХ при $T = 1.5$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_ach_T_2.png}
+    \caption{АЧХ при $T = 2.0$}
+\end{figure}
+
+\newpage
+
+% ==========================================
+% БЛОК 2: Фильтрация сигнала при разных T
+% ==========================================
+\subsection{Фильтрация сигнала (параметр $T$)}
+При увеличении \(T\) сила фильтрации увеличивается, при значении \(0.1\) фильтр действует слишком слабо и шум почти не отфильтровался.
+При значении порядка \(0.5\) фильтрованные значения близки к исходным, но шум остаётся.
+При значении \(1.25\) шумы сильно сглажены, но начинает проявляться оклнение на правом конце квадратного импульса,в дальнейшем, при фиксированном \(T\) будет использоваться именно это значение.
+При значении \(1.25\) шумы сильно сглажены в области вне импульса, где значения функции 0, но в области самого импульса получчаетсяочень пологий график, никак не соответствующий исходному.
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_T_0.1.png}
+    \caption{Фильтрация при $T = 0.1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_T_0.5.png}
+    \caption{Фильтрация при $T = 0.5$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_T_1.25.png}
+    \caption{Фильтрация при $T = 1.5$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_T_2.png}
+    \caption{Фильтрация при $T = 2.0$}
+\end{figure}
+
+% ==========================================
+% БЛОК 3: Сравнение методов при разных T
+% ==========================================
+\subsection{Сравнение методов фильтрации (параметр $T$)}
+На данных графиках видно, что функция, полученнная обратным преобразованием от произведения передаточной функции на Фурье-образ зашумлённого сигнала, в среднем по модулю меньше чем отфильтрованный сигнал, хотя имеет ту же форму.
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_T_0.1.png}
+    \caption{Сравнение методов при $T = 0.1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_T_0.5.png}
+    \caption{Сравнение методов при $T = 0.5$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_T_1.25.png}
+    \caption{Сравнение методов при $T = 1.5$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_T_2.png}
+    \caption{Сравнение методов при $T = 2.0$}
+\end{figure}
+
+% ==========================================
+% БЛОК 4: Фурье-образы (сигналы) при разных T
+% ==========================================
+\subsection{Фурье-образы $g$, $y$, $y_{fil}$ (параметр $T$)}
+При увеличении \(T\) Фурье-образ фильтрованной функции сохраняет значения ближе к нулю, но обнуляет остальные значения образа.
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_T_0.1.png}
+    \caption{Фурье-образы при $T = 0.1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_T_0.5.png}
+    \caption{Фурье-образы при $T = 0.5$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_T_1.25.png}
+    \caption{Фурье-образы при $T = 1.5$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_T_2.png}
+    \caption{Фурье-образы при $T = 2.0$}
+\end{figure}
+
+\newpage
+% ==========================================
+% БЛОК 5: Фурье-образы (через передаточную функцию) при разных T
+% ==========================================
+\subsection{Фурье-образы $Y$, $y_{fil}$ (параметр $T$)}
+Произведение передаточной функции на Фурье-образ выглядит достаточно близким к образу на положительной полуоси и близкой к нулю на отрицательной полуоси.
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_T_0.1.png}
+    \caption{Фурье-образы через $H(\omega)$ при $T = 0.1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_T_0.5.png}
+    \caption{Фурье-образы через $H(\omega)$ при $T = 0.5$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_T_1.25.png}
+    \caption{Фурье-образы через $H(\omega)$ при $T = 1.5$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_T_2.png}
+    \caption{Фурье-образы через $H(\omega)$ при $T = 2.0$}
+\end{figure}
+
+% ==========================================
+% БЛОК 7: Фильтрация сигнала при разных a
+% ==========================================
+\newpage
+\subsection{Фильтрация сигнала (параметр $a$)}
+При увеличении параметра \(a\) происходит почти такое же изменение как и при увеличении \(T\). В дальнейших пунктах графики ведут себя аналогично случаю с увеличением \(T\)
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_a_1.png}
+    \caption{Фильтрация при $a = 1.0$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_a_2.png}
+    \caption{Фильтрация при $a = 2.0$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_a_7.5.png}
+    \caption{Фильтрация при $a = 7.5$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_a_10.png}
+    \caption{Фильтрация при $a = 10.0$}
+\end{figure}
+
+% ==========================================
+% БЛОК 8: Сравнение методов при разных a
+% ==========================================
+\subsection{Сравнение методов фильтрации (параметр $a$)}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_a_1.png}
+    \caption{Сравнение методов при $a = 1.0$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_a_2.png}
+    \caption{Сравнение методов при $a = 2.0$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_a_7.5.png}
+    \caption{Сравнение методов при $a = 7.5$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_a_10.png}
+    \caption{Сравнение методов при $a = 10.0$}
+\end{figure}
+
+% ==========================================
+% БЛОК 9: Фурье-образы (сигналы) при разных a
+% ==========================================
+\subsection{Фурье-образы $g$, $y$, $y_{fil}$ (параметр $a$)}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_a_1.png}
+    \caption{Фурье-образы при $a = 1.0$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_a_2.png}
+    \caption{Фурье-образы при $a = 2.0$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_a_7.5.png}
+    \caption{Фурье-образы при $a = 7.5$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_a_10.png}
+    \caption{Фурье-образы при $a = 10.0$}
+\end{figure}
+
+% ==========================================
+% БЛОК 10: Фурье-образы (через передаточную функцию) при разных a
+% ==========================================
+\subsection{Фурье-образы $Y$, $y_{fil}$ (параметр $a$)}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_a_1.png}
+    \caption{Фурье-образы через $H(\omega)$ при $a = 1.0$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_a_2.png}
+    \caption{Фурье-образы через $H(\omega)$ при $a = 2.0$}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_a_7.5.png}
+    \caption{Фурье-образы через $H(\omega)$ при $a = 7.5$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_a_10.png}
+    \caption{Фурье-образы через $H(\omega)$ при $a = 10.0$}
+\end{figure}
+
+\subsection{Вывод}
+Таким образом, видно, что фильтр помогает получить примерный исходный сигнал, но до определённой степени зашумлённости, при попытке
+дальнейшего приближения сигнал искажается, поэтому фильтр довольно неточен. Скорее всего может использоваться для того,
+чтобы сильно зашумлённый сигнал первично отфильтровать перед применением каких-нибудь других фильтров.
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=1.0\linewidth]{images/filtered_muha.png}
+%    \caption{Исходный и отфильтрованный сигналы}
+%    \label{fig:noise}
+%\end{figure}
+\end{document}
