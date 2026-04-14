@@ -67,7 +67,7 @@
 %% Заполнение титульного листа
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{
-Жёсткая фильтрация
+Динамическая фильтрация
 }
 
 % Тут укажите автора
@@ -109,11 +109,11 @@
 \newpage
 
 
-\section{Динамические фильтры}
+\section{Динамический фильтр 1 порядка}
 Зададимся функцией из предыдущей лабораторной
 \[
 g(t) = \begin{cases}
-    а, \quad t \in [0, 2\pi] \\
+    a, \quad t \in [0, 2\pi] \\
     0, \quad t \notin [0, 2\pi] \\
 \end{cases}
 \]
@@ -408,4 +408,41 @@ W_1(p) = \frac{1}{Tp + 1}
 %    \caption{Исходный и отфильтрованный сигналы}
 %    \label{fig:noise}
 %\end{figure}
+\section{Режекторный полосовой фильтр}
+Теперь зашумим функцию $g(t)$ шумом постоянной частоты:
+\[
+u(t) = g(t) + 0,5sin(d \cdot t)
+\]
+Рассмотрим динамический фильтр вида:
+\[
+W(p) = \frac{p^2 + a_1 p + a_2}{p^2 + b_1 p + b_2},
+\]
+такой что:
+\newline
+1) корни уравнения $p^2 + b_1 p + b_2$, $p_1, p_2$ имеют отрицательную вещественную часть;
+\newline
+2) при $\omega \rightarrow 0$ и при $\omega \rightarrow \infty$, $|W(i\omega)| \rightarrow 1$;
+\newline
+3) при $\omega = \omega_0$, $|W(i\omega)| = 0$.
+\newline
+По теореме Виета:
+$p_1 \cdot p_2 = b_2, \ \ p_1 + p_2 = -b_1$
+\newline
+Отсюда $b_1 > 0, \ \ b_2 > 0$.
+\[
+|W(i \omega)| = |\frac{-\omega^2 + ia_1\omega + a_2}{-\omega^2 + ib_1\omega + b_2}|
+\]
+При $\omega = 0$:
+\[
+|W(i \omega)| = \frac{a_2}{b_2} = 1 => a_2 = b_2
+\]
+При $\omega \rightarrow \infty$:
+\[
+|W(i \omega)| = |\frac{\omega^2(-1 + \frac{ia_1}{\omega} + \frac{a_2}{\omega^2})}{\omega^2(-1 + \frac{ib_1}{\omega} + \frac{b_2}{\omega^2})}| \rightarrow 1, \textit{при любых} \ \ a_1, a_2, b_1, b_2
+\]
+При $\omega = \omega_0$:
+\[
+|W(i\omega_0)| = 0 <=> -\omega_0 ^ 2 + ia_1\omega_0 + a2 = 0
+\]
+Так как $\omega_0$ - действительное, получаем что $a_1 = 0$, $a_2 = \omega_0^2$. 
 \end{document}
