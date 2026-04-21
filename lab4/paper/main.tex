@@ -141,35 +141,34 @@ W_1(p) = \frac{1}{Tp + 1}
     \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_ach_T_0.1.png}
     \caption{АЧХ при $T = 0.1$}
 \end{figure}
+\newpage
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_ach_T_0.5.png}
     \caption{АЧХ при $T = 0.5$}
 \end{figure}
-\clearpage
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_ach_T_1.25.png}
     \caption{АЧХ при $T = 1.5$}
 \end{figure}
+\newpage
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_ach_T_2.png}
     \caption{АЧХ при $T = 2.0$}
 \end{figure}
-
-\newpage
-
 % ==========================================
 % БЛОК 2: Фильтрация сигнала при разных T
 % ==========================================
 \subsection{Фильтрация сигнала (параметр $T$)}
 При увеличении \(T\) сила фильтрации увеличивается, при значении \(0.1\) фильтр действует слишком слабо и шум почти не отфильтровался.
 При значении порядка \(0.5\) фильтрованные значения близки к исходным, но шум остаётся.
-При значении \(1.25\) шумы сильно сглажены, но начинает проявляться оклнение на правом конце квадратного импульса,в дальнейшем, при фиксированном \(T\) будет использоваться именно это значение.
-При значении \(1.25\) шумы сильно сглажены в области вне импульса, где значения функции 0, но в области самого импульса получчаетсяочень пологий график, никак не соответствующий исходному.
-\clearpage
+При значении \(1.25\) шумы сильно сглажены, но начинает проявляться оклнение на правом конце квадратного импульса, в дальнейшем, при фиксированном \(T\) будет использоваться именно это значение.
+При значении \(1.25\) шумы сильно сглажены в области вне импульса, где значения функции 0, но в области самого импульса получается очень пологий график, никак не соответствующий исходному.
+\newpage
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_T_0.1.png}
@@ -180,7 +179,7 @@ W_1(p) = \frac{1}{Tp + 1}
     \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_T_0.5.png}
     \caption{Фильтрация при $T = 0.5$}
 \end{figure}
-\clearpage
+\newpage
 
 \begin{figure}[H]
     \centering
@@ -192,24 +191,24 @@ W_1(p) = \frac{1}{Tp + 1}
     \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_T_2.png}
     \caption{Фильтрация при $T = 2.0$}
 \end{figure}
-
+\newpage
 % ==========================================
 % БЛОК 3: Сравнение методов при разных T
 % ==========================================
 \subsection{Сравнение методов фильтрации (параметр $T$)}
 На данных графиках видно, что функция, полученнная обратным преобразованием от произведения передаточной функции на Фурье-образ зашумлённого сигнала отличается в пределах погрешности методов.
-\clearpage
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_T_0.1.png}
+    \includegraphics[width=0.80\textwidth, keepaspectratio]{images/filter_transf_T_0.1.png}
     \caption{Сравнение методов при $T = 0.1$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_T_0.5.png}
+    \includegraphics[width=0.80\textwidth, keepaspectratio]{images/filter_transf_T_0.5.png}
     \caption{Сравнение методов при $T = 0.5$}
 \end{figure}
-\clearpage
+\newpage
 
 \begin{figure}[H]
     \centering
@@ -221,33 +220,33 @@ W_1(p) = \frac{1}{Tp + 1}
     \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_T_2.png}
     \caption{Сравнение методов при $T = 2.0$}
 \end{figure}
-
+\newpage
 % ==========================================
 % БЛОК 4: Фурье-образы (сигналы) при разных T
 % ==========================================
 \subsection{Фурье-образы $g$, $y$, $y_{fil}$ (параметр $T$)}
 При увеличении \(T\) Фурье-образ фильтрованной функции сохраняет значения ближе к нулю, но обнуляет остальные значения образа.
-\clearpage
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_T_0.1.png}
+    \includegraphics[width=0.80\textwidth, keepaspectratio]{images/fur_imgs_g_T_0.1.png}
     \caption{Фурье-образы при $T = 0.1$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_T_0.5.png}
+    \includegraphics[width=0.80\textwidth, keepaspectratio]{images/fur_imgs_g_T_0.5.png}
     \caption{Фурье-образы при $T = 0.5$}
 \end{figure}
-\clearpage
+\newpage
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_T_1.25.png}
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images/fur_imgs_g_T_1.25.png}
     \caption{Фурье-образы при $T = 1.5$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_T_2.png}
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images/fur_imgs_g_T_2.png}
     \caption{Фурье-образы при $T = 2.0$}
 \end{figure}
 
@@ -257,27 +256,27 @@ W_1(p) = \frac{1}{Tp + 1}
 % ==========================================
 \subsection{Фурье-образы $Y$, $y_{fil}$ (параметр $T$)}
 Произведение передаточной функции на Фурье-образ выглядит достаточно близким к образу на положительной полуоси и близкой к нулю на отрицательной полуоси.
-\clearpage
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_T_0.1.png}
+    \includegraphics[width=0.80\textwidth, keepaspectratio]{images/fur_imgs_w_T_0.1.png}
     \caption{Фурье-образы через $H(\omega)$ при $T = 0.1$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_T_0.5.png}
+    \includegraphics[width=0.80\textwidth, keepaspectratio]{images/fur_imgs_w_T_0.5.png}
     \caption{Фурье-образы через $H(\omega)$ при $T = 0.5$}
 \end{figure}
-\clearpage
+\newpage
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_T_1.25.png}
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images/fur_imgs_w_T_1.25.png}
     \caption{Фурье-образы через $H(\omega)$ при $T = 1.5$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_T_2.png}
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images/fur_imgs_w_T_2.png}
     \caption{Фурье-образы через $H(\omega)$ при $T = 2.0$}
 \end{figure}
 
@@ -287,18 +286,18 @@ W_1(p) = \frac{1}{Tp + 1}
 \newpage
 \subsection{Фильтрация сигнала (параметр $a$)}
 При увеличении параметра \(a\) происходит почти такое же изменение как и при увеличении \(T\). В дальнейших пунктах графики ведут себя аналогично случаю с увеличением \(T\)
-\clearpage
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_a_1.png}
+    \includegraphics[width=0.80\textwidth, keepaspectratio]{images/filter_a_1.png}
     \caption{Фильтрация при $a = 1.0$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_a_2.png}
+    \includegraphics[width=0.80\textwidth, keepaspectratio]{images/filter_a_2.png}
     \caption{Фильтрация при $a = 2.0$}
 \end{figure}
-\clearpage
+\newpage
 
 \begin{figure}[H]
     \centering
@@ -310,24 +309,24 @@ W_1(p) = \frac{1}{Tp + 1}
     \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_a_10.png}
     \caption{Фильтрация при $a = 10.0$}
 \end{figure}
-
+\newpage
 % ==========================================
 % БЛОК 8: Сравнение методов при разных a
 % ==========================================
 \subsection{Сравнение методов фильтрации (параметр $a$)}
 
-\clearpage
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_a_1.png}
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images/filter_transf_a_1.png}
     \caption{Сравнение методов при $a = 1.0$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_a_2.png}
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images/filter_transf_a_2.png}
     \caption{Сравнение методов при $a = 2.0$}
 \end{figure}
-\clearpage
+\newpage
 
 \begin{figure}[H]
     \centering
@@ -339,64 +338,64 @@ W_1(p) = \frac{1}{Tp + 1}
     \includegraphics[width=0.92\textwidth, keepaspectratio]{images/filter_transf_a_10.png}
     \caption{Сравнение методов при $a = 10.0$}
 \end{figure}
-
+\newpage
 % ==========================================
 % БЛОК 9: Фурье-образы (сигналы) при разных a
 % ==========================================
 \subsection{Фурье-образы $g$, $y$, $y_{fil}$ (параметр $a$)}
 
-\clearpage
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_a_1.png}
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images/fur_imgs_g_a_1.png}
     \caption{Фурье-образы при $a = 1.0$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_a_2.png}
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images/fur_imgs_g_a_2.png}
     \caption{Фурье-образы при $a = 2.0$}
 \end{figure}
-\clearpage
+\newpage
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_a_7.5.png}
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images/fur_imgs_g_a_7.5.png}
     \caption{Фурье-образы при $a = 7.5$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_g_a_10.png}
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images/fur_imgs_g_a_10.png}
     \caption{Фурье-образы при $a = 10.0$}
 \end{figure}
-
+\newpage
 % ==========================================
 % БЛОК 10: Фурье-образы (через передаточную функцию) при разных a
 % ==========================================
 \subsection{Фурье-образы $Y$, $y_{fil}$ (параметр $a$)}
 
-\clearpage
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_a_1.png}
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images/fur_imgs_w_a_1.png}
     \caption{Фурье-образы через $H(\omega)$ при $a = 1.0$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_a_2.png}
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images/fur_imgs_w_a_2.png}
     \caption{Фурье-образы через $H(\omega)$ при $a = 2.0$}
 \end{figure}
-\clearpage
+\newpage
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_a_7.5.png}
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images/fur_imgs_w_a_7.5.png}
     \caption{Фурье-образы через $H(\omega)$ при $a = 7.5$}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth, keepaspectratio]{images/fur_imgs_w_a_10.png}
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images/fur_imgs_w_a_10.png}
     \caption{Фурье-образы через $H(\omega)$ при $a = 10.0$}
 \end{figure}
+\newpage
 
 \subsection{Вывод}
 Таким образом, видно, что фильтр помогает получить примерный исходный сигнал, но до определённой степени зашумлённости, при попытке
@@ -408,7 +407,9 @@ W_1(p) = \frac{1}{Tp + 1}
 %    \caption{Исходный и отфильтрованный сигналы}
 %    \label{fig:noise}
 %\end{figure}
+\newpage
 \section{Режекторный полосовой фильтр}
+\subsection{Описание фильтра}
 Теперь зашумим функцию $g(t)$ шумом постоянной частоты:
 \[
 u(t) = g(t) + 0,5sin(d \cdot t)
@@ -445,4 +446,856 @@ $p_1 \cdot p_2 = b_2, \ \ p_1 + p_2 = -b_1$
 |W(i\omega_0)| = 0 <=> -\omega_0 ^ 2 + ia_1\omega_0 + a2 = 0
 \]
 Так как $\omega_0$ - действительное, получаем что $a_1 = 0$, $a_2 = \omega_0^2$. 
+\newpage
+\subsection{$d = \omega_0$}
+Вначале рассмотрим $d = \omega_0 = \sqrt{a_2} = \sqrt{b_2} = 5$, и исследуем различные значения $b_1$:
+\newline
+Амплитудно-частотные характеристики:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.83\textwidth, keepaspectratio]{images2/filter_ach_b1_1.png}
+    \caption{АЧХ при $b_1 = 1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.83\textwidth, keepaspectratio]{images2/filter_ach_b1_5.png}
+    \caption{АЧХ при $b_1 = 5$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_ach_b1_10.png}
+    \caption{АЧХ при $b_1 = 10$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_ach_b1_15.png}
+    \caption{АЧХ при $b_1 = 15$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_ach_b1_20.png}
+    \caption{АЧХ при $b_1 = 20$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_ach_b1_25.png}
+    \caption{АЧХ при $b_1 = 25$}
+\end{figure}
+\newpage
+
+Демонстрация фильтрации сигнала:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images2/filter_b1_1.png}
+    \caption{Фильтрация при $b_1 = 1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images2/filter_b1_5.png}
+    \caption{Фильтрация при $b_1 = 5$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_b1_10.png}
+    \caption{Фильтрация при $b_1 = 10$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_b1_15.png}
+    \caption{Фильтрация при $b_1 = 15$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_b1_20.png}
+    \caption{Фильтрация при $b_1 = 20$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_b1_25.png}
+    \caption{Фильтрация при $b_1 = 25$}
+\end{figure}
+\newpage
+
+Сравнение фильтрованного сигнала и обратного Фурье-образа произведения частотной передаточной функции на Фурье-образ зашумленной функции:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images2/filter_transf_b1_1.png}
+    \caption{Сравнение методов при $b_1 = 1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images2/filter_transf_b1_5.png}
+    \caption{Сравнение методов при $b_1 = 5$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_transf_b1_10.png}
+    \caption{Сравнение методов при $b_1 = 10$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_transf_b1_15.png}
+    \caption{Сравнение методов при $b_1 = 15$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_transf_b1_20.png}
+    \caption{Сравнение методов при $b_1 = 20$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images2/filter_transf_b1_25.png}
+    \caption{Сравнение методов при $b_1 = 25$}
+\end{figure}
+\newpage
+
+Модули Фурье-образов исходного, зашумленного и фильтрованного сигналов:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images2/fur_imgs_g_b1_1.png}
+    \caption{Фурье-образы двух методов при $b_1 = 1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images2/fur_imgs_g_b1_5.png}
+    \caption{Фурье-образы двух методов при $b_1 = 5$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images2/fur_imgs_g_b1_10.png}
+    \caption{Фурье-образы двух методов при $b_1 = 10$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images2/fur_imgs_g_b1_15.png}
+    \caption{Фурье-образы двух методов при $b_1 = 15$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images2/fur_imgs_g_b1_20.png}
+    \caption{Фурье-образы двух методов при $b_1 = 20$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images2/fur_imgs_g_b1_25.png}
+    \caption{Фурье-образы двух методов при $b_1 = 25$}
+\end{figure}
+\newpage
+
+Сравнение модулей Фурье-образа фильрованной функции и произведения передаточной функции на Фурье-образ зашумленной функции
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images2/fur_imgs_w_b1_1.png}
+    \caption{Фурье-образы при $b_1 = 1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images2/fur_imgs_w_b1_5.png}
+    \caption{Фурье-образы при $b_1 = 5$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images2/fur_imgs_w_b1_10.png}
+    \caption{Фурье-образы при $b_1 = 10$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images2/fur_imgs_w_b1_15.png}
+    \caption{Фурье-образы при $b_1 = 15$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images2/fur_imgs_w_b1_20.png}
+    \caption{Фурье-образы при $b_1 = 20$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images2/fur_imgs_w_b1_25.png}
+    \caption{Фурье-образы при $b_1 = 25$}
+\end{figure}
+
+\subsection{ $d \neq \omega_0$ }
+Также рассмотрим $d = 10$ и исследуем режекторный полосной фильтр в случае когда фильтруемая частота не совпадает с частотой шума:
+Оставим прежними $\omega_0 = \sqrt{a_2} = \sqrt{b_2} = 5$:
+\newline
+Амплитудно-частотные характеристики:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth, keepaspectratio]{images3/filter_ach_b1_1.png}
+    \caption{АЧХ при $b_1 = 1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth, keepaspectratio]{images3/filter_ach_b1_5.png}
+    \caption{АЧХ при $b_1 = 5$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_ach_b1_10.png}
+    \caption{АЧХ при $b_1 = 10$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_ach_b1_15.png}
+    \caption{АЧХ при $b_1 = 15$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_ach_b1_20.png}
+    \caption{АЧХ при $b_1 = 20$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_ach_b1_25.png}
+    \caption{АЧХ при $b_1 = 25$}
+\end{figure}
+\newpage
+
+Демонстрация фильтрации сигнала:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images3/filter_b1_1.png}
+    \caption{Фильтрация при $b_1 = 1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images3/filter_b1_5.png}
+    \caption{Фильтрация при $b_1 = 5$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_b1_10.png}
+    \caption{Фильтрация при $b_1 = 10$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_b1_15.png}
+    \caption{Фильтрация при $b_1 = 15$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_b1_20.png}
+    \caption{Фильтрация при $b_1 = 20$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_b1_25.png}
+    \caption{Фильтрация при $b_1 = 25$}
+\end{figure}
+\newpage
+
+Сравнение фильтрованного сигнала и обратного Фурье-образа произведения частотной передаточной функции на Фурье-образ зашумленной функции:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images3/filter_transf_b1_1.png}
+    \caption{Сравнение методов при $b_1 = 1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images3/filter_transf_b1_5.png}
+    \caption{Сравнение методов при $b_1 = 5$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_transf_b1_10.png}
+    \caption{Сравнение методов при $b_1 = 10$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_transf_b1_15.png}
+    \caption{Сравнение методов при $b_1 = 15$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_transf_b1_20.png}
+    \caption{Сравнение методов при $b_1 = 20$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth, keepaspectratio]{images3/filter_transf_b1_25.png}
+    \caption{Сравнение методов при $b_1 = 25$}
+\end{figure}
+\newpage
+
+Модули Фурье-образов исходного, зашумленного и фильтрованного сигналов:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images3/fur_imgs_g_b1_1.png}
+    \caption{Фурье-образы двух методов при $b_1 = 1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images3/fur_imgs_g_b1_5.png}
+    \caption{Фурье-образы двух методов при $b_1 = 5$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images3/fur_imgs_g_b1_10.png}
+    \caption{Фурье-образы двух методов при $b_1 = 10$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images3/fur_imgs_g_b1_15.png}
+    \caption{Фурье-образы двух методов при $b_1 = 15$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images3/fur_imgs_g_b1_20.png}
+    \caption{Фурье-образы двух методов при $b_1 = 20$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images3/fur_imgs_g_b1_25.png}
+    \caption{Фурье-образы двух методов при $b_1 = 25$}
+\end{figure}
+\newpage
+
+Сравнение модулей Фурье-образа фильрованной функции и произведения передаточной функции на Фурье-образ зашумленной функции
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images3/fur_imgs_w_b1_1.png}
+    \caption{Фурье-образы при $b_1 = 1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images3/fur_imgs_w_b1_5.png}
+    \caption{Фурье-образы при $b_1 = 5$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images3/fur_imgs_w_b1_10.png}
+    \caption{Фурье-образы при $b_1 = 10$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images3/fur_imgs_w_b1_15.png}
+    \caption{Фурье-образы при $b_1 = 15$}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images3/fur_imgs_w_b1_20.png}
+    \caption{Фурье-образы при $b_1 = 20$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images3/fur_imgs_w_b1_25.png}
+    \caption{Фурье-образы при $b_1 = 25$}
+\end{figure}
+\newpage
+\subsection{Выводы}
+Видим, что параметры $a_2 = b_2$ равны квадрату фильтруемой частоты $\omega_0$, параметр $d$ равен частоте добавленного шума, от параметра $b_1$ зависит насколько сильно уменьшаются частоты вблизи $\omega_0$: чем меньше $b_1$ тем меньший отрезок частот уменьшается значительно.
+\newpage
+\section{Сглаживание биржевых данных}
+\subsection{Описание задания}
+В этом задании мы применили динамический фильтр низких частот 1 порядка (использовался в задании 1), для сглаживания графика акций сбербанка в период с $03.01.2022$ по $21.04.2026$.
+\newline
+Так как исходные данные содержали пропущенные дни, а функция lsim в Matlab применяется к равномерному массиву времени мы продлилили пропуски внутри данных линейно между началом пропущенного промежутка и концом пропущенного промежутка. 
+\newline
+Так как функция lsim строит график от нуля, мы вычли из массива стоимостей стоимость в первый рассматриваемый день, провели сглаживание полученного массива, а затем добавили стоимость в первый день обратно. 
+\newline
+Сглаживание производилось для значений параметра $T = 1, T = 7, T = 30, T = 365$ дней.
+
+\newpage
+\subsection{Графики}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images4/task3_1_1.png}
+    \caption{Сглаживание, $T = 1$ день, все время}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images4/task3_1_2.png}
+    \caption{Сглаживание, $T = 1$ день, период времени $T$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images4/task3_7_1.png}
+    \caption{Сглаживание, $T = 7$ дней, все время}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images4/task3_7_2.png}
+    \caption{Сглаживание, $T = 7$ дней, период времени $T$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images4/task3_30_1.png}
+    \caption{Сглаживание, $T = 30$ дней, все время}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images4/task3_30_2.png}
+    \caption{Сглаживание, $T = 30$ дней, период времени $T$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images4/task3_365_1.png}
+    \caption{Сглаживание, $T = 365$ дней, все время}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth, keepaspectratio]{images4/task3_365_2.png}
+    \caption{Сглаживание, $T = 365$ дней, период времени $T$}
+\end{figure}
+\newpage
+\subsection{Выводы}
+Видим, что чем больше $T$, тем сильнее фильтруются высокие частоты и, соответственно, тем более пологим получается график после фильтрации.
+\section{Вывод}
+В работе были исследованы линейные динамические фильтры: фильтр низких частот 1 порядка и режекторный полосовой фильтр второго порядка. Исследована зависимость результата фильтрации от коэффициентов соответствующего линейного дифф. уравнения. 
+\newline
+Для обоих фильтров подтвердилась тождественность функции полученной с помощью фильтрации и функции, полученной с помощью обратного преобразования фурье от произведения частотной передаточной функции и фурье-образа зашумленного сигнала. 
+\newline
+Также было проведено сглаживание графика акций сбербанка с помощью линейного динамического фильтра низких частот.
+\section{Приложения}
+\begin{lstlisting}[caption={Код для фильтрации функции в первом пункте}]
+width = 800;
+height = 600;
+resolution = 300;
+a = 1;
+t1 = 0;
+t2 = 2*pi;
+N = 500;
+b = 0.5;
+dt = 0.1;
+Fs = 1/dt;
+T = N*dt; 
+t = (-T/2 : dt : T/2-dt)';
+
+f_Hz = (0:N-1)' * Fs/N; 
+omega = 2*pi * f_Hz;
+
+T_arr = [0.1, 0.5, 1.25, 2.0];
+a_arr = [1.0, 2.0, 7.5, 10.0];
+
+
+for i = 1:length(T_arr)
+    xi = -1 + 2 * rand(N, 1);
+    g = zeros(size(t));
+    g((t >= t1 & t <= t2)) = a;
+    y = g + b*xi;
+
+    T_c = T_arr(i);
+    w = tf(1, [T_c, 1]);
+    
+    figure;
+    [amp, ~, wout] = bode(w);
+    amp = squeeze(amp);
+    plot(wout, amp, 'LineWidth', 1.5);
+    grid on;
+    ylim([0 1.1]);
+    xlim([0 10]);
+    xlabel("w", FontSize=24);
+    ylabel("W(iw)",FontSize=24);
+    title("АЧХ динамического фильтра при T = " + T_c, FontSize=24);
+    legend("АЧХ динамического фильтра T = " + T_c, 'Location', 'northeast', fontsize=18);
+    set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+    exportgraphics(gcf, "filter_ach_T_" + T_c + ".png", 'Resolution', 300);
+    
+    w_d = c2d(w, dt, 'zoh');
+    [H_d, ~] = freqz(w_d.Num{1}, w_d.Den{1}, N, 'whole');
+    
+    Y = fft(y);
+    H_d = H_d(:);  % Явно делаем столбцом
+    Y = Y(:);
+    y_fil_rev = real(ifft(Y .* H_d));
+    
+    y_fil = lsim(w, y, t);
+    
+    y_fur = fftshift(fft(y));
+    g_fur = fftshift(fft(g));
+    fil_fur = fftshift(fft(y_fil));
+    Y_fur_plot = fftshift(Y .* H_d);
+
+    figure;
+    plot(t, g, 'LineWidth', 3.5, color="blue");
+    hold on;
+    plot(t, y, 'LineWidth', 0.5, color="red");
+    hold on;
+    plot(t, y_fil, 'LineWidth', 3.5, color="green");
+    hold off;
+    grid on;
+    ylim([-0.5 1.5]);
+    xlim([-T/2 T/2]);
+    xlabel("t", FontSize=24);
+    ylabel("y(t)",FontSize=24);
+    title("Фильтрация сигнала при T = " + T_c, FontSize=24);
+    legend("Оригинал", "Зашумлённая функция", "Фильтрованная функция",  'Location', 'northeast', fontsize=14);
+    set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+    exportgraphics(gcf, "filter_T_" + T_c + ".png", 'Resolution', 300);
+
+    figure;
+    plot(t, y_fil, 'LineWidth', 1.25, color="blue");
+    hold on;
+    plot(t, y_fil_rev, 'LineWidth', 1.25, color="red");
+    hold off;
+    grid on;
+    xlabel("t", FontSize=24);
+    ylabel("y(t)",FontSize=24);
+    title("Сравнение сигналов при T = " + T_c, FontSize=24);
+    legend("lsim (временной)", "ifft (частотный)",  'Location', 'northeast', fontsize=14);
+    set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+    exportgraphics(gcf, "filter_transf_T_" + T_c + ".png", 'Resolution', 300);
+
+    figure;
+    plot(omega, abs(y_fur), 'LineWidth', 1.0, color="blue");
+    hold on;
+    plot(omega, abs(g_fur), 'LineWidth', 0.5, color="red");
+    hold on;
+    plot(omega, abs(fil_fur), 'LineWidth', 1.0, color="green");
+    hold off;
+    grid on;
+    ylim([-1.5 50.5]);
+    xlim([0 63]);
+    xlabel("w", FontSize=24);
+    ylabel("y(w)",FontSize=24);
+    title("Сравнение фурье-образов при T = " + T_c, FontSize=24);
+    legend("Образ зашумлённой функции", "Образ исходной функции", "Образ фильтрованной функции",  'Location', 'northeast', fontsize=14);
+    set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+    exportgraphics(gcf, "fur_imgs_g_T_" + T_c + ".png", 'Resolution', 300);
+
+    figure;
+    plot(omega, abs(Y_fur_plot), 'LineWidth', 0.5, color="red");
+    hold on;
+    plot(omega, abs(fil_fur), 'LineWidth', 1.0, color="blue");
+    hold off;
+    grid on;
+    ylim([-1.5 50.5]);
+    xlim([0 63]);
+    xlabel("w", FontSize=24);
+    ylabel("y(w)",FontSize=24);
+    title("Сравнение фурье-образов при T = " + T_c, FontSize=24);
+    legend("Умножение на передаточную функцию", "Образ фильтрованной функции",  'Location', 'northeast', fontsize=14);
+    set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+    exportgraphics(gcf, "fur_imgs_w_T_" + T_c + ".png", 'Resolution', 300);
+
+    a_c = a_arr(i);
+    xi = -1 + 2 * rand(N, 1);
+    
+    g = zeros(size(t));
+    g((t >= t1 & t <= t2)) = a_c;
+    y = g + b*xi;
+
+    w = tf(1, [1.1, 1]);
+    
+    figure;
+    [amp, ~, wout] = bode(w);
+    amp = squeeze(amp);
+    plot(wout, amp, 'LineWidth', 1.5);
+    grid on;
+    ylim([0 1]);
+    xlim([0 10]);
+    xlabel("w", FontSize=24);
+    ylabel("W(iw)",FontSize=24);
+    title("АЧХ динамического фильтра при a = " + a_c + ", T = 1.25", FontSize=24);
+    legend("АЧХ динамического фильтра a = " + a_c, 'Location', 'northeast', fontsize=14);
+    set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+    exportgraphics(gcf, "filter_ach_a_" + a_c + ".png", 'Resolution', 300);
+
+    w_d = c2d(w, dt, 'zoh');
+    [H_d, ~] = freqz(w_d.Num{1}, w_d.Den{1}, N, 'whole');
+    
+    Y = fft(y);
+    H_d = H_d(:);
+    Y = Y(:);
+    y_fil_rev = real(ifft(Y .* H_d));
+    
+    y_fil = lsim(w, y, t);
+    
+    y_fur = fftshift(fft(y));
+    g_fur = fftshift(fft(g));
+    fil_fur = fftshift(fft(y_fil));
+    Y_fur_plot = fftshift(Y .* H_d);
+
+    figure;
+    plot(t, y_fil, 'LineWidth', 1.0, color="blue");
+    hold on;
+    plot(t, y_fil_rev, 'LineWidth', 1.0, color="red");
+    hold off;
+    grid on;
+    xlabel("t", FontSize=24);
+    ylabel("y(t)",FontSize=24);
+    title("Сравнение сигналов при a = " + a_c + ", T = 1.25", FontSize=24);
+    legend("lsim (временной)", "ifft (частотный)",  'Location', 'northeast', fontsize=14);
+    set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+    exportgraphics(gcf, "filter_transf_a_" + a_c + ".png", 'Resolution', 300);
+    
+    figure;
+    plot(t, g, 'LineWidth', 3.5, color="blue");
+    hold on;
+    plot(t, y, 'LineWidth', 0.5, color="red");
+    hold on;
+    plot(t, y_fil, 'LineWidth', 3.5, color="green");
+    hold off;
+    grid on;
+    ylim([-0.5 a_c+1]);
+    xlim([-T/2 T/2]);
+    xlabel("t", FontSize=24);
+    ylabel("y(t)",FontSize=24);
+    title("Фильтрация сигнала при a = " + a_c + ", T = 1.25", FontSize=24);
+    legend("Оригинал", "Зашумлённая функция", "Фильтрованная функция",  'Location', 'northeast', fontsize=14);
+    set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+    exportgraphics(gcf, "filter_a_" + a_c + ".png", 'Resolution', 300);
+    
+    figure;
+    plot(omega, abs(y_fur), 'LineWidth', 1.0, color="blue");
+    hold on;
+    plot(omega, abs(g_fur), 'LineWidth', 0.5, color="red");
+    hold on;
+    plot(omega, abs(fil_fur), 'LineWidth', 1.0, color="green");
+    hold off;
+    grid on;
+    ylim([-1.5 50.5]);
+    xlim([0 63]);
+    xlabel("w", FontSize=24);
+    ylabel("y(w)",FontSize=24);
+    title("Сравнение фурье-образов при a = " + a_c + ", T = 1.25", FontSize=24);
+    legend("Образ зашумлённой функции", "Образ исходной функции", "Образ фильтрованной функции",  'Location', 'northeast', fontsize=14);
+    set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+    exportgraphics(gcf, "fur_imgs_g_a_" + a_c + ".png", 'Resolution', 300);
+
+    figure;
+    plot(omega, abs(Y_fur_plot), 'LineWidth', 0.5, color="red");
+    hold on;
+    plot(omega, abs(fil_fur), 'LineWidth', 1.0, color="blue");
+    hold off;
+    grid on;
+    ylim([-1.5 50.5]);
+    xlim([0 63]);
+    xlabel("w", FontSize=24);
+    ylabel("y(w)",FontSize=24);
+    title("Сравнение фурье-образов при a = " + a_c + ", T = 1.25", FontSize=24);
+    legend("Умножение на передаточную функцию", "Образ фильтрованной функции",  'Location', 'northeast', fontsize=14);
+    set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+    exportgraphics(gcf, "fur_imgs_w_a_" + a_c + ".png", 'Resolution', 300);
+end
+\end{lstlisting}
+\begin{lstlisting}[caption={Код для фильтрации функции во втором пункте}]
+width = 800;
+height = 600;
+resolution = 300;
+a = 1;
+t1 = 0;
+t2 = 2*pi;
+N = 500;
+b = 0;
+c = 0.5;
+d = 10;
+dt = 0.1;
+Fs = 1/dt;
+T = N*dt; 
+t = (-T/2 : dt : T/2-dt)';
+
+f_Hz = (0:N-1)' * Fs/N; 
+omega = 2*pi * f_Hz;
+
+%T_arr = [0.1, 0.5, 1.25, 2.0];
+a1 = 0;
+a2 = 25;
+b1 = 25;
+b2 = 25;
+%a_arr = [1.0, 2.0, 7.5, 10.0];
+
+
+xi = -1 + 2 * rand(N, 1);
+g = zeros(size(t));
+g((t >= t1 & t <= t2)) = a;
+y = g + b*xi + c * sin(d * t);
+
+w = tf([1, a1, a2], [1, b1, b2]);
+    
+figure;
+[amp, ~, wout] = bode(w);
+amp = squeeze(amp);
+plot(wout, amp, 'LineWidth', 1.5);
+grid on;
+ylim([0 1.1]);
+xlim([0 10]);
+xlabel("w", FontSize=24);
+ylabel("W(iw)",FontSize=24);
+title("АЧХ динамического фильтра при b1 = " + b1, FontSize=24);
+legend("АЧХ динамического фильтра b1 = " + b1, 'Location', 'northeast', fontsize=18);
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, "filter_ach_b1_" + b1 + ".png", 'Resolution', 300);
+    
+w_d = c2d(w, dt, 'foh');
+[H_d, ~] = freqz(w_d.Num{1}, w_d.Den{1}, N, 'whole');
+    
+Y = fft(y);
+H_d = H_d(:);  % Явно делаем столбцом
+Y = Y(:);
+y_fil_rev = real(ifft(Y .* H_d));
+    
+y_fil = lsim(w, y, t);
+    
+y_fur = fftshift(fft(y));
+g_fur = fftshift(fft(g));
+fil_fur = fftshift(fft(y_fil));
+Y_fur_plot = fftshift(Y .* H_d);
+
+figure;
+plot(t, g, 'LineWidth', 3.5, color="blue");
+hold on;
+plot(t, y, 'LineWidth', 0.5, color="red");
+hold on;
+plot(t, y_fil, 'LineWidth', 3.5, color="green");
+hold off;
+grid on;
+ylim([-0.5 1.5]);
+xlim([-T/2 T/2]);
+xlabel("t", FontSize=24);
+ylabel("y(t)",FontSize=24);
+title("Фильтрация сигнала при b1 = " + b1, FontSize=24);
+legend("Оригинал", "Зашумлённая функция", "Фильтрованная функция",  'Location', 'northeast', fontsize=14);
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, "filter_b1_" + b1 + ".png", 'Resolution', 300);
+
+figure;
+plot(t, y_fil, 'LineWidth', 1.25, color="blue");
+hold on;
+plot(t, y_fil_rev, 'LineWidth', 1.25, color="red");
+hold off;
+grid on;
+xlabel("t", FontSize=24);
+ylabel("y(t)",FontSize=24);
+title("Сравнение сигналов при b1 = " + b1, FontSize=24);
+legend("lsim (временной)", "ifft (частотный)",  'Location', 'northeast', fontsize=14);
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, "filter_transf_b1_" + b1 + ".png", 'Resolution', 300);
+
+figure;
+plot(omega, abs(y_fur), 'LineWidth', 1.0, color="blue");
+hold on;
+plot(omega, abs(g_fur), 'LineWidth', 0.5, color="red");
+hold on;
+plot(omega, abs(fil_fur), 'LineWidth', 1.0, color="green");
+hold off;
+grid on;
+ylim([-1.5 50.5]);
+xlim([0 63]);
+xlabel("w", FontSize=24);
+ylabel("y(w)",FontSize=24);
+title("Сравнение фурье-образов при b1 = " + b1, FontSize=24);
+legend("Образ зашумлённой функции", "Образ исходной функции", "Образ фильтрованной функции",  'Location', 'northeast', fontsize=14);
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, "fur_imgs_g_b1_" + b1 + ".png", 'Resolution', 300);
+
+figure;
+plot(omega, abs(Y_fur_plot), 'LineWidth', 0.5, color="red");
+hold on;
+plot(omega, abs(fil_fur), 'LineWidth', 1.0, color="blue");
+hold off;
+grid on;
+ylim([-1.5 50.5]);
+xlim([0 63]);
+xlabel("w", FontSize=24);
+ylabel("y(w)",FontSize=24);
+title("Сравнение фурье-образов при b1 = " + b1, FontSize=24);
+legend("Умножение на передаточную функцию", "Образ фильтрованной функции",  'Location', 'northeast', fontsize=14);
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, "fur_imgs_w_b1_" + b1 + ".png", 'Resolution', 300);
+\end{lstlisting}
+\begin{lstlisting}[caption={Код для фильтрации функции в третьем пункте}]
+tablica = readtable("SBER_220101_260421.csv");
+stoimost = table2array(tablica(:, 5));
+dates = table2array(tablica(:, 3));
+days = zeros(size(dates));
+months = zeros(size(dates));
+years = zeros(size(dates));
+Datestart = datetime(2022, 1, 3);
+Datefinish = datetime(2026, 4, 21);
+datesfull = Datestart:Datefinish;
+for i = 1:length(dates)
+    day = mod(dates(i), 100);
+    month = mod(dates(i), 10000) - day;
+    year = (dates(i) - day - month) / 10000;
+    month = month / 100;
+    days(i) = day;
+    months(i) = month;
+    years(i) = year;
+end
+dates_new = datetime(years, months, days);
+stoimostfull = zeros(size(datesfull));
+c = 1;
+for i = 1:length(datesfull)
+    if datesfull(i) == dates_new(c)
+        stoimostfull(i) = stoimost(c);
+        c = c + 1;
+    else
+        a = datenum(dates_new(c)) - datenum(dates_new(c - 1));
+        b = datenum(datesfull(i)) - datenum(dates_new(c - 1));
+        otn = b / a;
+        stoimostfull(i) = stoimost(c - 1) + (stoimost(c) - stoimost(c - 1)) * otn;
+    end
+end
+T = 365;
+w1 = tf(1, [T, 1]);
+massiv = zeros(size(datesfull));
+for i = 1:length(datesfull)
+    %massiv(i) = datenum(dates_new(i)) - datenum(dates_new(1));
+    massiv(i) = i - 1;
+end
+stoimostfullnorm = stoimostfull - stoimostfull(1);
+stoimostgladnorm = lsim(w1, stoimostfullnorm, massiv);
+stoimostglad = stoimostgladnorm + stoimostfull(1);
+plot(datesfull, stoimostfull, 'LineWidth', 3.5, color="green");
+hold on;
+plot(datesfull, stoimostglad, 'LineWidth', 1.5, color="red");
+hold off;
+grid on;
+xlabel("Дата", FontSize=24);
+ylabel("Стоимость акции",FontSize=24);
+title("T = 365 дней", FontSize=14);
+legend("Исходный график", "Сглаженный график",  'Location', 'northeast', fontsize=14);
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, "task3_" + T + "_1.png", 'Resolution', 300);
+
+plot(datesfull(1:T + 1), stoimostfull(1:T + 1), 'LineWidth', 3.5, color="green");
+hold on;
+plot(datesfull(1:T + 1), stoimostglad(1:T + 1), 'LineWidth', 1.5, color="red");
+hold off;
+grid on;
+xlabel("Дата", FontSize=24);
+ylabel("Стоимость акции",FontSize=24);
+title("T = 365 дней", FontSize=14);
+legend("Исходный график", "Сглаженный график",  'Location', 'northeast', fontsize=14);
+set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
+exportgraphics(gcf, "task3_" + T + "_2.png", 'Resolution', 300);
+\end{lstlisting}
 \end{document}

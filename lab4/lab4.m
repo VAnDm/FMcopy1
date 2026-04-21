@@ -33,7 +33,7 @@ for i = 1:length(T_arr)
     plot(wout, amp, 'LineWidth', 1.5);
     grid on;
     ylim([0 1.1]);
-    xlim([0 10]);
+    xlim([0 45]);
     xlabel("w", FontSize=24);
     ylabel("W(iw)",FontSize=24);
     title("АЧХ динамического фильтра при T = " + T_c, FontSize=24);
@@ -74,9 +74,9 @@ for i = 1:length(T_arr)
     exportgraphics(gcf, "filter_T_" + T_c + ".png", 'Resolution', 300);
 
     figure;
-    plot(t, y_fil, 'LineWidth', 1.25, color="blue");
+    plot(t, y_fil, 'LineWidth', 3.5, color="green");
     hold on;
-    plot(t, y_fil_rev, 'LineWidth', 1.25, color="red");
+    plot(t, y_fil_rev, 'LineWidth', 1.0, color="red");
     hold off;
     grid on;
     xlabel("t", FontSize=24);
@@ -104,17 +104,18 @@ for i = 1:length(T_arr)
     exportgraphics(gcf, "fur_imgs_g_T_" + T_c + ".png", 'Resolution', 300);
 
     figure;
-    plot(omega, abs(Y_fur_plot), 'LineWidth', 0.5, color="red");
+    plot(omega, abs(fil_fur), 'LineWidth', 3.5, color="green");
     hold on;
-    plot(omega, abs(fil_fur), 'LineWidth', 1.0, color="blue");
+    plot(omega, abs(Y_fur_plot), 'LineWidth', 1.0, color="red");
     hold off;
+    
     grid on;
     ylim([-1.5 50.5]);
     xlim([0 63]);
     xlabel("w", FontSize=24);
     ylabel("y(w)",FontSize=24);
     title("Сравнение фурье-образов при T = " + T_c, FontSize=24);
-    legend("Умножение на передаточную функцию", "Образ фильтрованной функции",  'Location', 'northeast', fontsize=14);
+    legend("Образ фильтрованной функции", "Умножение на передаточную функцию", 'Location', 'northeast', fontsize=14);
     set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
     exportgraphics(gcf, "fur_imgs_w_T_" + T_c + ".png", 'Resolution', 300);
 
@@ -157,7 +158,7 @@ for i = 1:length(T_arr)
     Y_fur_plot = fftshift(Y .* H_d);
 
     figure;
-    plot(t, y_fil, 'LineWidth', 1.0, color="blue");
+    plot(t, y_fil, 'LineWidth', 3.5, color="green");
     hold on;
     plot(t, y_fil_rev, 'LineWidth', 1.0, color="red");
     hold off;
@@ -172,7 +173,7 @@ for i = 1:length(T_arr)
     figure;
     plot(t, g, 'LineWidth', 3.5, color="blue");
     hold on;
-    plot(t, y, 'LineWidth', 0.5, color="red");
+    plot(t, y, 'LineWidth', 1.0, color="red");
     hold on;
     plot(t, y_fil, 'LineWidth', 3.5, color="green");
     hold off;
@@ -204,17 +205,18 @@ for i = 1:length(T_arr)
     exportgraphics(gcf, "fur_imgs_g_a_" + a_c + ".png", 'Resolution', 300);
 
     figure;
-    plot(omega, abs(Y_fur_plot), 'LineWidth', 0.5, color="red");
+    plot(omega, abs(fil_fur), 'LineWidth', 3.5, color="green");
     hold on;
-    plot(omega, abs(fil_fur), 'LineWidth', 1.0, color="blue");
+    plot(omega, abs(Y_fur_plot), 'LineWidth', 1.0, color="red");
     hold off;
+    
     grid on;
     ylim([-1.5 50.5]);
     xlim([0 63]);
     xlabel("w", FontSize=24);
     ylabel("y(w)",FontSize=24);
     title("Сравнение фурье-образов при a = " + a_c + ", T = 1.25", FontSize=24);
-    legend("Умножение на передаточную функцию", "Образ фильтрованной функции",  'Location', 'northeast', fontsize=14);
+    legend("Образ фильтрованной функции", "Умножение на передаточную функцию", 'Location', 'northeast', fontsize=14);
     set(gcf, 'Units', 'pixels', 'Position', [100, 100, 1200, 800]);
     exportgraphics(gcf, "fur_imgs_w_a_" + a_c + ".png", 'Resolution', 300);
 end
