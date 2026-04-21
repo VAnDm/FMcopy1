@@ -13,7 +13,8 @@ t = (-T/2 : dt : T/2-dt)';
 
 f_Hz = (0:N-1)' * Fs/N; 
 omega = 2*pi * f_Hz;
-
+momega = 2*pi*(N-1)*Fs/N;
+norm_omega = (-momega/2 : 2*pi*Fs/N : momega/2);
 T_arr = [0.1, 0.5, 1.25, 2.0];
 a_arr = [1.0, 2.0, 7.5, 10.0];
 
@@ -87,15 +88,15 @@ for i = 1:length(T_arr)
     exportgraphics(gcf, "filter_transf_T_" + T_c + ".png", 'Resolution', 300);
 
     figure;
-    plot(omega, abs(y_fur), 'LineWidth', 1.0, color="blue");
+    plot(norm_omega, abs(y_fur), 'LineWidth', 1.0, color="blue");
     hold on;
-    plot(omega, abs(g_fur), 'LineWidth', 0.5, color="red");
+    plot(norm_omega, abs(g_fur), 'LineWidth', 0.5, color="red");
     hold on;
-    plot(omega, abs(fil_fur), 'LineWidth', 1.0, color="green");
+    plot(norm_omega, abs(fil_fur), 'LineWidth', 1.0, color="green");
     hold off;
     grid on;
     ylim([-1.5 50.5]);
-    xlim([0 63]);
+    xlim([-momega/2 momega/2]);
     xlabel("w", FontSize=24);
     ylabel("y(w)",FontSize=24);
     title("Сравнение фурье-образов при T = " + T_c, FontSize=24);
@@ -104,14 +105,14 @@ for i = 1:length(T_arr)
     exportgraphics(gcf, "fur_imgs_g_T_" + T_c + ".png", 'Resolution', 300);
 
     figure;
-    plot(omega, abs(fil_fur), 'LineWidth', 3.5, color="green");
+    plot(norm_omega, abs(fil_fur), 'LineWidth', 3.5, color="green");
     hold on;
-    plot(omega, abs(Y_fur_plot), 'LineWidth', 1.0, color="red");
+    plot(norm_omega, abs(Y_fur_plot), 'LineWidth', 1.0, color="red");
     hold off;
     
     grid on;
     ylim([-1.5 50.5]);
-    xlim([0 63]);
+    xlim([-momega/2 momega/2]);
     xlabel("w", FontSize=24);
     ylabel("y(w)",FontSize=24);
     title("Сравнение фурье-образов при T = " + T_c, FontSize=24);
@@ -188,15 +189,15 @@ for i = 1:length(T_arr)
     exportgraphics(gcf, "filter_a_" + a_c + ".png", 'Resolution', 300);
     
     figure;
-    plot(omega, abs(y_fur), 'LineWidth', 1.0, color="blue");
+    plot(norm_omega, abs(y_fur), 'LineWidth', 1.0, color="blue");
     hold on;
-    plot(omega, abs(g_fur), 'LineWidth', 0.5, color="red");
+    plot(norm_omega, abs(g_fur), 'LineWidth', 0.5, color="red");
     hold on;
-    plot(omega, abs(fil_fur), 'LineWidth', 1.0, color="green");
+    plot(norm_omega, abs(fil_fur), 'LineWidth', 1.0, color="green");
     hold off;
     grid on;
     ylim([-1.5 50.5]);
-    xlim([0 63]);
+    xlim([-momega/2 momega/2]);
     xlabel("w", FontSize=24);
     ylabel("y(w)",FontSize=24);
     title("Сравнение фурье-образов при a = " + a_c + ", T = 1.25", FontSize=24);
@@ -205,14 +206,14 @@ for i = 1:length(T_arr)
     exportgraphics(gcf, "fur_imgs_g_a_" + a_c + ".png", 'Resolution', 300);
 
     figure;
-    plot(omega, abs(fil_fur), 'LineWidth', 3.5, color="green");
+    plot(norm_omega, abs(fil_fur), 'LineWidth', 3.5, color="green");
     hold on;
-    plot(omega, abs(Y_fur_plot), 'LineWidth', 1.0, color="red");
+    plot(norm_omega, abs(Y_fur_plot), 'LineWidth', 1.0, color="red");
     hold off;
     
     grid on;
     ylim([-1.5 50.5]);
-    xlim([0 63]);
+    xlim([-momega/2 momega/2]);
     xlabel("w", FontSize=24);
     ylabel("y(w)",FontSize=24);
     title("Сравнение фурье-образов при a = " + a_c + ", T = 1.25", FontSize=24);
