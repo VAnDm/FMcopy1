@@ -1,0 +1,563 @@
+\documentclass[a4paper, 12pt]{article}
+
+% Добавляем новые пакеты
+\usepackage[english, russian]{babel}    % Пакет для поддержки русского языка
+\usepackage[T1, T2A]{fontenc}           % Загружаем пакет с поддержкой кирилицы
+\usepackage[utf8]{inputenc}             % Загружаем пакет с поддержкой кодировки файла и символов
+\usepackage{ragged2e}                   % Загружаем пакет для выравнивания текста
+\usepackage{graphicx}                   % Загружаем пакет для добавления различной графики (pdf, jpg, png)
+\usepackage{import}                     % Загружаем пакет для продвинутого импорта, в частности изображений pdf_tex из графического редактора inkscape (\import{<path to file>}{<filename>.pdf_tex})
+\usepackage{subcaption}                 % Пакет для поддержки сетки из фигур, например в две колонки или матрицей
+\usepackage{float}                      % Пакет для улучшенного размещения изображенией (ниже используется опция H в команде \begin{figure}[H])
+\usepackage{geometry}                   % Пакет для управления отступами на странице (см. далее вызываем \geometry)
+\usepackage{amsmath}                    % Добавляем крутую поддержку математики, в частности /align
+\usepackage{amsfonts}                   % Пкет с мтематическими шрифтами вроде \mathbb и др.
+\usepackage{tabu}                       % Пакет с прокаченными таблицами
+\usepackage{booktabs}                   % Крутые вертикальные разделители
+\usepackage[dvipsnames]{xcolor}         % Рассширенная поддержка цветов
+\usepackage[colorlinks]{hyperref}
+\usepackage{indentfirst}                % Пакет, чтобы починить красную строку
+\usepackage{listings}                   % Поддержка листингов, оформления кода программы
+\usepackage{src/vpdtitle}               % Титульный лист (смотри файл vpdtitle.sty)
+
+\usepackage{titletoc}
+\dottedcontents{section}[2.3em]{}{2.3em}{6pt}
+\dottedcontents{subsection}[2.3em]{}{2.3em}{6pt}
+\dottedcontents{subsubsection}[2.3em]{}{2.3em}{6pt}
+
+% Устанавливает отступы на странице
+\geometry{left=2cm, right=2cm, bottom=2cm, top=2cm}
+
+% Настараиваем красивые цвета для ссылок на формулы, фигуры (изображения) и другие элементы.
+\hypersetup{
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan
+}
+
+% Настраиваем супер красивые листинги с попомщью пакетов listings и xcolor
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{codestyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=codestyle}
+\lstset{extendedchars=\true}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Заполнение титульного листа
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{
+Связь непрерывного и дискретного
+}
+
+% Тут укажите автора
+\author{Иван М. Бакланов}
+\affil{465112, ibaklanov@niuitmo.ru}
+
+\author{Владимир В. Ананичев}
+\affil{464994, vandmitrievic@mail.ru}
+% Впишите данные о том, кто будет проверять работу
+\supervisor{Артем В. Пашенко}
+
+% Краткое описание того, что сделали в работе
+\abstract{
+Работа посвящена исследованию возможностей дискретного преобразования Фурье.
+}
+
+% Подберите 3-5 ключевых слова, отличающих эту работу от всех остальных
+\keywords{
+    Python, Fourier series, FFT
+}
+
+\date{\today}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Начала всего-всего текста. Здесь идет сам документ, все пишется именно сюда
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+
+\section{Непрерывное и дискретное преобразования}
+\subsection{Истинный образ}
+Возьмём функцию квадратной волны
+\[
+\Pi(t) = \begin{cases}
+    1, |t| \leq \frac{1}{2}\\
+    0, |t| > \frac{1}{2}
+\end{cases}
+\]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images/pi_true.png}
+    \caption{Фурье-образы двух методов при $b_1 = 1$}
+\end{figure}
+
+Вычислим её Фурье-образ
+\[
+\hat{\Pi}(\nu) = \int^{+\inf}_{-\inf}\Pi(t)e^{-2\pi i\nu t}dt = \int^{1/2}_{-1/2}e^{-2\pi i\nu t}dt = -\frac{1}{2\pi i\nu}e^{-2\pi i\nu t}|^{1/2}_{-1/2}
+\]
+\[
+= -\frac{1}{2\pi i\nu}(e^{-\pi i\nu} - e^{\pi i\nu})
+\]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth, keepaspectratio]{images/fur_pi_true.png}
+    \caption{Фурье-образы двух методов при $b_1 = 1$}
+\end{figure}
+\subsection{Численное интегрирование}
+При рассмотрении различных параметров составления преобразования Фурье видно, что при слишком малом периоде дискритизации, но достаточно малом шаге интегрирования
+функция восстанавливается достаточно близкой, но виден эффект Гиббса. При достаточно большом периоде и малых шагах функция восстанавливается идеально. При слишком большом шаге дискретизации
+хоть частот, хоть времени функция восстанавливается неверно, она больше оригинальной, может появиться период как на графике функции, так и на графике образа.
+\newpage
+\subsection*{Комбинация 1: $T=2$, $V=50$, $dt=0.01$, $dv=0.001$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T2_V50_dt0.010_dv0.001_signal.png}
+    \caption{Восстановление сигнала: $T=2$, $dt=0.01$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T2_V50_dt0.010_dv0.001_spectrum.png}
+    \caption{Сравнение спектров: $V=50$, $dv=0.001$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 2: $T=4$, $V=100$, $dt=0.01$, $dv=0.001$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T4_V100_dt0.010_dv0.001_signal.png}
+    \caption{Восстановление сигнала: $T=4$, $dt=0.01$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T4_V100_dt0.010_dv0.001_spectrum.png}
+    \caption{Сравнение спектров: $V=100$, $dv=0.001$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 3: $T=8$, $V=200$, $dt=0.01$, $dv=0.001$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T8_V200_dt0.010_dv0.001_signal.png}
+    \caption{Восстановление сигнала: $T=8$, $dt=0.01$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T8_V200_dt0.010_dv0.001_spectrum.png}
+    \caption{Сравнение спектров: $V=200$, $dv=0.001$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 4: $T=2$, $V=50$, $dt=0.05$, $dv=0.5$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T2_V50_dt0.050_dv0.500_signal.png}
+    \caption{Восстановление сигнала: $T=2$, $dt=0.05$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T2_V50_dt0.050_dv0.500_spectrum.png}
+    \caption{Сравнение спектров: $V=50$, $dv=0.5$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 5: $T=4$, $V=100$, $dt=0.05$, $dv=0.5$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T4_V100_dt0.050_dv0.500_signal.png}
+    \caption{Восстановление сигнала: $T=4$, $dt=0.05$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T4_V100_dt0.050_dv0.500_spectrum.png}
+    \caption{Сравнение спектров: $V=100$, $dv=0.5$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 6: $T=8$, $V=200$, $dt=0.05$, $dv=0.5$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T8_V200_dt0.050_dv0.500_signal.png}
+    \caption{Восстановление сигнала: $T=8$, $dt=0.05$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T8_V200_dt0.050_dv0.500_spectrum.png}
+    \caption{Сравнение спектров: $V=200$, $dv=0.5$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 7: $T=4$, $V=100$, $dt=0.01$, $dv=0.1$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T4_V100_dt0.010_dv0.100_signal.png}
+    \caption{Восстановление сигнала: $T=4$, $dt=0.01$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/T4_V100_dt0.010_dv0.100_spectrum.png}
+    \caption{Сравнение спектров: $V=100$, $dv=0.1$.}
+\end{figure}
+
+\newpage
+
+
+
+\subsection{Вычисление через FFT}
+Как видно из перебранных комбинаций видно, что FFT приближает обратное преобразование к функции очень близко, но образ функции достаточно далёк от действительности.
+\subsection*{Комбинация 1: $T=2$, $V=50$, $dt=0.01$, $dv=0.001$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T2_V50_dt0.010_dv0.001_signal.png}
+    \caption{Восстановление сигнала: $T=2$, $dt=0.01$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T2_V50_dt0.010_dv0.001_spectrum.png}
+    \caption{Сравнение спектров: $V=50$, $dv=0.001$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 2: $T=4$, $V=100$, $dt=0.01$, $dv=0.001$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T4_V100_dt0.010_dv0.001_signal.png}
+    \caption{Восстановление сигнала: $T=4$, $dt=0.01$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T4_V100_dt0.010_dv0.001_spectrum.png}
+    \caption{Сравнение спектров: $V=100$, $dv=0.001$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 3: $T=8$, $V=200$, $dt=0.01$, $dv=0.001$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T8_V200_dt0.010_dv0.001_signal.png}
+    \caption{Восстановление сигнала: $T=8$, $dt=0.01$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T8_V200_dt0.010_dv0.001_spectrum.png}
+    \caption{Сравнение спектров: $V=200$, $dv=0.001$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 4: $T=2$, $V=50$, $dt=0.05$, $dv=0.5$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T2_V50_dt0.050_dv0.500_signal.png}
+    \caption{Восстановление сигнала: $T=2$, $dt=0.05$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T2_V50_dt0.050_dv0.500_spectrum.png}
+    \caption{Сравнение спектров: $V=50$, $dv=0.5$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 5: $T=4$, $V=100$, $dt=0.05$, $dv=0.5$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T4_V100_dt0.050_dv0.500_signal.png}
+    \caption{Восстановление сигнала: $T=4$, $dt=0.05$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T4_V100_dt0.050_dv0.500_spectrum.png}
+    \caption{Сравнение спектров: $V=100$, $dv=0.5$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 6: $T=8$, $V=200$, $dt=0.05$, $dv=0.5$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T8_V200_dt0.050_dv0.500_signal.png}
+    \caption{Восстановление сигнала: $T=8$, $dt=0.05$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T8_V200_dt0.050_dv0.500_spectrum.png}
+    \caption{Сравнение спектров: $V=200$, $dv=0.5$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 7: $T=4$, $V=100$, $dt=0.03$, $dv=0.25$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T4_V100_dt0.030_dv0.250_signal.png}
+    \caption{Восстановление сигнала: $T=4$, $dt=0.03$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFT_T4_V100_dt0.030_dv0.250_spectrum.png}
+    \caption{Сравнение спектров: $V=100$, $dv=0.25$.}
+\end{figure}
+
+\newpage
+\subsection{Совмещение методов}
+
+Итак, ввёдм константы $c_m$, которые выполняют функцию $\Delta t$.
+Преобразование Фурье на интервале $[-T/2, T/2]$:
+\[
+\hat{f}(\nu) = \int_{-T/2}^{T/2} f(t) e^{-2\pi i \nu t} \, dt
+\]
+
+Разбиваем интервал на $N$ точек:
+\[
+\begin{aligned}
+t_n &= -\frac{T}{2} + n\Delta t, \quad n = 0, 1, \ldots, N-1 \\
+\Delta t &= \frac{T}{N}
+\end{aligned}
+\]
+
+\[
+\hat{f}(\nu_m) \approx \sum_{n=0}^{N-1} f(t_n) e^{-2\pi i \nu_m t_n} \Delta t
+\]
+
+Частоты выбираются как:
+\[
+\nu_m = \frac{m}{T}, \quad m = 0, 1, \ldots, N-1
+\]
+
+Раскрываем показатель степени:
+\[
+\begin{aligned}
+e^{-2\pi i \nu_m t_n} &= e^{-2\pi i \nu_m \left(-\frac{T}{2} + n\Delta t\right)} \\
+&= e^{2\pi i \nu_m \frac{T}{2}} \cdot e^{-2\pi i \nu_m n\Delta t} \\
+&= e^{\pi i \nu_m T} \cdot e^{-2\pi i \nu_m n\Delta t}
+\end{aligned}
+\]
+
+Подставляем $\nu_m = \frac{m}{T}$ и $\Delta t = \frac{T}{N}$:
+\[
+\begin{aligned}
+e^{\pi i \nu_m T} &= e^{\pi i \frac{m}{T} T} = e^{\pi i m} = cos(\pi m) + i \cdot sin(\pi m) = (-1)^m \\
+e^{-2\pi i \nu_m n\Delta t} &= e^{-2\pi i \frac{m}{T} \cdot n \cdot \frac{T}{N}} = e^{-2\pi i \frac{nm}{N}}
+\end{aligned}
+\]
+
+Следовательно:
+\[
+e^{-2\pi i \nu_m t_n} = (-1)^m \cdot e^{-2\pi i \frac{nm}{N}}
+\]
+
+Подставляем полученное выражение в сумму Римана:
+\[
+\begin{aligned}
+\hat{f}(\nu_m) &\approx \sum_{n=0}^{N-1} f(t_n) \left[ (-1)^m \cdot e^{-2\pi i \frac{nm}{N}} \right] \Delta t \\
+&= \Delta t \cdot (-1)^m \sum_{n=0}^{N-1} f(t_n) e^{-2\pi i \frac{nm}{N}}
+\end{aligned}
+\]
+
+Сравнивая с требуемой формой:
+\[
+\hat{f}(\nu_m) \approx c_m \sum_{n=0}^{N-1} f(t_n) e^{-2\pi i \frac{nm}{N}}
+\]
+
+Получаем:
+\[
+c_m = \Delta t \cdot (-1)^m = \frac{T}{N} \cdot (-1)^m
+\]
+
+Рассмотрим различные комбинации параметров
+\newpage
+\subsection*{Комбинация 1: $T=2$, $V=50$, $dt=0.01$, $dv=0.001$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T2_V50_dt0.010_dv0.001_signal.png}
+    \caption{Восстановление сигнала: $T=2$, $dt=0.01$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T2_V50_dt0.010_dv0.001_spectrum.png}
+    \caption{Сравнение спектров: $V=50$, $dv=0.001$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 2: $T=4$, $V=100$, $dt=0.01$, $dv=0.001$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T4_V100_dt0.010_dv0.001_signal.png}
+    \caption{Восстановление сигнала: $T=4$, $dt=0.01$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T4_V100_dt0.010_dv0.001_spectrum.png}
+    \caption{Сравнение спектров: $V=100$, $dv=0.001$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 3: $T=8$, $V=200$, $dt=0.01$, $dv=0.001$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T8_V200_dt0.010_dv0.001_signal.png}
+    \caption{Восстановление сигнала: $T=8$, $dt=0.01$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T8_V200_dt0.010_dv0.001_spectrum.png}
+    \caption{Сравнение спектров: $V=200$, $dv=0.001$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 4: $T=2$, $V=50$, $dt=0.05$, $dv=0.5$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T2_V50_dt0.050_dv0.500_signal.png}
+    \caption{Восстановление сигнала: $T=2$, $dt=0.05$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T2_V50_dt0.050_dv0.500_spectrum.png}
+    \caption{Сравнение спектров: $V=50$, $dv=0.5$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 5: $T=4$, $V=100$, $dt=0.05$, $dv=0.5$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T4_V100_dt0.050_dv0.500_signal.png}
+    \caption{Восстановление сигнала: $T=4$, $dt=0.05$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T4_V100_dt0.050_dv0.500_spectrum.png}
+    \caption{Сравнение спектров: $V=100$, $dv=0.5$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 6: $T=8$, $V=200$, $dt=0.05$, $dv=0.5$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T8_V200_dt0.050_dv0.500_signal.png}
+    \caption{Восстановление сигнала: $T=8$, $dt=0.05$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T8_V200_dt0.050_dv0.500_spectrum.png}
+    \caption{Сравнение спектров: $V=200$, $dv=0.5$.}
+\end{figure}
+
+\newpage
+\subsection*{Комбинация 7: $T=4$, $V=100$, $dt=0.03$, $dv=0.25$}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T4_V100_dt0.030_dv0.250_signal.png}
+    \caption{Восстановление сигнала: $T=4$, $dt=0.03$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/FFTc_T4_V100_dt0.030_dv0.250_spectrum.png}
+    \caption{Сравнение спектров: $V=100$, $dv=0.25$.}
+\end{figure}
+
+Как видно из графиков, теперь фурье образы близки к истинным, но приближается к ним на всей оси только при подборе оптимальных параметров(последняя комбинация)
+
+\section{Сэмплирование}
+\subsection{Описание задания}
+В этом задании мы будем восстанавливать непрерывные функции $y_1(t)$ и $y_2(t)$ по их дискретным значениям с заданной частотой и проиллюстрируем выполнение теоремы Найквиста-Шеннона-Котельникова.
+В качестве функции $y_1(t)$ возьмем:
+\[
+y_1(t) = a_1 sin(\omega_1 t + \varphi_1) + a_2 sin(\omega_2 t + \varphi_2)
+\]
+Пусть:
+\[
+a_1 = 1, \omega_1 = 5\pi, \varphi_1 = 11\pi, a_2 = 2, \omega_2 = 3\pi, \varphi_2 = 13\pi
+\]
+Тогда функция $y_1(t)$ примет вид:
+\[
+y_1(t) = sin(5 \pi t + 11\pi) + 2 sin(3 \pi t + 13\pi)
+\]
+В качестве функции $y_2(t)$ возьмем:
+\[
+y_2(t) = sinc(bt)
+\]
+Пусть:
+\[
+b = 7
+\]
+Тогда функция $y_2(t)$ примет вид:
+\[
+y_2(t) = sinc(7t)
+\]
+Непрерывный сигнал из дискретного восстанавливается по формуле:
+\[
+y(t) = \sum_{n = -\infty}^{\infty} y(n\Delta t) \cdot sinc(\frac{t - n\Delta t}{\Delta t})
+\]
+\end{document}
