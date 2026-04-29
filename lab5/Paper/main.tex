@@ -528,7 +528,7 @@ c_m = \Delta t \cdot (-1)^m = \frac{T}{N} \cdot (-1)^m
 \end{figure}
 
 Как видно из графиков, теперь фурье образы близки к истинным, но приближается к ним на всей оси только при подборе оптимальных параметров(последняя комбинация)
-
+\newpage
 \section{Сэмплирование}
 \subsection{Описание задания}
 В этом задании мы будем восстанавливать непрерывные функции $y_1(t)$ и $y_2(t)$ по их дискретным значениям с заданной частотой и проиллюстрируем выполнение теоремы Найквиста-Шеннона-Котельникова.
@@ -560,4 +560,528 @@ y_2(t) = sinc(7t)
 \[
 y(t) = \sum_{n = -\infty}^{\infty} y(n\Delta t) \cdot sinc(\frac{t - n\Delta t}{\Delta t})
 \]
+По теореме Найквиста-Шеннона-Котельникова функция может быть восстановлена из дискретного набора точек с любой точностью если частота дискретизации $\Delta t \leq \frac{1}{2B}$.
+\newline
+Для функции $y_1(t)$:
+\[
+B = \frac{max(\omega_1, \omega_2)}{2\pi} = 2.5 => \Delta t \leq \frac{1}{5}
+\]
+Для функции $y_2(t)$:
+\[
+B = \frac{b}{2} = 3.5 => \Delta t \leq \frac{1}{7}
+\]
+\newpage
+\subsection{Анализ функции $y_1(t)$}
+Построим график "непрерывной" функции $y_1(t)$. Для этого вычислим значения функции $y_1(t)$ при $-100 \leq t \leq 100$, c шагом $\frac{1}{100}$. Построим график на отрезке $-3 \leq t \leq 3$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images2/y1nepr.png}
+    \caption{График $y1(t)$ без видимой дискретизации}
+\end{figure}
+
+Рассмотрим восстановление функции $y_1(t)$ из дискретной при различных параметрах $T, \Delta t$ (считаем что при данном $T$ интегрируем на промежутке $[-T, T]$):
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images2/y1_T10_dt01.png}
+    \caption{$T = 10, \Delta t = 0.1$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/y1_T10_dt019.png}
+    \caption{$T = 10, \Delta t = 0.19$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/y1_T10_dt03.png}
+    \caption{$T = 10, \Delta t = 0.3$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/y1_T3_dt01.png}
+    \caption{$T = 3, \Delta t = 0.1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/y1_T15_dt01.png}
+    \caption{$T = 1.5, \Delta t = 0.1$}
+\end{figure}
+\newpage
+Также рассмотрим модули Фурье-образов этих функций при данных $T, \Delta t$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\textwidth]{images2/fur_y1_T10_dt01.png}
+    \caption{$T = 10, \Delta t = 0.1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\textwidth]{images2/fur_y1_T10_dt019.png}
+    \caption{$T = 10, \Delta t = 0.19$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/fur_y1_T10_dt03.png}
+    \caption{$T = 10, \Delta t = 0.3$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/y1_T3_dt01.png}
+    \caption{$T = 3, \Delta t = 0.1$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images2/fur_y1_T15_dt01.png}
+    \caption{$T = 1.5, \Delta t = 0.1$}
+\end{figure}
+\subsection{Анализ функции $y_2(t)$}
+Аналогично построим графики для функции $y_2(t)$:
+Рассмотрим восстановление функции $y_1(t)$ из дискретной при различных параметрах $T, \Delta t$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images2/y2_T10_dt01.png}
+    \caption{$T = 10, \Delta t = 0.1$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/y2_T10_dt014.png}
+    \caption{$T = 10, \Delta t = 0.19$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/y2_T10_dt03.png}
+    \caption{$T = 10, \Delta t = 0.3$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/y2_T3_dt01.png}
+    \caption{$T = 3, \Delta t = 0.1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/y2_T15_dt01.png}
+    \caption{$T = 1.5, \Delta t = 0.1$}
+\end{figure}
+\newpage
+Также рассмотрим модули Фурье-образов этих функций при данных $T, \Delta t$:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\textwidth]{images2/fur_y2_T10_dt01.png}
+    \caption{$T = 10, \Delta t = 0.1$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\textwidth]{images2/fur_y2_T10_dt014.png}
+    \caption{$T = 10, \Delta t = 0.19$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/fur_y2_T10_dt03.png}
+    \caption{$T = 10, \Delta t = 0.3$}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images2/fur_y2_T3_dt01.png}
+    \caption{$T = 3, \Delta t = 0.1$}
+\end{figure}
+\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images2/fur_y2_T15_dt01.png}
+    \caption{$T = 1.5, \Delta t = 0.1$}
+\end{figure}
+\subsection{Выводы}
+Видим, что при $\Delta t \leq \frac{1}{2B}$ функция полученная с помощью интерполяции с высокой точностью соответствует исходной на промежутке интегрирования $T$. Если же $\Delta t > \frac{1}{2B}$, восстанавливаемая функция значительно отличается от исходной. Данный результат полностью соответствует теореме Найквиста-Шеннона-Котельникова.
+\newline
+Параметр $T$ (промежуток интегрирования) соответствует промежутку на котором интерполированная функция восстанавливается с высокой точностью, на остальной же числовой прямой функция после интерполяции быстро стремится к нулю.
+\newline
+При рассмотрении же Фурье-образов можно заметить что Фурье-образ восстановленной функции совпадает с Фурье-образом исходной функции с меньшей точностью при уменьшении $T$ (шаг дискретизации частоты зависит от промежутка интегрирования как $\Delta \nu = \frac{1}{2T}$).
+\newpage
+\section{Вывод}
+В данной работе мы рассмотрели различные способы вычисления Фурье-образа прямоугольной функции (аналитически, с помощью численного интегрирования и с помощью дискретного преобразования Фурье двумя способами).
+\newline
+Также было выполнено восстановление функций из дискретного набора значений и проиллюстрировано выполнение теоремы Найквиста-Шеннона-Котельникова.
+\section{Приложения}
+\begin{lstlisting}[caption={Код для численного интегрирования в первом пункте}]
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+
+# Совместимость с NumPy 2.0+
+trapz = getattr(np, 'trapezoid', np.trapz)
+
+# Параметры (исправлен синтаксис: добавлены пропущенные запятые)
+T_vals = [2, 4, 8]
+V_vals = [50, 100, 200]  # Исправлено: добавлена запятая (предполагаю 100 вместо 32)
+dt_vals = [0.01, 0.01, 0.05]
+dv_vals = [0.001, 0.1, 0.5]
+
+out_dir = os.path.join('lab5', 'Paper', 'images')
+os.makedirs(out_dir, exist_ok=True)
+
+#  Формируем список ТОЛЬКО нужных комбинаций
+combos = []
+
+# 1. Соответствующие пары (T, V) с первыми dt и dv
+for i in range(len(T_vals)):
+    combos.append((T_vals[i], V_vals[i], dt_vals[0], dv_vals[0]))
+
+# 2. Соответствующие пары (T, V) с последними dt и dv
+for i in range(len(T_vals)):
+    combos.append((T_vals[i], V_vals[i], dt_vals[-1], dv_vals[-1]))
+
+# 3. Срединная комбинация
+mid = len(T_vals) // 2
+combos.append((T_vals[mid], V_vals[mid], dt_vals[mid], dv_vals[mid]))
+
+# Убираем возможные дубликаты, сохраняя порядок
+combos = list(dict.fromkeys(combos))
+
+total_combos = len(combos)
+print(f" Сгенерировано комбинаций для обработки: {total_combos}")
+for c in combos:
+    print(f"   T={c[0]:>2}, V={c[1]:>3}, dt={c[2]:.3f}, dv={c[3]:.3f}")
+print("-" * 40)
+
+for idx, (T, V, dt, dv) in enumerate(combos, 1):
+    print(f"[{idx}/{total_combos}] T={T}, V={V}, dt={dt}, dv={dv}")
+
+    # 1. Сетки
+    Nt = int(T / dt) + 1
+    Nv = int(V / dv) + 1
+    t = np.linspace(-T/2, T/2, Nt)
+    v = np.linspace(-V/2, V/2, Nv)
+
+    # 2. Исходный сигнал
+    p = np.where(np.abs(t) <= 0.5, 1.0, 0.0)
+
+    # 3. Аналитический спектр
+    p_f = (np.exp(-1j * np.pi * v) - np.exp(1j * np.pi * v)) / (-2j * np.pi * v)
+    p_f[np.abs(v) < dv/2] = 1.0
+
+    # 4. Прямое преобразование
+    kernel = np.exp(-2j * np.pi * np.outer(v, t))
+    integrand = p[np.newaxis, :] * kernel
+    trap_im = trapz(integrand, x=t, axis=1)
+
+    # 5. Обратное преобразование
+    kernel2 = np.exp(2j * np.pi * np.outer(v, t))
+    integrand_inv = trap_im[:, np.newaxis] * kernel2
+    p_rev = trapz(integrand_inv, x=v, axis=0)
+    p_rev = np.real(p_rev)  # Отсекаем машинный шум
+
+    #  Диагностика
+    max_rec = np.max(p_rev)
+    print(f"   Max восст.: {max_rec:.4f} (ошибка: {abs(max_rec-1):.2%})")
+
+    # 6. График сигнала
+    fig1, ax1 = plt.subplots(figsize=(12, 6))
+    ax1.plot(t, p, 'b-', linewidth=1.5, label='Истинная')
+    ax1.plot(t, p_rev, 'r--', linewidth=1.5, label='Восстановленная (trapz)')
+    ax1.set_xlabel('t', fontsize=16); ax1.set_ylabel('p(t)', fontsize=16)
+    ax1.set_title(f'Сигнал: T={T}, dt={dt}', fontsize=14)
+    ax1.legend(loc='best', fontsize=12); ax1.grid(True)
+    #  Фиксированный масштаб вместо np.max(p_rev)+0.1, чтобы амплитуда не "прыгала"
+    ax1.set_ylim([-0.2, 1.3])  
+    ax1.set_xlim([-T/2, T/2])
+    fname1 = f"T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_signal.png"
+    fig1.savefig(os.path.join(out_dir, fname1), dpi=300, bbox_inches='tight')
+    plt.close(fig1)
+
+    # 7. График спектра
+    fig2, ax2 = plt.subplots(figsize=(12, 6))
+    ax2.plot(v, np.real(p_f), 'b-', linewidth=1.5, label='Истинный')
+    ax2.plot(v, np.real(trap_im), 'r--', linewidth=1.5, label='Численный (trapz)')
+    ax2.set_xlabel('v', fontsize=16); ax2.set_ylabel('F(v)', fontsize=16)
+    ax2.set_title(f'Спектр: V={V}, dv={dv}', fontsize=14)
+    ax2.legend(loc='best', fontsize=12); ax2.grid(True)
+    ax2.set_ylim([-0.4, 1.5]); ax2.set_xlim([-V/2, V/2])
+    fname2 = f"T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_spectrum.png"
+    fig2.savefig(os.path.join(out_dir, fname2), dpi=300, bbox_inches='tight')
+    plt.close(fig2)
+
+print(f" Готово! Все {total_combos*2} графиков сохранены в {out_dir}")
+\end{lstlisting}
+\begin{lstlisting}[caption={Код для встроенного дискретного преобразования Фурье в первом пункте}]
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+
+# Параметры (по вашему ТЗ)
+T_vals = [2, 4, 8]
+V_vals = [50, 100, 200]   # В БПФ фактический диапазон частот = 1/(2*dt)
+dt_vals = [0.01, 0.03, 0.05]
+dv_vals = [0.001, 0.25, 0.5] # В БПФ фактический шаг частоты = 1/T
+
+# Формируем список комбинаций
+combos = []
+for i in range(len(T_vals)):
+    combos.append((T_vals[i], V_vals[i], dt_vals[0], dv_vals[0]))
+for i in range(len(T_vals)):
+    combos.append((T_vals[i], V_vals[i], dt_vals[-1], dv_vals[-1]))
+mid = len(T_vals) // 2
+combos.append((T_vals[mid], V_vals[mid], dt_vals[mid], dv_vals[mid]))
+combos = list(dict.fromkeys(combos))
+
+out_dir = os.path.join('lab5', 'Paper', 'images')
+os.makedirs(out_dir, exist_ok=True)
+
+for idx, (T, V, dt, dv) in enumerate(combos, 1):
+    print(f"[{idx}/{len(combos)}] T={T}, V={V}, dt={dt}, dv={dv}")
+
+    # 1. Временная сетка
+    Nt = int(T / dt) + 1
+    t = np.linspace(-T/2, T/2, Nt)
+    dt_actual = dt  # точный шаг (страховка от ошибок округления)
+
+    # 2. Исходный сигнал
+    p = np.where(np.abs(t) <= 0.5, 1.0, 0.0)
+
+    # 3. Прямое БПФ
+    #  Масштабирование: умножаем на dt, чтобы аппроксимировать непрерывный интеграл
+    F_fft = np.fft.fftshift(np.fft.fft(p)) * dt_actual
+    # Частотная сетка БПФ (циклы в секунду, совпадает с определением через 2pi*ivt)
+    v_fft = np.fft.fftshift(np.fft.fftfreq(Nt, d=dt_actual))
+
+    # 4. Аналитический спектр (вычисляем на той же сетке v_fft для честного сравнения)
+    p_f = np.sinc(v_fft)  # np.sinc(x) = sin(pi*x)/(pi*x), уже корректна в 0
+
+    # 5. Обратное БПФ
+    #  Делим на dt перед ifft, чтобы компенсировать прямое масштабирование
+    p_rec = np.fft.ifft(np.fft.ifftshift(F_fft / dt_actual))
+    p_rec = np.real(p_rec)  # отбрасываем машинный шум (~1e-16j)
+
+    #  Диагностика
+    max_rec = np.max(p_rec)
+    print(f"   Max восст.: {max_rec:.4f} | Ошибка: {abs(max_rec-1):.2%}")
+    print(f"    Реальная сетка БПФ: dv_real={1/T:.4f}, V_real={1/(2*dt_actual):.1f}")
+
+    # 6. График сигнала
+    fig1, ax1 = plt.subplots(figsize=(12, 6))
+    ax1.plot(t, p, 'b-', linewidth=1.5, label='Истинная')
+    ax1.plot(t, p_rec, 'r--', linewidth=1.5, label='Восстановленная (FFT)')
+    ax1.set_xlabel('t', fontsize=16); ax1.set_ylabel('p(t)', fontsize=16)
+    ax1.set_title(f'Сигнал: T={T}, dt={dt}', fontsize=14)
+    ax1.legend(loc='best', fontsize=12); ax1.grid(True)
+    ax1.set_ylim([-0.2, 1.3])
+    ax1.set_xlim([-T/2, T/2])
+    fname1 = f"FFT_T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_signal.png"
+    fig1.savefig(os.path.join(out_dir, fname1), dpi=300, bbox_inches='tight')
+    plt.close(fig1)
+
+    # 7. График спектра
+    fig2, ax2 = plt.subplots(figsize=(12, 6))
+    ax2.plot(v_fft, np.real(p_f), 'b-', linewidth=1.5, label='Истинный')
+    ax2.plot(v_fft, np.real(F_fft), 'r--', linewidth=1.5, label='Численный (FFT)')
+    ax2.set_xlabel('v', fontsize=16); ax2.set_ylabel('F(v)', fontsize=16)
+    ax2.set_title(f'Спектр: V={V}, dv={dv}', fontsize=14)
+    ax2.legend(loc='best', fontsize=12); ax2.grid(True)
+    ax2.set_ylim([-0.4, 1.5])
+    ax2.set_xlim([-v_fft[-1], v_fft[-1]]) # масштаб по реальной частоте Найквиста
+    fname2 = f"FFT_T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_spectrum.png"
+    fig2.savefig(os.path.join(out_dir, fname2), dpi=300, bbox_inches='tight')
+    plt.close(fig2)
+
+print(f" Готово! Все графики сохранены в {out_dir}")
+\end{lstlisting}
+\begin{lstlisting}[caption={Код для улучшенного дискретного преобразования Фурье в первом пункте}]
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+
+# Параметры (по вашему ТЗ)
+T_vals = [2, 4, 8]
+V_vals = [50, 100, 200]   # В БПФ фактический диапазон частот = 1/(2*dt)
+dt_vals = [0.01, 0.03, 0.05]
+dv_vals = [0.001, 0.25, 0.5] # В БПФ фактический шаг частоты = 1/T
+
+# Формируем список комбинаций
+combos = []
+for i in range(len(T_vals)):
+    combos.append((T_vals[i], V_vals[i], dt_vals[0], dv_vals[0]))
+for i in range(len(T_vals)):
+    combos.append((T_vals[i], V_vals[i], dt_vals[-1], dv_vals[-1]))
+mid = len(T_vals) // 2
+combos.append((T_vals[mid], V_vals[mid], dt_vals[mid], dv_vals[mid]))
+combos = list(dict.fromkeys(combos))
+
+out_dir = os.path.join('lab5', 'Paper', 'images')
+os.makedirs(out_dir, exist_ok=True)
+
+for idx, (T, V, dt, dv) in enumerate(combos, 1):
+    print(f"[{idx}/{len(combos)}] T={T}, V={V}, dt={dt}, dv={dv}")
+
+    # 1. Временная сетка
+    Nt = int(T / dt) + 1
+    t = np.linspace(-T/2, T/2, Nt)
+    dt_actual = dt  # точный шаг (страховка от ошибок округления)
+
+    # 2. Исходный сигнал
+    p = np.where(np.abs(t) <= 0.5, 1.0, 0.0)
+
+    #  ВЫЧИСЛЕНИЕ c_m = dt * (-1)^m
+    m = np.arange(Nt)  # индексы частот: 0, 1, 2, ..., N-1
+    c_m = dt_actual * ((-1) ** m)  # c_m до fftshift
+    c_m_shifted = np.fft.fftshift(c_m)  # c_m после fftshift (для прямого преобразования)
+
+    # 3. Прямое БПФ с умножением на c_m
+    F_fft = np.fft.fftshift(np.fft.fft(p)) * c_m_shifted
+    # Частотная сетка БПФ (циклы в секунду, совпадает с определением через 2*pi*ivt)
+    v_fft = np.fft.fftshift(np.fft.fftfreq(Nt, d=dt_actual))
+
+    # 4. Аналитический спектр (вычисляем на той же сетке v_fft для честного сравнения)
+    p_f = np.sinc(v_fft)  # np.sinc(x) = sin(pi*x)/(pi*x), уже корректна в 0
+
+    # 5. Обратное БПФ с делением на c_m
+    # Сначала ifftshift (возвращает к порядку 0...N-1), потом делим на c_m (без сдвига!)
+    p_rec = np.fft.ifft(np.fft.ifftshift(F_fft) / c_m)
+    p_rec = np.real(p_rec)  # отбрасываем машинный шум (~1e-16j)
+
+    #  Диагностика
+    max_rec = np.max(p_rec)
+    print(f"   Max восст.: {max_rec:.4f} | Ошибка: {abs(max_rec-1):.2%}")
+    print(f"    Реальная сетка БПФ: dv_real={1/T:.4f}, V_real={1/(2*dt_actual):.1f}")
+
+    # 6. График сигнала
+    fig1, ax1 = plt.subplots(figsize=(12, 6))
+    ax1.plot(t, p, 'b-', linewidth=1.5, label='Истинная')
+    ax1.plot(t, p_rec, 'r--', linewidth=1.5, label='Восстановленная (FFT)')
+    ax1.set_xlabel('t', fontsize=16); ax1.set_ylabel('p(t)', fontsize=16)
+    ax1.set_title(f'Сигнал: T={T}, dt={dt}', fontsize=14)
+    ax1.legend(loc='best', fontsize=12); ax1.grid(True)
+    ax1.set_ylim([-0.2, 1.3])
+    ax1.set_xlim([-T/2, T/2])
+    fname1 = f"FFTc_T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_signal.png"
+    fig1.savefig(os.path.join(out_dir, fname1), dpi=300, bbox_inches='tight')
+    plt.close(fig1)
+
+    # 7. График спектра
+    fig2, ax2 = plt.subplots(figsize=(12, 6))
+    ax2.plot(v_fft, np.real(p_f), 'b-', linewidth=1.5, label='Истинный')
+    ax2.plot(v_fft, np.real(F_fft), 'r--', linewidth=1.5, label='Численный (FFT)')
+    ax2.set_xlabel('v', fontsize=16); ax2.set_ylabel('F(v)', fontsize=16)
+    ax2.set_title(f'Спектр: V={V}, dv={dv}', fontsize=14)
+    ax2.legend(loc='best', fontsize=12); ax2.grid(True)
+    ax2.set_ylim([-0.4, 1.5])
+    ax2.set_xlim([-v_fft[-1], v_fft[-1]]) # масштаб по реальной частоте Найквиста
+    fname2 = f"FFTc_T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_spectrum.png"
+    fig2.savefig(os.path.join(out_dir, fname2), dpi=300, bbox_inches='tight')
+    plt.close(fig2)
+
+print(f" Готово! Все графики сохранены в {out_dir}")
+\end{lstlisting}
+\begin{lstlisting}[caption={Код для второго пункта}]
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+
+a1 = 1
+omega1 = 5 * np.pi
+phi1 = 11 * np.pi
+a2 = 2
+omega2 = 3 * np.pi
+phi2 = 13 * np.pi
+b = 7
+
+#def y1(t):
+    #x = a1 * np.sin(omega1 * t + phi1) + a2 * np.sin(omega2 * t + phi2)
+    #return x
+def y1(t):
+    x = np.sinc(b * t)
+    return x
+
+def yinterpol(t, tdiscmaliy, ydiscmaliy, dt):
+    x = 0
+    for i in range(len(tdiscmaliy)):
+        x = x + ydiscmaliy[i] * np.sinc((t - tdiscmaliy[i]) / dt)
+    return x
+
+
+T = 100
+t = []
+c = -T
+while c < T:
+    t.append(c)
+    c += 0.01
+dt = 0.1
+c = -T
+tdisc = []
+while c < T:
+    tdisc.append(c)
+    c += dt
+y1nepr = []
+for i in t:
+    y1nepr.append(y1(i))
+y1disc = []
+for i in tdisc:
+    y1disc.append(y1(i))
+
+Tmaliy = 1.5
+tdiscmaliy = []
+y1discmaliy = []
+for i in range(len(tdisc)):
+    if tdisc[i] >= -Tmaliy and tdisc[i] <= Tmaliy:
+        tdiscmaliy.append(tdisc[i])
+        y1discmaliy.append(y1disc[i])
+y1intergraph = []
+for i in range(len(t)):
+    a = yinterpol(t[i], tdiscmaliy, y1discmaliy, dt)
+    y1intergraph.append(a)
+
+plt.ion()
+plt.plot(t, y1nepr, c = 'red', linewidth = 6, label = 'y1(t)')
+plt.plot(tdiscmaliy, y1discmaliy, linewidth = 3, c = 'green', label = 'y1_disc(t)')
+plt.plot(t, y1intergraph, c = 'black', linestyle = '--', label = 'y1_inter(t)')
+plt.draw()
+plt.xlim([-3, 3])
+plt.ioff()
+
+plt.xlabel('t')
+plt.ylabel('y')
+plt.legend()
+plt.grid()
+plt.show()
+
+V = 1/(2 * 0.01)
+dv = 1/(2 * T)
+vnepr = []
+c = -V
+while c < V:
+    vnepr.append(c)
+    c += dv
+
+Vdisc = 1/(2 * dt)
+dvdisc = 1/(2 * Tmaliy)
+#vdisc = []
+#c = -Vdisc
+#while c < Vdisc:
+    #vdisc.append(c)
+    #c += dvdisc
+vdisc = np.arange(-Vdisc, Vdisc, dvdisc)
+
+furnepr = np.abs(np.fft.fftshift(np.fft.fft(y1nepr)) * 0.01)
+furdisc = np.abs(np.fft.fftshift(np.fft.fft(y1discmaliy)) * dt)
+furinter = np.abs(np.fft.fftshift(np.fft.fft(y1intergraph)) * 0.01)
+
+plt.ion()
+plt.plot(vnepr, furnepr, c = 'red', linewidth = 6, label = 'Модуль Фурье-образа y1(t)')
+plt.plot(vdisc, furdisc, linewidth = 3, c = 'green', label = 'Модуль Фурье-образа y1_disc(t)')
+plt.plot(vnepr, furinter, c = 'black', linestyle = '--', label = 'Модуль Фурье-образа y1_inter(t)')
+plt.axvline(x = 3.5, c = 'blue', linestyle = '--', label = 'v = B')
+plt.axvline(x = -3.5, c = 'blue', linestyle = '--', label = 'v = -B')
+plt.draw()
+plt.xlim([-5, 5])
+plt.ioff()
+
+plt.xlabel('t')
+plt.ylabel('y')
+plt.legend()
+plt.grid()
+plt.show()
+\end{lstlisting}
 \end{document}
