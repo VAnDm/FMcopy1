@@ -61,6 +61,7 @@ plt.plot(tdiscmaliy, y1discmaliy, linewidth = 3, c = 'green', label = 'y1_disc(t
 plt.plot(t, y1intergraph, c = 'black', linestyle = '--', label = 'y1_inter(t)')
 plt.draw()
 plt.xlim([-3, 3])
+#plt.ylim([-3, 4.5])
 plt.ioff()
 
 plt.xlabel('t')
@@ -92,12 +93,13 @@ furinter = np.abs(np.fft.fftshift(np.fft.fft(y1intergraph)) * 0.01)
 
 plt.ion()
 plt.plot(vnepr, furnepr, c = 'red', linewidth = 6, label = 'Модуль Фурье-образа y1(t)')
-plt.plot(vdisc, furdisc, linewidth = 3, c = 'green', label = 'Модуль Фурье-образа y1_disc(t)')
+plt.plot(vdisc[:min(len(vdisc), len(furdisc))], furdisc[:min(len(vdisc), len(furdisc))], linewidth = 3, c = 'green', label = 'Модуль Фурье-образа y1_disc(t)')
 plt.plot(vnepr, furinter, c = 'black', linestyle = '--', label = 'Модуль Фурье-образа y1_inter(t)')
 plt.axvline(x = 3.5, c = 'blue', linestyle = '--', label = 'v = B')
 plt.axvline(x = -3.5, c = 'blue', linestyle = '--', label = 'v = -B')
 plt.draw()
 plt.xlim([-5, 5])
+plt.ylim([-0.01, 0.26])
 plt.ioff()
 
 plt.xlabel('t')
