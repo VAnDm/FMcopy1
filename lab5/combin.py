@@ -21,16 +21,28 @@ combos = list(dict.fromkeys(combos))
 out_dir = os.path.join('lab5', 'Paper', 'images')
 os.makedirs(out_dir, exist_ok=True)
 
+dt_t = 0.001
+dv_t = 0.001
+
+combos = [[4, 100, 0.01, 0.1], [15, 100, 0.01, 0.1], [4, 200, 0.01, 0.1], [4, 100, 0.1, 0.1], [4, 100, 0.01, 0.5] ]
 for idx, (T, V, dt, dv) in enumerate(combos, 1):
     print(f"[{idx}/{len(combos)}] T={T}, V={V}, dt={dt}, dv={dv}")
 
     # 1. Временная сетка
+    V_t = max(V, 100)
     Nt = int(T / dt) + 1
+    Nt_true = int(T / dt_t) + 1
+    Nv = int(V / dv) + 1
+    Nv_true = int(V / dv_t) + 1
     t = np.linspace(-T/2, T/2, Nt)
+    t_true = np.linspace(-T/2, T/2, Nt_true)
+    v = np.linspace(-V/2, V/2, Nv)
+    v_t = np.linspace(-V_t/2, V_t/2, Nv_true)
     dt_actual = dt  # точный шаг (страховка от ошибок округления)
-
+    
     # 2. Исходный сигнал
     p = np.where(np.abs(t) <= 0.5, 1.0, 0.0)
+    p_t = np.where(np.abs(t_true) <= 0.5, 1.0, 0.0)
 
     # 🔑 ВЫЧИСЛЕНИЕ c_m = dt * (-1)^m
     m = np.arange(Nt)  # индексы частот: 0, 1, 2, ..., N-1
@@ -43,7 +55,7 @@ for idx, (T, V, dt, dv) in enumerate(combos, 1):
     v_fft = np.fft.fftshift(np.fft.fftfreq(Nt, d=dt_actual))
 
     # 4. Аналитический спектр (вычисляем на той же сетке v_fft для честного сравнения)
-    p_f = np.sinc(v_fft)  # np.sinc(x) = sin(πx)/(πx), уже корректна в 0
+    p_f = np.sinc(v_t)  # np.sinc(x) = sin(πx)/(πx), уже корректна в 0
 
     # 5. Обратное БПФ с делением на c_m
     # Сначала ifftshift (возвращает к порядку 0...N-1), потом делим на c_m (без сдвига!)
@@ -57,11 +69,11 @@ for idx, (T, V, dt, dv) in enumerate(combos, 1):
 
     # 6. График сигнала
     fig1, ax1 = plt.subplots(figsize=(12, 6))
-    ax1.plot(t, p, 'b-', linewidth=1.5, label='Истинная')
+    ax1.plot(t_true, p_t, 'b-', linewidth=2.5, label='Истинная')
     ax1.plot(t, p_rec, 'r--', linewidth=1.5, label='Восстановленная (FFT)')
     ax1.set_xlabel('t', fontsize=16); ax1.set_ylabel('p(t)', fontsize=16)
     ax1.set_title(f'Сигнал: T={T}, dt={dt}', fontsize=14)
-    ax1.legend(loc='best', fontsize=12); ax1.grid(True)
+    ax1.legend(loc='best', fontsize=16); ax1.grid(True)
     ax1.set_ylim([-0.2, 1.3])
     ax1.set_xlim([-T/2, T/2])
     fname1 = f"FFTc_T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_signal.png"
@@ -70,12 +82,12 @@ for idx, (T, V, dt, dv) in enumerate(combos, 1):
 
     # 7. График спектра
     fig2, ax2 = plt.subplots(figsize=(12, 6))
-    ax2.plot(v_fft, np.real(p_f), 'b-', linewidth=1.5, label='Истинный')
+    ax2.plot(v_t, np.real(p_f), 'b-', linewidth=2.5, label='Истинный')
     ax2.plot(v_fft, np.real(F_fft), 'r--', linewidth=1.5, label='Численный (FFT)')
     ax2.set_xlabel('v', fontsize=16); ax2.set_ylabel('F(v)', fontsize=16)
     ax2.set_title(f'Спектр: V={V}, dv={dv}', fontsize=14)
-    ax2.legend(loc='best', fontsize=12); ax2.grid(True)
-    ax2.set_ylim([-0.4, 1.5])
+    ax2.legend(loc='best', fontsize=16); ax2.grid(True)
+    ax2.set_ylim([-1.0, 1.5])
     ax2.set_xlim([-v_fft[-1], v_fft[-1]]) # масштаб по реальной частоте Найквиста
     fname2 = f"FFTc_T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_spectrum.png"
     fig2.savefig(os.path.join(out_dir, fname2), dpi=300, bbox_inches='tight')

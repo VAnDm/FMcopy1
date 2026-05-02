@@ -21,7 +21,7 @@ combos.append((T_vals[mid], V_vals[mid], dt_vals[mid], dv_vals[mid]))
 
 # Убираем возможные дубликаты, сохраняя порядок
 combos = list(dict.fromkeys(combos))
-
+combos = [[4, 100, 0.01, 0.1], [15, 100, 0.01, 0.1], [4, 200, 0.01, 0.1], [4, 100, 0.1, 0.1], [4, 100, 0.01, 0.5] ]
 with open('figures.tex', 'w', encoding='utf-8') as f:
     count = 0
     for T, V, dt, dv in combos:
@@ -31,13 +31,13 @@ with open('figures.tex', 'w', encoding='utf-8') as f:
         
         f.write("\\begin{figure}[H]\n")
         f.write("    \\centering\n")
-        f.write(f"    \\includegraphics[width=0.95\\textwidth]{{images/FFTc_T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_signal.png}}\n")
+        f.write(f"    \\includegraphics[width=0.95\\textwidth]{{images/T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_signal.png}}\n")
         f.write(f"    \\caption{{Восстановление сигнала: $T={T}$, $dt={dt}$.}}\n")
         f.write("\\end{figure}\n\n")
         
         f.write("\\begin{figure}[H]\n")
         f.write("    \\centering\n")
-        f.write(f"    \\includegraphics[width=0.95\\textwidth]{{images/FFTc_T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_spectrum.png}}\n")
+        f.write(f"    \\includegraphics[width=0.95\\textwidth]{{images/T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_spectrum.png}}\n")
         f.write(f"    \\caption{{Сравнение спектров: $V={V}$, $dv={dv}$.}}\n")
         f.write("\\end{figure}\n\n")
 

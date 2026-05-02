@@ -37,22 +37,31 @@ print(f"📋 Сгенерировано комбинаций для обрабо
 for c in combos:
     print(f"   T={c[0]:>2}, V={c[1]:>3}, dt={c[2]:.3f}, dv={c[3]:.3f}")
 print("-" * 40)
+dt_t = 0.001
+dv_t = 0.001
 
+combos = [[4, 100, 0.01, 0.1], [15, 100, 0.01, 0.1], [4, 200, 0.01, 0.1], [4, 100, 0.1, 0.1], [4, 100, 0.01, 0.5] ]
 for idx, (T, V, dt, dv) in enumerate(combos, 1):
     print(f"[{idx}/{total_combos}] T={T}, V={V}, dt={dt}, dv={dv}")
 
     # 1. Сетки
     Nt = int(T / dt) + 1
+    Nt_true = int(T / dt_t) + 1
     Nv = int(V / dv) + 1
+    Nv_true = int(V / dv_t) + 1
     t = np.linspace(-T/2, T/2, Nt)
+    t_true = np.linspace(-T/2, T/2, Nt_true)
     v = np.linspace(-V/2, V/2, Nv)
+    v_t = np.linspace(-V/2, V/2, Nv_true)
 
+    
     # 2. Исходный сигнал
     p = np.where(np.abs(t) <= 0.5, 1.0, 0.0)
+    p_true = np.where(np.abs(t_true) <= 0.5, 1.0, 0.0)
 
     # 3. Аналитический спектр
-    p_f = (np.exp(-1j * np.pi * v) - np.exp(1j * np.pi * v)) / (-2j * np.pi * v)
-    p_f[np.abs(v) < dv/2] = 1.0
+    p_f = (np.exp(-1j * np.pi * v_t) - np.exp(1j * np.pi * v_t)) / (-2j * np.pi * v_t)
+    p_f[np.abs(v_t) < dv_t/2] = 1.0
 
     # 4. Прямое преобразование
     kernel = np.exp(-2j * np.pi * np.outer(v, t))
@@ -71,13 +80,13 @@ for idx, (T, V, dt, dv) in enumerate(combos, 1):
 
     # 6. График сигнала
     fig1, ax1 = plt.subplots(figsize=(12, 6))
-    ax1.plot(t, p, 'b-', linewidth=1.5, label='Истинная')
+    ax1.plot(t_true, p_true, 'b-', linewidth=2.5, label='Истинная')
     ax1.plot(t, p_rev, 'r--', linewidth=1.5, label='Восстановленная (trapz)')
     ax1.set_xlabel('t', fontsize=16); ax1.set_ylabel('p(t)', fontsize=16)
     ax1.set_title(f'Сигнал: T={T}, dt={dt}', fontsize=14)
-    ax1.legend(loc='best', fontsize=12); ax1.grid(True)
+    ax1.legend(loc='best', fontsize=16); ax1.grid(True)
     # 🔑 Фиксированный масштаб вместо np.max(p_rev)+0.1, чтобы амплитуда не "прыгала"
-    ax1.set_ylim([-0.2, 1.3])  
+    ax1.set_ylim([-0.2, np.max(p_rev)+0.4*np.max(p_rev)])  
     ax1.set_xlim([-T/2, T/2])
     fname1 = f"T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_signal.png"
     fig1.savefig(os.path.join(out_dir, fname1), dpi=300, bbox_inches='tight')
@@ -85,11 +94,11 @@ for idx, (T, V, dt, dv) in enumerate(combos, 1):
 
     # 7. График спектра
     fig2, ax2 = plt.subplots(figsize=(12, 6))
-    ax2.plot(v, np.real(p_f), 'b-', linewidth=1.5, label='Истинный')
+    ax2.plot(v_t, np.real(p_f), 'b-', linewidth=2.5, label='Истинный')
     ax2.plot(v, np.real(trap_im), 'r--', linewidth=1.5, label='Численный (trapz)')
     ax2.set_xlabel('v', fontsize=16); ax2.set_ylabel('F(v)', fontsize=16)
     ax2.set_title(f'Спектр: V={V}, dv={dv}', fontsize=14)
-    ax2.legend(loc='best', fontsize=12); ax2.grid(True)
+    ax2.legend(loc='best', fontsize=16); ax2.grid(True)
     ax2.set_ylim([-0.4, 1.5]); ax2.set_xlim([-V/2, V/2])
     fname2 = f"T{T}_V{V}_dt{dt:.3f}_dv{dv:.3f}_spectrum.png"
     fig2.savefig(os.path.join(out_dir, fname2), dpi=300, bbox_inches='tight')
