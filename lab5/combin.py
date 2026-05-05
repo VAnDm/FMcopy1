@@ -46,11 +46,11 @@ for idx, (T, V, dt, dv) in enumerate(combos, 1):
 
     # 🔑 ВЫЧИСЛЕНИЕ c_m = dt * (-1)^m
     m = np.arange(Nt)  # индексы частот: 0, 1, 2, ..., N-1
-    c_m = dt_actual * ((-1) ** m)  # c_m до fftshift
+    c_m = dt_actual * ((-1) ** abs(m))*np.exp(-np.pi*1j*m/Nt)  # c_m до fftshift
     c_m_shifted = np.fft.fftshift(c_m)  # c_m после fftshift (для прямого преобразования)
 
     # 3. Прямое БПФ с умножением на c_m
-    F_fft = np.fft.fftshift(np.fft.fft(p)) * c_m_shifted
+    F_fft = np.fft.fftshift(np.fft.fft(p)*c_m)
     # Частотная сетка БПФ (циклы в секунду, совпадает с определением через 2πivt)
     v_fft = np.fft.fftshift(np.fft.fftfreq(Nt, d=dt_actual))
 

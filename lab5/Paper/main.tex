@@ -303,65 +303,53 @@
 
 Итак, ввёдм константы $c_m$, которые выполняют функцию $\Delta t$.
 Преобразование Фурье на интервале $[-T/2, T/2]$:
+Сумма Римана:
 \[
-\hat{f}(\nu) = \int_{-T/2}^{T/2} f(t) e^{-2\pi i \nu t} \, dt
+\int_a^b f(t)dt \approx \sum_{n=0}^{N-1} f(t_n)\Delta t, \quad \text{где } t_n = a + n\Delta t, \quad \Delta t = \frac{b-a}{N-1}
 \]
 
-Разбиваем интервал на $N$ точек:
+Преобразование Фурье:
 \[
-\begin{aligned}
-t_n &= -\frac{T}{2} + n\Delta t, \quad n = 0, 1, \ldots, N-1 \\
-\Delta t &= \frac{T}{N}
-\end{aligned}
+\hat{f}(\nu) \approx \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t)e^{-2\pi i \nu t}dt \to \hat{f}(\nu_m) \approx c_m \sum_{n=0}^{N-1} f(t_n)e^{-2\pi i \frac{nm}{N}}
 \]
 
+
+Применяем сумму Римана к интегралу Фурье на интервале $[-T/2, T/2]$:
 \[
-\hat{f}(\nu_m) \approx \sum_{n=0}^{N-1} f(t_n) e^{-2\pi i \nu_m t_n} \Delta t
+\hat{f}(\nu_m) = \int_{-T/2}^{T/2} f(t)e^{-2\pi i \nu_m t}dt \approx \sum_{n=0}^{N-1} f(t_n)e^{-2\pi i \nu_m t_n} \cdot \Delta t
 \]
 
-Частоты выбираются как:
+
+Определяем положение точек дискретизации. Для симметричного интервала $[-T/2, T/2]$ точки должны располагаться симметрично относительно нуля:
 \[
-\nu_m = \frac{m}{T}, \quad m = 0, 1, \ldots, N-1
+t_n = \left(n - \frac{N-1}{2}\right)\Delta t = \left(n - \frac{N-1}{2}\right)\frac{T}{N}, \quad n = 0, 1, \ldots, N-1
 \]
 
-Раскрываем показатель степени:
+Подставляем $t_n$ и $\nu_m$ в экспоненту:
 \[
-\begin{aligned}
-e^{-2\pi i \nu_m t_n} &= e^{-2\pi i \nu_m \left(-\frac{T}{2} + n\Delta t\right)} \\
-&= e^{2\pi i \nu_m \frac{T}{2}} \cdot e^{-2\pi i \nu_m n\Delta t} \\
-&= e^{\pi i \nu_m T} \cdot e^{-2\pi i \nu_m n\Delta t}
-\end{aligned}
+e^{-2\pi i \nu_m t_n} = e^{-2\pi i \cdot \frac{m}{T} \cdot \left(n - \frac{N-1}{2}\right) \cdot \frac{T}{N}} = e^{-2\pi i \cdot \frac{m}{T} \cdot \frac{T}{N} \cdot \left(n - \frac{N-1}{2}\right)} 
 \]
-
-Подставляем $\nu_m = \frac{m}{T}$ и $\Delta t = \frac{T}{N}$:
 \[
-\begin{aligned}
-e^{\pi i \nu_m T} &= e^{\pi i \frac{m}{T} T} = e^{\pi i m} = cos(\pi m) + i \cdot sin(\pi m) = (-1)^m \\
-e^{-2\pi i \nu_m n\Delta t} &= e^{-2\pi i \frac{m}{T} \cdot n \cdot \frac{T}{N}} = e^{-2\pi i \frac{nm}{N}}
-\end{aligned}
+= e^{-2\pi i \frac{m}{N} \left(n - \frac{N-1}{2}\right)} = e^{-2\pi i \frac{mn}{N} + 2\pi i \frac{m(N-1)}{2N}}
 \]
-
-Следовательно:
 \[
-e^{-2\pi i \nu_m t_n} = (-1)^m \cdot e^{-2\pi i \frac{nm}{N}}
+= e^{-2\pi i \frac{mn}{N}} \cdot e^{\pi i m \frac{N-1}{N}} = e^{-2\pi i \frac{mn}{N}} \cdot e^{\pi i m \left(1 - \frac{1}{N}\right)}
+\]
+\[= e^{-2\pi i \frac{mn}{N}} \cdot e^{\pi i m} \cdot e^{-\pi i m/N} = e^{-2\pi i \frac{mn}{N}} \cdot (-1)^m \cdot e^{-\pi i m/N}
 \]
 
 Подставляем полученное выражение в сумму Римана:
 \[
-\begin{aligned}
-\hat{f}(\nu_m) &\approx \sum_{n=0}^{N-1} f(t_n) \left[ (-1)^m \cdot e^{-2\pi i \frac{nm}{N}} \right] \Delta t \\
-&= \Delta t \cdot (-1)^m \sum_{n=0}^{N-1} f(t_n) e^{-2\pi i \frac{nm}{N}}
-\end{aligned}
+\hat{f}(\nu_m) \approx \sum_{n=0}^{N-1} f(t_n) \cdot e^{-2\pi i \frac{mn}{N}} \cdot (-1)^m \cdot e^{-\pi i m/N} \cdot \Delta t = (-1)^m \cdot e^{-\pi i m/N} \cdot \Delta t \cdot \sum_{n=0}^{N-1} f(t_n) e^{-2\pi i \frac{mn}{N}}
 \]
 
-Сравнивая с требуемой формой:
+Сравниваем с формулой:
 \[
-\hat{f}(\nu_m) \approx c_m \sum_{n=0}^{N-1} f(t_n) e^{-2\pi i \frac{nm}{N}}
+\hat{f}(\nu_m) \approx c_m \sum_{n=0}^{N-1} f(t_n)e^{-2\pi i \frac{nm}{N}}
 \]
-
-Получаем:
+Отсюда получаем:
 \[
-c_m = \Delta t \cdot (-1)^m = \frac{T}{N} \cdot (-1)^m
+c_m = (-1)^m \cdot e^{-\pi i m/N} \cdot \Delta t
 \]
 
 Рассмотрим различные комбинации параметров
@@ -442,7 +430,7 @@ c_m = \Delta t \cdot (-1)^m = \frac{T}{N} \cdot (-1)^m
 
 
 
-Как видно из графиков, теперь фурье образы близки к истинным, но приближается к ним на всей оси только при подборе оптимальных параметров(последняя комбинация)
+Как видно из графиков, теперь фурье образы максимально близки к истинным. При  этом комбинированный метод работает быстрее численного интегрирования и точнее быстрого преобразования.
 \newpage
 \section{Сэмплирование}
 \subsection{Описание задания}
