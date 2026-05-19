@@ -1,16 +1,19 @@
 import numpy as np
-
 import cv2
 from scipy.signal import convolve2d
 import scipy.fft as scipy
 import matplotlib.pyplot as plt
+
+# === Единые параметры для всех изображений ===
+FIG_SIZE = (12, 12)  # размер в дюймах
+DPI = 300            # разрешение
 
 folder = "C:\\Users\\Professional\\Here i live\\Uni\\FM\\lab6\\Paper\\images\\"
 
 img = cv2.imread(folder+"noita.png")
 print(img)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-cv2.imwrite( folder+"noita_gray.png", gray)
+cv2.imwrite(folder+"noita_gray.png", gray)
 
 
 def gauss_ker(N):
@@ -48,14 +51,17 @@ def ker_appl(ker, img, type):
 
     img_filt = fur_img*fur_ker
 
-    plt.figure()
+    # === Сохранение спектра результата ===
+    plt.figure(figsize=FIG_SIZE, dpi=DPI)
     plt.imshow(np.log(abs(img_filt)), cmap='gray')
+    plt.axis('off')
     plt.savefig(
         folder+f"fur_log_filtered{type}.png",
-        bbox_inches='tight',   # обрезает лишние поля
-        pad_inches=0,          # убирает внутренний отступ
-        dpi=150                # одинаковое качество для всех
+        bbox_inches='tight',
+        pad_inches=0,
+        dpi=DPI
     )
+    plt.close()
 
     result_pad = np.real(scipy.ifft2(img_filt))
 
@@ -64,14 +70,17 @@ def ker_appl(ker, img, type):
     start_w = kw // 2
     filtered_img = result_pad[start_h:start_h+M, start_w:start_w+N]
 
-    plt.figure()
+    # === Сохранение отфильтрованного изображения ===
+    plt.figure(figsize=FIG_SIZE, dpi=DPI)
     plt.imshow(filtered_img, cmap='gray')
+    plt.axis('off')
     plt.savefig(
         folder+f"filtered_img_{type}.png",
-        bbox_inches='tight',   # обрезает лишние поля
-        pad_inches=0,          # убирает внутренний отступ
-        dpi=150                # одинаковое качество для всех
+        bbox_inches='tight',
+        pad_inches=0,
+        dpi=DPI
     )
+    plt.close()
 
 g_k = []
 b_k = []
@@ -97,58 +106,72 @@ K_e = np.array([
 fur_img = scipy.fftshift(scipy.fft2(gray))
 
 magnitude = np.log1p(abs(fur_img))
-plt.figure()
+plt.figure(figsize=FIG_SIZE, dpi=DPI)
 plt.imshow(magnitude, cmap="gray")
 plt.title('Амплитудный спектр (центр = 0 Гц)')
 plt.axis('off')
-plt.savefig(folder+"fur_log.png")
+plt.savefig(folder+"fur_log.png", bbox_inches='tight', pad_inches=0, dpi=DPI)
+plt.close()
 
 for i in range(len(g_k)):
-    plt.figure()
+    plt.figure(figsize=FIG_SIZE, dpi=DPI)
     ker = g_k[i]
     ker_appl(ker, gray, f"gauss_{N[i]}")
     fur_ker = scipy.fftshift(scipy.fft2(ker))
     magnitude = np.log1p(abs(fur_ker))
         
     plt.imshow(magnitude, cmap="gray")
-    plt.savefig(folder+f"ker_gaus{N[i]}.png")
+    plt.axis('off')
+    plt.savefig(folder+f"ker_gaus{N[i]}.png", bbox_inches='tight', pad_inches=0, dpi=DPI)
+    plt.close()
 
 for i in range(len(b_k)):
-    plt.figure()
+    plt.figure(figsize=FIG_SIZE, dpi=DPI)
     ker = b_k[i]
     ker_appl(ker, gray, f"block_{N[i]}")
     fur_ker = scipy.fftshift(scipy.fft2(ker))
     magnitude = np.log1p(abs(fur_ker))
         
     plt.imshow(magnitude, cmap="gray")
-    plt.savefig(folder+f"ker_block{N[i]}.png")
+    plt.axis('off')
+    plt.savefig(folder+f"ker_block{N[i]}.png", bbox_inches='tight', pad_inches=0, dpi=DPI)
+    plt.close()
 
 fur_ker = scipy.fftshift(scipy.fft2(K_s))
 magnitude = np.log1p(abs(fur_ker))
 ker_appl(K_s, gray, f"sharp")    
+plt.figure(figsize=FIG_SIZE, dpi=DPI)
 plt.imshow(magnitude, cmap="gray")
-plt.savefig(folder+f"ker_sharp.png")
+plt.axis('off')
+plt.savefig(folder+f"ker_sharp.png", bbox_inches='tight', pad_inches=0, dpi=DPI)
+plt.close()
 
 fur_ker = scipy.fftshift(scipy.fft2(K_e))
 magnitude = np.log1p(abs(fur_ker))
 ker_appl(K_e, gray, f"edge")
+plt.figure(figsize=FIG_SIZE, dpi=DPI)
 plt.imshow(magnitude, cmap="gray")
-plt.savefig(folder+f"ker_edges.png")
+plt.axis('off')
+plt.savefig(folder+f"ker_edges.png", bbox_inches='tight', pad_inches=0, dpi=DPI)
+plt.close()
 
 for i in range(len(g_k)):
     ker = g_k[i]
     res = convolve2d(gray, ker, mode='same', boundary='fill', fillvalue=0)
-    cv2.imwrite( folder+f"noita_gaus{N[i]}.png", res)
+    # Нормализация и приведение к uint8 для cv2.imwrite
+    res_norm = cv2.normalize(res, None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8U)
+    cv2.imwrite(folder+f"noita_gaus{N[i]}.png", res_norm)
 
 for i in range(len(g_k)):
     ker = b_k[i]
     res = convolve2d(gray, ker, mode='same', boundary='fill', fillvalue=0)
-    cv2.imwrite( folder+f"noita_block{N[i]}.png", res)
-
+    res_norm = cv2.normalize(res, None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8U)
+    cv2.imwrite(folder+f"noita_block{N[i]}.png", res_norm)
 
 res = convolve2d(gray, K_s, mode='same', boundary='fill', fillvalue=0)
-cv2.imwrite( folder+f"noita_sharp.png", res)
+res_norm = cv2.normalize(res, None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8U)
+cv2.imwrite(folder+f"noita_sharp.png", res_norm)
 
 res = convolve2d(gray, K_e, mode='same', boundary='fill', fillvalue=0)
-cv2.imwrite( folder+f"noita_edges.png", res)
-
+res_norm = cv2.normalize(res, None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8U)
+cv2.imwrite(folder+f"noita_edges.png", res_norm)

@@ -201,7 +201,27 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 \caption{Обработка гауссовым ядром ($11\times11$)}
 \label{fig:gauss_10}
 
-% а) Исходное и обработанное (свёртка)
+% Спектр ядра и спектр результата
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/ker_gaus10.png}
+    \subcaption{Спектр ядра $\log|F\{h\}|$}
+    \label{subfig:g10_ker_spec}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_gauss_10.png}
+    \subcaption{Спектр результата $\log|F\{g*h\}|$}
+    \label{subfig:g10_res_spec}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Обработка гауссовым ядром ($11\times11$)}
+
+% Исходное и результаты свёртки
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/noita_gray.png}
@@ -215,38 +235,13 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
     \subcaption{Свёртка}
     \label{subfig:g10_conv}
 \end{subfigure}
-
-% б) Спектр ядра
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/ker_gaus10.png}
-    \subcaption{Спектр ядра $\log|F\{h\}|$}
-    \label{subfig:g10_ker_spec}
-\end{subfigure}
-\hfill
-% в) Спектр отфильтрованного изображения
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/fur_log_filtered_gauss_10.png}
-    \subcaption{Спектр результата $\log|F\{g*h\}|$}
-    \label{subfig:g10_res_spec}
-\end{subfigure}
-
-% г) Сравнение методов обработки
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/noita_gaus10.png}
-    \subcaption{Свёртка (scipy)}
-    \label{subfig:g10_conv2d}
-\end{subfigure}
-\hfill
+\vspace{1em}
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/filtered_img_gauss_10.png}
     \subcaption{Через БПФ}
     \label{subfig:g10_fft}
 \end{subfigure}
-
 \end{figure}
 
 % ========= ГАУССОВО ЯДРО, N=40 =========
@@ -255,7 +250,25 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 \caption{Обработка гауссовым ядром ($41\times41$)}
 \label{fig:gauss_40}
 
-% а)
+% Спектр ядра и спектр результата
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/ker_gaus40.png}
+    \subcaption{Спектр ядра $\log|F\{h\}|$}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_gauss_40.png}
+    \subcaption{Спектр результата $\log|F\{g*h\}|$}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Обработка гауссовым ядром ($41\times41$)}
+
+% Исходное и результаты свёртки
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/noita_gray.png}
@@ -268,33 +281,12 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
     \subcaption{Свёртка}
 \end{subfigure}
 
-% б)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/ker_gaus40.png}
-    \subcaption{Спектр ядра $\log|F\{h\}|$}
-\end{subfigure}
-\hfill
-% в)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/fur_log_filtered_gauss_40.png}
-    \subcaption{Спектр результата $\log|F\{g*h\}|$}
-\end{subfigure}
-
-% г)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/noita_gaus40.png}
-    \subcaption{Свёртка (scipy)}
-\end{subfigure}
-\hfill
+\vspace{1em}
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/filtered_img_gauss_40.png}
     \subcaption{Через БПФ}
 \end{subfigure}
-
 \end{figure}
 
 % ========= ГАУССОВО ЯДРО, N=120 =========
@@ -303,7 +295,25 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 \caption{Обработка гауссовым ядром ($121\times121$)}
 \label{fig:gauss_120}
 
-% а)
+% Спектр ядра и спектр результата
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/ker_gaus120.png}
+    \subcaption{Спектр ядра $\log|F\{h\}|$}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_gauss_120.png}
+    \subcaption{Спектр результата $\log|F\{g*h\}|$}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Обработка гауссовым ядром ($121\times121$)}
+
+% Исходное и результаты свёртки
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/noita_gray.png}
@@ -316,33 +326,12 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
     \subcaption{Свёртка}
 \end{subfigure}
 
-% б)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/ker_gaus120.png}
-    \subcaption{Спектр ядра $\log|F\{h\}|$}
-\end{subfigure}
-\hfill
-% в)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/fur_log_filtered_gauss_120.png}
-    \subcaption{Спектр результата $\log|F\{g*h\}|$}
-\end{subfigure}
-
-% г)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/noita_gaus120.png}
-    \subcaption{Свёртка (scipy)}
-\end{subfigure}
-\hfill
+\vspace{1em}
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/filtered_img_gauss_120.png}
     \subcaption{Через БПФ}
 \end{subfigure}
-
 \end{figure}
 
 \newpage
@@ -360,7 +349,25 @@ A_{ij} = 1, \qquad K_{\square} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 \caption{Обработка блочным ядром ($11\times11$)}
 \label{fig:block_10}
 
-% а)
+% Спектр ядра и спектр результата
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/ker_block10.png}
+    \subcaption{Спектр ядра $\log|F\{h\}|$}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_block_10.png}
+    \subcaption{Спектр результата $\log|F\{g*h\}|$}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Обработка блочным ядром ($11\times11$)}
+
+% Исходное и результаты свёртки
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/noita_gray.png}
@@ -373,33 +380,12 @@ A_{ij} = 1, \qquad K_{\square} = \dfrac{A}{\Sigma_{ij}A_{ij}}
     \subcaption{Свёртка}
 \end{subfigure}
 
-% б)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/ker_block10.png}
-    \subcaption{Спектр ядра $\log|F\{h\}|$}
-\end{subfigure}
-\hfill
-% в)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/fur_log_filtered_block_10.png}
-    \subcaption{Спектр результата $\log|F\{g*h\}|$}
-\end{subfigure}
-
-% г)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/noita_block10.png}
-    \subcaption{Свёртка (scipy)}
-\end{subfigure}
-\hfill
+\vspace{1em}
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/filtered_img_block_10.png}
     \subcaption{Через БПФ}
 \end{subfigure}
-
 \end{figure}
 
 % ========= БЛОЧНОЕ ЯДРО, N=40 =========
@@ -408,7 +394,25 @@ A_{ij} = 1, \qquad K_{\square} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 \caption{Обработка блочным ядром ($41\times41$)}
 \label{fig:block_40}
 
-% а)
+% Спектр ядра и спектр результата
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/ker_block40.png}
+    \subcaption{Спектр ядра $\log|F\{h\}|$}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_block_40.png}
+    \subcaption{Спектр результата $\log|F\{g*h\}|$}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Обработка блочным ядром ($41\times41$)}
+
+% Исходное и результаты свёртки
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/noita_gray.png}
@@ -421,35 +425,13 @@ A_{ij} = 1, \qquad K_{\square} = \dfrac{A}{\Sigma_{ij}A_{ij}}
     \subcaption{Свёртка}
 \end{subfigure}
 
-% б)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/ker_block40.png}
-    \subcaption{Спектр ядра $\log|F\{h\}|$}
-\end{subfigure}
-\hfill
-% в)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/fur_log_filtered_block_40.png}
-    \subcaption{Спектр результата $\log|F\{g*h\}|$}
-\end{subfigure}
-
-% г)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/noita_block40.png}
-    \subcaption{Свёртка (scipy)}
-\end{subfigure}
-\hfill
+\vspace{1em}
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/filtered_img_block_40.png}
     \subcaption{Через БПФ}
 \end{subfigure}
-
 \end{figure}
-
 
 % ========= БЛОЧНОЕ ЯДРО, N=120 =========
 \begin{figure}[H]
@@ -457,7 +439,25 @@ A_{ij} = 1, \qquad K_{\square} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 \caption{Обработка блочным ядром ($121\times121$)}
 \label{fig:block_120}
 
-% а)
+% Спектр ядра и спектр результата
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/ker_block120.png}
+    \subcaption{Спектр ядра $\log|F\{h\}|$}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_block_120.png}
+    \subcaption{Спектр результата $\log|F\{g*h\}|$}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Обработка блочным ядром ($121\times121$)}
+
+% Исходное и результаты свёртки
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/noita_gray.png}
@@ -470,36 +470,15 @@ A_{ij} = 1, \qquad K_{\square} = \dfrac{A}{\Sigma_{ij}A_{ij}}
     \subcaption{Свёртка}
 \end{subfigure}
 
-% б)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/ker_block120.png}
-    \subcaption{Спектр ядра $\log|F\{h\}|$}
-\end{subfigure}
-\hfill
-% в)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/fur_log_filtered_block_120.png}
-    \subcaption{Спектр результата $\log|F\{g*h\}|$}
-\end{subfigure}
-
-% г)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/noita_block120.png}
-    \subcaption{Свёртка (scipy)}
-\end{subfigure}
-\hfill
+\vspace{1em}
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/filtered_img_block_120.png}
     \subcaption{Через БПФ}
 \end{subfigure}
-
 \end{figure}
 
-
+\newpage
 \subsection{Ядро увеличения резкости}
 Применим ядро вида
 \[
@@ -517,7 +496,25 @@ K_{*} = \begin{bmatrix}
 \caption{Обработка ядром повышения резкости $3\times3$}
 \label{fig:sharp}
 
-% а)
+% Спектр ядра и спектр результата
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/ker_sharp.png}
+    \subcaption{Спектр ядра $\log|F\{h\}|$}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_sharp.png}
+    \subcaption{Спектр результата $\log|F\{g*h\}|$}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Обработка ядром повышения резкости $3\times3$}
+
+% Исходное и результаты свёртки
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/noita_gray.png}
@@ -530,33 +527,12 @@ K_{*} = \begin{bmatrix}
     \subcaption{Свёртка}
 \end{subfigure}
 
-% б)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/ker_sharp.png}
-    \subcaption{Спектр ядра $\log|F\{h\}|$}
-\end{subfigure}
-\hfill
-% в)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/fur_log_filtered_sharp.png}
-    \subcaption{Спектр результата $\log|F\{g*h\}|$}
-\end{subfigure}
-
-% г)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/noita_sharp.png}
-    \subcaption{Свёртка (scipy)}
-\end{subfigure}
-\hfill
+\vspace{1em}
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/filtered_img_sharp.png}
     \subcaption{Через БПФ}
 \end{subfigure}
-
 \end{figure}
 
 \subsection{Ядро увеличения резкости}
@@ -577,7 +553,25 @@ K_{*} = \begin{bmatrix}
 \caption{Обработка ядром выделения границ $3\times3$}
 \label{fig:edge}
 
-% а)
+% Спектр ядра и спектр результата
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/ker_edges.png}
+    \subcaption{Спектр ядра $\log|F\{h\}|$}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_edge.png}
+    \subcaption{Спектр результата $\log|F\{g*h\}|$}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Обработка ядром выделения границ $3\times3$}
+
+% Исходное и результаты свёртки
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/noita_gray.png}
@@ -590,33 +584,12 @@ K_{*} = \begin{bmatrix}
     \subcaption{Свёртка}
 \end{subfigure}
 
-% б)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/ker_edges.png}
-    \subcaption{Спектр ядра $\log|F\{h\}|$}
-\end{subfigure}
-\hfill
-% в)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/fur_log_filtered_edge.png}
-    \subcaption{Спектр результата $\log|F\{g*h\}|$}
-\end{subfigure}
-
-% г)
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/noita_edges.png}
-    \subcaption{Свёртка (scipy)}
-\end{subfigure}
-\hfill
+\vspace{1em}
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/filtered_img_edge.png}
     \subcaption{Через БПФ}
 \end{subfigure}
-
 \end{figure}
 
 \subsection{Вывод}
@@ -626,7 +599,7 @@ K_{*} = \begin{bmatrix}
 Изображения после фильтрации через conv2 и через БПФ работает немного по разному, это происходит из-за того, что в conv2 используется линейная свёртка, а свёртка через БПФ работает как циклическая свёртка.
 \section{Вывод}
 В работе мы отфильтровали картинку с периодическими полосами, сгладив пики в модуле Фурье-образа.
-Также мы
+Также мы применили различные ядра преобразования и проанализировали то, как соответствующие преобразования влияют на изображения.
 \newpage
 \section{Приложения}
 \begin{lstlisting}[caption={Код для обработки изображения в 1 пункте}]
