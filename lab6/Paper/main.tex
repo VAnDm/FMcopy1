@@ -110,7 +110,54 @@
 \tableofcontents
 
 \newpage
-
+\section{Фильтрация изображений с периодичностью}
+\subsection{Исходное изображение}
+Выберем одно из исходных изображений, представленных в задании:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/7.png}
+    \caption{Исходное изображение}
+\end{figure}
+Видим, что исходное изображение содержит заметные периодические полосы.
+\subsection{Построение модуля двумерного Фурье-образа}
+Получим из исходного изображения модуль Фурье образа как abs от fftshift(fft2(7.png)).
+\newline
+Возьмем логарифм от 1 + модуль Фурье образа.
+\newline
+Линейно нормируем полученный массив (в формуле - X) по формуле:
+\[
+x_{new} = \frac{x_{old} - min(X)}{max(X) - min(X)}
+\]
+\newpage
+Построим изображение из полученного массива:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/furie.png}
+    \caption{Логарифм модуля Фурье-образа после нормализации}
+\end{figure}
+Найдем на нем пики, соответствующие периодическим наклонным полосам:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/pikes.png}
+    \caption{Пики, соответствующие периодическим наклонным полосам}
+\end{figure}
+С помощью Paint возьмем цвет пипеткой из области равноудаленной от центра по сравнению с соответствующим пиком и заменим цвет пикселей в пиках:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/pikes2.png}
+    \caption{Центр логарифма модуля Фурье-образа после фильтрации}
+\end{figure}
+\newpage
+Применив к новой картинке оперции в обратном порядке (аргумент Фурье-образа берем тот, что получен из исходной картинки) построим отфильтрованное изображение:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/filtered.png}
+    \caption{Отфильтрованное изображение}
+\end{figure}
+Видим, что на большей части картинки периодичность сгладилась, а на небе, где изначально она была мала стала ярко выраженной.
+\subsection{Вывод}
+Таким образом мы научились фильтровать периодические полосы путем сглаживания пиков в модуле Фурье-образа изображения.
+\newpage
 \section{Исследование свёртки}
 
 \subsection{Подготовка}
@@ -157,14 +204,14 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 % а) Исходное и обработанное (свёртка)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gray.png}
+    \includegraphics[width=\textwidth]{images/noita_gray.png}
     \subcaption{Исходное}
     \label{subfig:g10_orig}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gaus10.png}
+    \includegraphics[width=\textwidth]{images/noita_gaus10.png}
     \subcaption{Свёртка}
     \label{subfig:g10_conv}
 \end{subfigure}
@@ -172,7 +219,7 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 % б) Спектр ядра
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{ker_gaus10.png}
+    \includegraphics[width=\textwidth]{images/ker_gaus10.png}
     \subcaption{Спектр ядра $\log|F\{h\}|$}
     \label{subfig:g10_ker_spec}
 \end{subfigure}
@@ -180,7 +227,7 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 % в) Спектр отфильтрованного изображения
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{fur_log_filtered_gauss_10.png}
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_gauss_10.png}
     \subcaption{Спектр результата $\log|F\{g*h\}|$}
     \label{subfig:g10_res_spec}
 \end{subfigure}
@@ -188,14 +235,14 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 % г) Сравнение методов обработки
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gaus10.png}
+    \includegraphics[width=\textwidth]{images/noita_gaus10.png}
     \subcaption{Свёртка (scipy)}
     \label{subfig:g10_conv2d}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{filtered_img_gauss_10.png}
+    \includegraphics[width=\textwidth]{images/filtered_img_gauss_10.png}
     \subcaption{Через БПФ}
     \label{subfig:g10_fft}
 \end{subfigure}
@@ -211,40 +258,40 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 % а)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gray.png}
+    \includegraphics[width=\textwidth]{images/noita_gray.png}
     \subcaption{Исходное}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gaus40.png}
+    \includegraphics[width=\textwidth]{images/noita_gaus40.png}
     \subcaption{Свёртка}
 \end{subfigure}
 
 % б)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{ker_gaus40.png}
+    \includegraphics[width=\textwidth]{images/ker_gaus40.png}
     \subcaption{Спектр ядра $\log|F\{h\}|$}
 \end{subfigure}
 \hfill
 % в)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{fur_log_filtered_gauss_40.png}
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_gauss_40.png}
     \subcaption{Спектр результата $\log|F\{g*h\}|$}
 \end{subfigure}
 
 % г)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gaus40.png}
+    \includegraphics[width=\textwidth]{images/noita_gaus40.png}
     \subcaption{Свёртка (scipy)}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{filtered_img_gauss_40.png}
+    \includegraphics[width=\textwidth]{images/filtered_img_gauss_40.png}
     \subcaption{Через БПФ}
 \end{subfigure}
 
@@ -259,40 +306,40 @@ K_{\sigma} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 % а)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gray.png}
+    \includegraphics[width=\textwidth]{images/noita_gray.png}
     \subcaption{Исходное}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gaus120.png}
+    \includegraphics[width=\textwidth]{images/noita_gaus120.png}
     \subcaption{Свёртка}
 \end{subfigure}
 
 % б)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{ker_gaus120.png}
+    \includegraphics[width=\textwidth]{images/ker_gaus120.png}
     \subcaption{Спектр ядра $\log|F\{h\}|$}
 \end{subfigure}
 \hfill
 % в)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{fur_log_filtered_gauss_120.png}
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_gauss_120.png}
     \subcaption{Спектр результата $\log|F\{g*h\}|$}
 \end{subfigure}
 
 % г)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gaus120.png}
+    \includegraphics[width=\textwidth]{images/noita_gaus120.png}
     \subcaption{Свёртка (scipy)}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{filtered_img_gauss_120.png}
+    \includegraphics[width=\textwidth]{images/filtered_img_gauss_120.png}
     \subcaption{Через БПФ}
 \end{subfigure}
 
@@ -316,40 +363,40 @@ A_{ij} = 1, \qquad K_{\square} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 % а)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gray.png}
+    \includegraphics[width=\textwidth]{images/noita_gray.png}
     \subcaption{Исходное}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_block10.png}
+    \includegraphics[width=\textwidth]{images/noita_block10.png}
     \subcaption{Свёртка}
 \end{subfigure}
 
 % б)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{ker_block10.png}
+    \includegraphics[width=\textwidth]{images/ker_block10.png}
     \subcaption{Спектр ядра $\log|F\{h\}|$}
 \end{subfigure}
 \hfill
 % в)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{fur_log_filtered_block_10.png}
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_block_10.png}
     \subcaption{Спектр результата $\log|F\{g*h\}|$}
 \end{subfigure}
 
 % г)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_block10.png}
+    \includegraphics[width=\textwidth]{images/noita_block10.png}
     \subcaption{Свёртка (scipy)}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{filtered_img_block_10.png}
+    \includegraphics[width=\textwidth]{images/filtered_img_block_10.png}
     \subcaption{Через БПФ}
 \end{subfigure}
 
@@ -364,40 +411,40 @@ A_{ij} = 1, \qquad K_{\square} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 % а)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gray.png}
+    \includegraphics[width=\textwidth]{images/noita_gray.png}
     \subcaption{Исходное}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_block40.png}
+    \includegraphics[width=\textwidth]{images/noita_block40.png}
     \subcaption{Свёртка}
 \end{subfigure}
 
 % б)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{ker_block40.png}
+    \includegraphics[width=\textwidth]{images/ker_block40.png}
     \subcaption{Спектр ядра $\log|F\{h\}|$}
 \end{subfigure}
 \hfill
 % в)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{fur_log_filtered_block_40.png}
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_block_40.png}
     \subcaption{Спектр результата $\log|F\{g*h\}|$}
 \end{subfigure}
 
 % г)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_block40.png}
+    \includegraphics[width=\textwidth]{images/noita_block40.png}
     \subcaption{Свёртка (scipy)}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{filtered_img_block_40.png}
+    \includegraphics[width=\textwidth]{images/filtered_img_block_40.png}
     \subcaption{Через БПФ}
 \end{subfigure}
 
@@ -413,40 +460,40 @@ A_{ij} = 1, \qquad K_{\square} = \dfrac{A}{\Sigma_{ij}A_{ij}}
 % а)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gray.png}
+    \includegraphics[width=\textwidth]{images/noita_gray.png}
     \subcaption{Исходное}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_block120.png}
+    \includegraphics[width=\textwidth]{images/noita_block120.png}
     \subcaption{Свёртка}
 \end{subfigure}
 
 % б)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{ker_block120.png}
+    \includegraphics[width=\textwidth]{images/ker_block120.png}
     \subcaption{Спектр ядра $\log|F\{h\}|$}
 \end{subfigure}
 \hfill
 % в)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{fur_log_filtered_block_120.png}
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_block_120.png}
     \subcaption{Спектр результата $\log|F\{g*h\}|$}
 \end{subfigure}
 
 % г)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_block120.png}
+    \includegraphics[width=\textwidth]{images/noita_block120.png}
     \subcaption{Свёртка (scipy)}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{filtered_img_block_120.png}
+    \includegraphics[width=\textwidth]{images/filtered_img_block_120.png}
     \subcaption{Через БПФ}
 \end{subfigure}
 
@@ -473,40 +520,40 @@ K_{*} = \begin{bmatrix}
 % а)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gray.png}
+    \includegraphics[width=\textwidth]{images/noita_gray.png}
     \subcaption{Исходное}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_sharp.png}
+    \includegraphics[width=\textwidth]{images/noita_sharp.png}
     \subcaption{Свёртка}
 \end{subfigure}
 
 % б)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{ker_sharp.png}
+    \includegraphics[width=\textwidth]{images/ker_sharp.png}
     \subcaption{Спектр ядра $\log|F\{h\}|$}
 \end{subfigure}
 \hfill
 % в)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{fur_log_filtered_sharp.png}
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_sharp.png}
     \subcaption{Спектр результата $\log|F\{g*h\}|$}
 \end{subfigure}
 
 % г)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_sharp.png}
+    \includegraphics[width=\textwidth]{images/noita_sharp.png}
     \subcaption{Свёртка (scipy)}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{filtered_img_sharp.png}
+    \includegraphics[width=\textwidth]{images/filtered_img_sharp.png}
     \subcaption{Через БПФ}
 \end{subfigure}
 
@@ -533,40 +580,40 @@ K_{*} = \begin{bmatrix}
 % а)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_gray.png}
+    \includegraphics[width=\textwidth]{images/noita_gray.png}
     \subcaption{Исходное}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_edges.png}
+    \includegraphics[width=\textwidth]{images/noita_edges.png}
     \subcaption{Свёртка}
 \end{subfigure}
 
 % б)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{ker_edges.png}
+    \includegraphics[width=\textwidth]{images/ker_edges.png}
     \subcaption{Спектр ядра $\log|F\{h\}|$}
 \end{subfigure}
 \hfill
 % в)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{fur_log_filtered_edge.png}
+    \includegraphics[width=\textwidth]{images/fur_log_filtered_edge.png}
     \subcaption{Спектр результата $\log|F\{g*h\}|$}
 \end{subfigure}
 
 % г)
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{noita_edges.png}
+    \includegraphics[width=\textwidth]{images/noita_edges.png}
     \subcaption{Свёртка (scipy)}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{filtered_img_edge.png}
+    \includegraphics[width=\textwidth]{images/filtered_img_edge.png}
     \subcaption{Через БПФ}
 \end{subfigure}
 
@@ -577,6 +624,182 @@ K_{*} = \begin{bmatrix}
 Блочное размытие при тех же размерах матрицы размывает изображение сильнее и не сохраняет детали. При увеличении размера матрицы оба размытия работаю сильнее.
 Применение ядер повышения резкости и выделения краёв действуют в соответствии со своими названиями.
 Изображения после фильтрации через conv2 и через БПФ работает немного по разному, это происходит из-за того, что в conv2 используется линейная свёртка, а свёртка через БПФ работает как циклическая свёртка.
+\section{Вывод}
+В работе мы отфильтровали картинку с периодическими полосами, сгладив пики в модуле Фурье-образа.
+Также мы
+\newpage
+\section{Приложения}
+\begin{lstlisting}[caption={Код для обработки изображения в 1 пункте}]
+im = imread('7.png');
+im2 = double(im) / 255;
+fur_im = fftshift(fft2(im2));
+mods = abs(fur_im);
+angles = angle(fur_im);
+mods_log = log(mods + 1);
+max_mods_log = max(mods_log,[],'all');
+min_mods_log = min(mods_log,[],'all');
+mods_img = (mods_log - min_mods_log) / (max_mods_log - min_mods_log);
+%imwrite(mods_img, "furie.png")
+fur_fil_raw = imread('furie_fil.png');
+fur_fil = double(fur_fil_raw) / 255;
+fur_fil_mod = exp((fur_fil * (max_mods_log - min_mods_log) + min_mods_log)) - 1; 
+fur_fil_res = exp(1i * angles) .* fur_fil_mod;
+im_fil = ifft2(ifftshift(fur_fil_res));
+imwrite(im_fil, "filtered.png");
+\end{lstlisting}
+\begin{lstlisting}[caption={Код для обработки изображения во 2 пункте}]
+import numpy as np
+
+import cv2
+from scipy.signal import convolve2d
+import scipy.fft as scipy
+import matplotlib.pyplot as plt
+
+folder = "C:\\Users\\Professional\\Here i live\\Uni\\FM\\lab6\\Paper\\images\\"
+
+img = cv2.imread(folder+"noita.png")
+print(img)
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+cv2.imwrite( folder+"noita_gray.png", gray)
 
 
+def gauss_ker(N):
+    A = np.zeros((N, N))
+    sigma = (N-1)/6
+    for i in range(N):
+        for j in range(N):
+            A[i][j] = np.exp(-((i - (N+1)/2)**2 + (j - (N+1)/2)**2)/(2*sigma**2))
+
+    s = sum(sum(A))
+    return A/s
+
+def block_ker(N):
+    A = np.zeros((N, N))
+    A += 1
+    s = sum(sum(A))
+    
+    return A/s
+
+def ker_appl(ker, img, type):
+    N, M = img.shape
+    kh, kw = ker.shape
+
+    Me = M + kw - 1
+    Ne = N + kh - 1
+
+    img_e = np.zeros((Ne, Me))
+    img_e[:N, :M] = img
+    
+    ker_e = np.zeros((Ne, Me))
+    ker_e[:kh, :kw] = ker
+
+    fur_img = scipy.fft2(img_e)
+    fur_ker = scipy.fft2(ker_e)
+
+    img_filt = fur_img*fur_ker
+
+    plt.figure()
+    plt.imshow(np.log(abs(img_filt)), cmap='gray')
+    plt.savefig(
+        folder+f"fur_log_filtered{type}.png",
+        bbox_inches='tight',   # обрезает лишние поля
+        pad_inches=0,          # убирает внутренний отступ
+        dpi=150                # одинаковое качество для всех
+    )
+
+    result_pad = np.real(scipy.ifft2(img_filt))
+
+    # 8. Вырезаем центр для режима 'same' (совпадение размера с оригиналом)
+    start_h = kh // 2
+    start_w = kw // 2
+    filtered_img = result_pad[start_h:start_h+M, start_w:start_w+N]
+
+    plt.figure()
+    plt.imshow(filtered_img, cmap='gray')
+    plt.savefig(
+        folder+f"filtered_img_{type}.png",
+        bbox_inches='tight',   # обрезает лишние поля
+        pad_inches=0,          # убирает внутренний отступ
+        dpi=150                # одинаковое качество для всех
+    )
+
+g_k = []
+b_k = []
+
+N = [10, 40, 120]
+
+for n in N:
+    g_k.append(gauss_ker(n))
+    b_k.append(block_ker(n))
+
+K_s = np.array([
+    [0, -1, 0],
+    [-1, 5, -1],
+    [0, -1, 0]
+])
+
+K_e = np.array([
+    [-1, -1, -1],
+    [-1, 8, -1],
+    [-1, -1, -1]
+])
+
+fur_img = scipy.fftshift(scipy.fft2(gray))
+
+magnitude = np.log1p(abs(fur_img))
+plt.figure()
+plt.imshow(magnitude, cmap="gray")
+plt.title('Амплитудный спектр (центр = 0 Гц)')
+plt.axis('off')
+plt.savefig(folder+"fur_log.png")
+
+for i in range(len(g_k)):
+    plt.figure()
+    ker = g_k[i]
+    ker_appl(ker, gray, f"gauss_{N[i]}")
+    fur_ker = scipy.fftshift(scipy.fft2(ker))
+    magnitude = np.log1p(abs(fur_ker))
+        
+    plt.imshow(magnitude, cmap="gray")
+    plt.savefig(folder+f"ker_gaus{N[i]}.png")
+
+for i in range(len(b_k)):
+    plt.figure()
+    ker = b_k[i]
+    ker_appl(ker, gray, f"block_{N[i]}")
+    fur_ker = scipy.fftshift(scipy.fft2(ker))
+    magnitude = np.log1p(abs(fur_ker))
+        
+    plt.imshow(magnitude, cmap="gray")
+    plt.savefig(folder+f"ker_block{N[i]}.png")
+
+fur_ker = scipy.fftshift(scipy.fft2(K_s))
+magnitude = np.log1p(abs(fur_ker))
+ker_appl(K_s, gray, f"sharp")    
+plt.imshow(magnitude, cmap="gray")
+plt.savefig(folder+f"ker_sharp.png")
+
+fur_ker = scipy.fftshift(scipy.fft2(K_e))
+magnitude = np.log1p(abs(fur_ker))
+ker_appl(K_e, gray, f"edge")
+plt.imshow(magnitude, cmap="gray")
+plt.savefig(folder+f"ker_edges.png")
+
+for i in range(len(g_k)):
+    ker = g_k[i]
+    res = convolve2d(gray, ker, mode='same', boundary='fill', fillvalue=0)
+    cv2.imwrite( folder+f"noita_gaus{N[i]}.png", res)
+
+for i in range(len(g_k)):
+    ker = b_k[i]
+    res = convolve2d(gray, ker, mode='same', boundary='fill', fillvalue=0)
+    cv2.imwrite( folder+f"noita_block{N[i]}.png", res)
+
+
+res = convolve2d(gray, K_s, mode='same', boundary='fill', fillvalue=0)
+cv2.imwrite( folder+f"noita_sharp.png", res)
+
+res = convolve2d(gray, K_e, mode='same', boundary='fill', fillvalue=0)
+cv2.imwrite( folder+f"noita_edges.png", res)
+\end{lstlisting}
 \end{document}
