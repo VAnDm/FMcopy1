@@ -4,9 +4,8 @@ from scipy.signal import convolve2d
 import scipy.fft as scipy
 import matplotlib.pyplot as plt
 
-# === Единые параметры для всех изображений ===
-FIG_SIZE = (12, 12)  # размер в дюймах
-DPI = 300            # разрешение
+FIG_SIZE = (12, 12)
+DPI = 300 
 
 folder = "C:\\Users\\Professional\\Here i live\\Uni\\FM\\lab6\\Paper\\images\\"
 
@@ -50,8 +49,8 @@ def ker_appl(ker, img, type):
     fur_ker = scipy.fft2(ker_e)
 
     img_filt = fur_img*fur_ker
+    
 
-    # === Сохранение спектра результата ===
     plt.figure(figsize=FIG_SIZE, dpi=DPI)
     plt.imshow(np.log(abs(img_filt)), cmap='gray')
     plt.axis('off')
@@ -64,13 +63,11 @@ def ker_appl(ker, img, type):
     plt.close()
 
     result_pad = np.real(scipy.ifft2(img_filt))
-
-    # 8. Вырезаем центр для режима 'same' (совпадение размера с оригиналом)
+    result_pad = np.clip(result_pad, 0, 255).astype(np.uint8)
     start_h = kh // 2
     start_w = kw // 2
     filtered_img = result_pad[start_h:start_h+M, start_w:start_w+N]
 
-    # === Сохранение отфильтрованного изображения ===
     plt.figure(figsize=FIG_SIZE, dpi=DPI)
     plt.imshow(filtered_img, cmap='gray')
     plt.axis('off')
@@ -158,7 +155,6 @@ plt.close()
 for i in range(len(g_k)):
     ker = g_k[i]
     res = convolve2d(gray, ker, mode='same', boundary='fill', fillvalue=0)
-    # Нормализация и приведение к uint8 для cv2.imwrite
     res_norm = cv2.normalize(res, None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8U)
     cv2.imwrite(folder+f"noita_gaus{N[i]}.png", res_norm)
 
@@ -169,9 +165,9 @@ for i in range(len(g_k)):
     cv2.imwrite(folder+f"noita_block{N[i]}.png", res_norm)
 
 res = convolve2d(gray, K_s, mode='same', boundary='fill', fillvalue=0)
-res_norm = cv2.normalize(res, None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8U)
+res_norm = np.clip(res, 0, 255).astype(np.uint8)
 cv2.imwrite(folder+f"noita_sharp.png", res_norm)
 
 res = convolve2d(gray, K_e, mode='same', boundary='fill', fillvalue=0)
-res_norm = cv2.normalize(res, None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8U)
+res_norm = np.clip(res, 0, 255).astype(np.uint8)
 cv2.imwrite(folder+f"noita_edges.png", res_norm)
