@@ -675,14 +675,13 @@ def ker_appl(ker, img, type):
     plt.imshow(np.log(abs(img_filt)), cmap='gray')
     plt.savefig(
         folder+f"fur_log_filtered{type}.png",
-        bbox_inches='tight',   # обрезает лишние поля
-        pad_inches=0,          # убирает внутренний отступ
-        dpi=150                # одинаковое качество для всех
+        bbox_inches='tight',   
+        pad_inches=0,          
+        dpi=150                
     )
 
     result_pad = np.real(scipy.ifft2(img_filt))
 
-    # 8. Вырезаем центр для режима 'same' (совпадение размера с оригиналом)
     start_h = kh // 2
     start_w = kw // 2
     filtered_img = result_pad[start_h:start_h+M, start_w:start_w+N]
@@ -691,9 +690,9 @@ def ker_appl(ker, img, type):
     plt.imshow(filtered_img, cmap='gray')
     plt.savefig(
         folder+f"filtered_img_{type}.png",
-        bbox_inches='tight',   # обрезает лишние поля
-        pad_inches=0,          # убирает внутренний отступ
-        dpi=150                # одинаковое качество для всех
+        bbox_inches='tight',   
+        pad_inches=0,          
+        dpi=150                
     )
 
 g_k = []
